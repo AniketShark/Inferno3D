@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+InfernoEngine/.vs/
+InfernoEngine/DirectX11Pract1/Debug/

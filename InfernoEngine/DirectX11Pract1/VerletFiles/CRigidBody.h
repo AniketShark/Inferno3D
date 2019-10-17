@@ -3,6 +3,7 @@
 
 #include "BasicTypes.h"		// CVector
 #include <vector>
+#include <string>
 
 enum enumIntegrationMode
 {
