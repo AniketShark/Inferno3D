@@ -1,0 +1,29 @@
+LevelConfig
+
+<LevelConfig>
+
+
+<ObjectInfo>
+	<ModelName> Cube.ply </ModelName>
+	<I>
+		<Position> -50 0 0 </Position>
+		<Rotation> 0 0 0 </Rotation>
+		<Scale> 20 20 20 </Scale> 
+	</I>
+	<I>
+		<Position> 0 0 100 </Position>
+		<Rotation> 0 0 0 </Rotation>
+		<Scale> 10 10 10 </Scale> 
+	</I>
+
+</ObjectInfo>
+
+</LevelConfig>
+<ObjectInfo>
+	<ModelName> cow.ply </ModelName>
+	<I>
+		<Position> 0 0 0 </Position>
+		<Rotation> 0 0 0 </Rotation>
+		<Scale> 1 1 1 </Scale> 
+	</I>
+</ObjectInfo>

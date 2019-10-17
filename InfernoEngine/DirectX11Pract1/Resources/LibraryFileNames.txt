@@ -1,0 +1,52 @@
+//All Debug
+PhysX3CharacterKinematicDEBUG_x86.lib
+PhysX3CommonDEBUG_x86.lib
+PhysX3CookingDEBUG_x86.lib
+PhysX3ExtensionsDEBUG.lib
+PhysX3VehicleDEBUG.lib
+PhysX3DEBUG_x86.lib
+PhysXProfileSDKDEBUG.lib
+PhysXVisualDebuggerSDKDEBUG.lib
+PxTaskDEBUG.lib
+RepX3DEBUG.lib
+RepXUpgrader3DEBUG.lib
+
+// All CHECKED
+PhysX3CHECKED_x86.lib
+PhysX3CommonCHECKED_x86.lib
+PhysX3CharacterKinematicCHECKED_x86.lib
+PhysX3CookingCHECKED_x86.lib
+PhysX3ExtensionsCHECKED.lib
+PhysX3VehicleCHECKED.lib
+PhysXProfileSDKCHECKED.lib
+PhysXVisualDebuggerSDKCHECKED.lib
+PxTaskCHECKED.lib
+RepX3CHECKED.lib
+RepXUpgrader3CHECKED.lib
+
+// All PROFILE
+PhysX3CommonPROFILE_x86.lib
+PhysX3CookingPROFILE_x86.lib
+PhysX3ExtensionsPROFILE.lib
+PhysX3VehiclePROFILE.lib
+PhysXProfileSDKPROFILE.lib
+PhysX3PROFILE_x86.lib
+PhysXVisualDebuggerSDKPROFILE.lib
+PxTaskPROFILE.lib
+RepX3PROFILE.lib
+RepXUpgrader3PROFILE.lib
+
+// ALL RELEASE
+
+PhysXProfileSDK.lib
+PhysX3_x86.lib
+PhysX3CharacterKinematic_x86.lib
+PhysX3CharacterKinematicPROFILE_x86.lib
+PhysX3Common_x86.lib
+PhysX3Cooking_x86.lib
+PhysX3Extensions.lib
+PhysX3Vehicle.lib
+PhysXVisualDebuggerSDK.lib
+PxTask.lib
+RepX3.lib
+RepXUpgrader3.lib

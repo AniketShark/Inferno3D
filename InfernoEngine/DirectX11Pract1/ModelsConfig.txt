@@ -1,0 +1,39 @@
+
+ModelLocation Models/
+
+end_header
+
+<ConfigStart>
+
+<ModelInfo> 
+<ModelName> Crate.ply </ModelName>
+</ModelInfo>
+
+<ModelInfo> 
+<ModelName> UVSphere.ply </ModelName>
+</ModelInfo>
+
+<ModelInfo> 
+<ModelName> QuadFire.ply </ModelName>
+</ModelInfo>
+
+<ModelInfo> 
+<ModelName> BunnyWithNormals.ply </ModelName>
+</ModelInfo>
+
+</ConfigEnd>
+
+
+
+<ModelInfo> 
+<ModelName> Feisar_Ship.fbx </ModelName>
+</ModelInfo>
+
+<ModelInfo> 
+<ModelName> DefaultAvatar.fbx </ModelName>
+</ModelInfo>
+
+//Extra Models
+
+
+

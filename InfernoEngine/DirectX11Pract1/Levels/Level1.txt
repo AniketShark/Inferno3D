@@ -1,0 +1,23 @@
+LevelConfig
+
+<LevelConfig>
+
+
+<Lights>
+	<I>
+	<Position> 0 1 0 </Position>
+	<LightDirection> 2 1 1 </LightDirection>
+	<Type> 0 </Type>
+	<Attenuation> 0.001 0.001 0.001 </Attenuation>
+	<Power> 10 </Power>
+	<Range> 1000 </Range>
+	<Padding> 1 </Padding> 
+	<Material>
+		<Diffuse> 0.5 0.5 0.5 1 </Diffuse>
+		<Ambient> 0.2 0.2 0.2 1 </Ambient>
+	</Material>
+	</I>
+
+</Lights>
+
+</LevelConfig>

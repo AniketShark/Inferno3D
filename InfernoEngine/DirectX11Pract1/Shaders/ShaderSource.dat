@@ -1,0 +1,28 @@
+<ShaderSource>
+
+<Shader> Shaders/BasicShader.fx VS PS 0 </Shader>
+
+<Shader> Shaders/LightingAndTexturingShader.fx VS PS 0 </Shader>
+
+<Shader> Shaders/Texture.fx VS PSTexture 2 </Shader>
+
+<Shader> Shaders/SingleTextureOnly.fx VS PSTextureOnly 2 </Shader>
+
+<Shader> Shaders/TwoTexturesOnly.fx VS PSMixTexture 2 </Shader>
+  
+<Shader> Shaders/TwoTexturesPlusLightingOnly.fx VS PSMixTextureLighting 2 </Shader>
+  
+<Shader> Shaders/SingleTexturePlusLightingOnly.fx VS PSTextureLightingOnly 2 </Shader>
+
+ <Shader> Shaders/Skybox.fx VS PSSkybox 2 </Shader>
+
+ <Shader> Shaders/TwoTexturesNormalMapOnly.fx VSNormalMap PSNormalMap 2 </Shader>
+  
+ <Shader> Shaders/DiscardTransperancy.fx VS PSDiscard 1 </Shader>
+  
+ <Shader> Shaders/DiscardTransperancyReverse.fx VS PSDiscardReverse 1 </Shader>
+  
+  <Shader> Shaders/SkinningShaderWithLighting.fx VSSkinning PS 1 </Shader>
+
+
+</ShaderSource>
