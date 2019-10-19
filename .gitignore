@@ -32,3 +32,5 @@
 *.app
 InfernoEngine/.vs/
 InfernoEngine/DirectX11Pract1/Debug/
+InfernoEngine/Debug/InfernoEngine.ilk
+*.pdb
