@@ -43,7 +43,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)\PhysX\Include;$(WindowsSDK_IncludePath);F:\Aniket\DirectX\SDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);F:\Aniket\DirectX\SDK\Lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);F:\Aniket\DirectX\SDK\Lib\x86;$(ProjectDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -57,14 +57,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files\Autodesk\FBX\FBX SDK\2014.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dinput8.lib;dxguid.lib;Effects11d.lib;winmm.lib;comctl32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files\Autodesk\FBX\FBX SDK\2014.2.1\lib\vs2010\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dinput8.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;DXUT.lib;Effects11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBMCT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -97,7 +97,6 @@
     <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="AnimationScriptReader.h" />
     <ClInclude Include="CDrawableTex2D_DX11.h" />
-    <ClInclude Include="Cloth.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Common\d3dx11effect.h" />
     <ClInclude Include="Component.h" />
@@ -114,10 +113,6 @@
     <ClInclude Include="CBVHPoint3f.h" />
     <ClInclude Include="CHRTimer.h" />
     <ClInclude Include="Collider.h" />
-    <ClInclude Include="DXUT.h" />
-    <ClInclude Include="DXUTDevice11.h" />
-    <ClInclude Include="DXUTDevice9.h" />
-    <ClInclude Include="DXUTmisc.h" />
     <ClInclude Include="enumBVHErrorCodes.h" />
     <ClInclude Include="Euler.h" />
     <ClInclude Include="Folder\Armor.h" />
@@ -155,7 +150,6 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="Particle.h" />
-    <ClInclude Include="Physics.h" />
     <ClInclude Include="PlyFileHandler.h" />
     <ClInclude Include="PlyUtility.h" />
     <ClInclude Include="PrefabManager.h" />
@@ -206,17 +200,11 @@
     <ClCompile Include="CBVHPoint3f.cpp" />
     <ClCompile Include="CDrawableTex2D_DX11.cpp" />
     <ClCompile Include="CHRTimer.cpp" />
-    <ClCompile Include="Cloth.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Console.cpp" />
-    <ClCompile Include="DXUT.cpp" />
-    <ClCompile Include="DXUTDevice11.cpp" />
-    <ClCompile Include="DXUTDevice9.cpp" />
-    <ClCompile Include="DXUTmisc.cpp" />
     <ClCompile Include="Euler.cpp" />
-    <ClCompile Include="FbxHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="global.cpp" />
@@ -232,7 +220,6 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PlyFileHandler.cpp" />
     <ClCompile Include="PlyUtility.cpp" />
     <ClCompile Include="PrefabManager.cpp" />

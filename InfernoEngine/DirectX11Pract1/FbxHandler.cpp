@@ -1,4 +1,4 @@
-#include <fbxsdk.h>
+//#include <fbxsdk.h>
 #include "FbxHandler.h"
 #include "Mesh.h"
 #include "SkeletalAnimation.h"

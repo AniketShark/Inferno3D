@@ -24,7 +24,6 @@ end_header
 </ConfigEnd>
 
 
-
 <ModelInfo> 
 <ModelName> Feisar_Ship.fbx </ModelName>
 </ModelInfo>

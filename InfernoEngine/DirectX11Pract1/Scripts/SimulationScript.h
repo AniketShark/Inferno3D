@@ -50,7 +50,7 @@ void SimulationScript::Update()
 {
 	g_input.Frame();
 
-	if(noOfParticles > 0)
+	/*if(noOfParticles > 0)
 	{
 		for (int index = 0; index < noOfParticles;index++)
 		{
@@ -81,7 +81,7 @@ void SimulationScript::Update()
 	else
 	{
 		mThisGO->cloth->ApplyAccelerationInDirection(Vector3::Down,12);
-	}
+	}*/
 }
 
 void SimulationScript::Destroy()

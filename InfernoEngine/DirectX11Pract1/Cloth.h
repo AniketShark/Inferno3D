@@ -20,7 +20,7 @@
 #include "IBehavior.h"
 #include "VerletFiles\CParticleSystem.h"
 #include "Mesh.h"
-#include "xnacollision.h"
+//#include "xnacollision.h"
 #include "Vector.h"
 
 ///// <summary>

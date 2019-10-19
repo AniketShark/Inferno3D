@@ -139,10 +139,10 @@ void GameObject::AddComponent(ComponentType componentType)
 		m_ComponentMap[componentType] = camera;
 		break;
 	case ClothComp:
-		cloth = new(std::nothrow) Cloth();
-		cloth->transform = &transform;
-		m_InterlinkComponents(cloth);
-		m_ComponentMap[componentType] = cloth;
+		//cloth = new(std::nothrow) Cloth();
+		//cloth->transform = &transform;
+		//m_InterlinkComponents(cloth);
+		//m_ComponentMap[componentType] = cloth;
 		break;
 	case LightComp:
 		light = new(std::nothrow) Light();

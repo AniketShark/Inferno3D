@@ -88,7 +88,7 @@ DWORD WINAPI FBXLoadingThread(PVOID param)
 	FileLoadInfo* path = static_cast<FileLoadInfo*>(param);
 	std::string pathstring = (path->path);
 	//EnterCriticalSection(&fbxCriticalSection);
-	SaveMeshToList(LoadMeshFromFbx(pathstring.c_str())); 
+	//SaveMeshToList(LoadMeshFromFbx(pathstring.c_str())); 
 	//LeaveCriticalSection(&fbxCriticalSection);
 	//Sleep(100);
 	return 0;
@@ -269,7 +269,7 @@ bool LoadModelsFromConfigFileNormal(std::string configFile)
 				//newPath->type = FBX;
 				//newPath->path = (MODELS_LOCATION + modelName);
 				std::string path = (MODELS_LOCATION + modelName);
-				SaveMeshToList(LoadMeshFromFbx(path.c_str()));
+				//SaveMeshToList(LoadMeshFromFbx(path.c_str()));
 				//assetsPathList.push_back(newPath);
 				//mStaticMeshList[modelName] = LoadMeshFromFbx(path.c_str());
 				//mStaticMeshList[modelName]->mModelName = modelName;

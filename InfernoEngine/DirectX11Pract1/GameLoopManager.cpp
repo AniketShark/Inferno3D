@@ -339,9 +339,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	UNREFERENCED_PARAMETER( lpCmdLine );
 
 
-	OpenConsole();
+	//OpenConsole();
 	//std::srand(time(0));
-	InitializeFbxSdk();
+	//InitializeFbxSdk();
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
 
@@ -375,7 +375,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	//PlayerScript* plScript = new PlayerScript;
 	//quad->AttachScript(plScript);
 
-//	CreateCompound(quad,Vector3(-20,5,20),10,10);
+	//	CreateCompound(quad,Vector3(-20,5,20),10,10);
 //	PlaceObjectsInGrid(testObject,4,5,Vector2(-20,40),20);
 
 	//////////////////////////////////////////////////////////////////////////

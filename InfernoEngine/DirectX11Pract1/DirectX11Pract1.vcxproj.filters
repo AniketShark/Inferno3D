@@ -219,18 +219,6 @@
     <ClInclude Include="xnacollision.h">
       <Filter>Header Files\Core\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="DXUT.h">
-      <Filter>Header Files\DXUT</Filter>
-    </ClInclude>
-    <ClInclude Include="DXUTDevice9.h">
-      <Filter>Header Files\DXUT</Filter>
-    </ClInclude>
-    <ClInclude Include="DXUTDevice11.h">
-      <Filter>Header Files\DXUT</Filter>
-    </ClInclude>
-    <ClInclude Include="DXUTmisc.h">
-      <Filter>Header Files\DXUT</Filter>
-    </ClInclude>
     <ClInclude Include="global.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
@@ -414,9 +402,6 @@
     <ClInclude Include="Light.h">
       <Filter>Header Files\Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Cloth.h">
-      <Filter>Header Files\Core\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files\Core\Components</Filter>
     </ClInclude>
@@ -431,9 +416,6 @@
     </ClInclude>
     <ClInclude Include="RenderToTexture.h">
       <Filter>Header Files\Core\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>Header Files\PhysX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,21 +473,6 @@
     <ClCompile Include="Biped.cpp">
       <Filter>Source Files\Core\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="xnacollision.cpp">
-      <Filter>Source Files\Core\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="DXUT.cpp">
-      <Filter>Source Files\DXUT</Filter>
-    </ClCompile>
-    <ClCompile Include="DXUTDevice9.cpp">
-      <Filter>Source Files\DXUT</Filter>
-    </ClCompile>
-    <ClCompile Include="DXUTDevice11.cpp">
-      <Filter>Source Files\DXUT</Filter>
-    </ClCompile>
-    <ClCompile Include="DXUTmisc.cpp">
-      <Filter>Source Files\DXUT</Filter>
-    </ClCompile>
     <ClCompile Include="global.cpp">
       <Filter>Source Files\Globals</Filter>
     </ClCompile>
@@ -549,9 +516,6 @@
       <Filter>Source Files\FBXFrameWork</Filter>
     </ClCompile>
     <ClCompile Include="SkeletalAnimation.cpp">
-      <Filter>Source Files\FBXFrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="FbxHandler.cpp">
       <Filter>Source Files\FBXFrameWork</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
@@ -626,9 +590,6 @@
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Cloth.cpp">
-      <Filter>Source Files\Core\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
@@ -641,8 +602,8 @@
     <ClCompile Include="RenderToTexture.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Physics.cpp">
-      <Filter>Header Files\PhysX</Filter>
+    <ClCompile Include="xnacollision.cpp">
+      <Filter>Source Files\Core\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

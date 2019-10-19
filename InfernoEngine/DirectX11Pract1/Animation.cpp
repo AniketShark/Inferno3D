@@ -541,14 +541,14 @@ void Animation::Stop()
 //////////////////////////////////////////////////////////////////////////
 void Animation::LoadSkeletalAnimationFromFile(std::string fileName)
 {
-	SkeletalAnimation* anim = NULL; 
-	std::string actualFileName =  Helper::SplitFilename(fileName);
-	anim = LoadAnimationFromFbx(fileName.c_str());
+	//SkeletalAnimation* anim = NULL; 
+	//std::string actualFileName =  Helper::SplitFilename(fileName);
+	//anim = LoadAnimationFromFbx(fileName.c_str());
 
-	if(anim != NULL)
-	{
-		m_AnimationList[actualFileName] = anim;
-	}
+	//if(anim != NULL)
+	//{
+	//	m_AnimationList[actualFileName] = anim;
+	//}
 }
 
 /// <summary>
