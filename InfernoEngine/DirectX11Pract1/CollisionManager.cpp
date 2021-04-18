@@ -29,19 +29,19 @@ void CollisionWorld::UpdateCollisionWorld()
 		{
 			if(m_SceneGameObjectList[j]->GetColliderType() == SphereCollider)
 			{
-				if(XNA::IntersectSphereSphere(m_SceneGameObjectList[i]->GetOuterBoundingSphere(),m_SceneGameObjectList[j]->GetBoundingSphere()))
+				if(m_SceneGameObjectList[i]->GetOuterBoundingSphere()->Intersects(*(m_SceneGameObjectList[j]->GetBoundingSphere())))
 					m_SceneGameObjectList[i]->AddInRangeCollider(m_SceneGameObjectList[j]);
 			}
 
 			if(m_SceneGameObjectList[j]->GetColliderType() == BoxCollider)
 			{
-				if(XNA::IntersectSphereAxisAlignedBox(m_SceneGameObjectList[i]->GetOuterBoundingSphere(),m_SceneGameObjectList[j]->GetBoundingBox()))
+				if(m_SceneGameObjectList[i]->GetOuterBoundingSphere()->Intersects(*(m_SceneGameObjectList[j]->GetBoundingBox())))
 					m_SceneGameObjectList[i]->AddInRangeCollider(m_SceneGameObjectList[j]);
 			}
 
 			if(m_SceneGameObjectList[j]->GetColliderType() == BoxColliderOriented)
 			{
-				if(XNA::IntersectSphereOrientedBox(m_SceneGameObjectList[i]->GetOuterBoundingSphere(),m_SceneGameObjectList[j]->GetBoundingBoxOriented()))
+				if(m_SceneGameObjectList[i]->GetOuterBoundingSphere()->Intersects(*(m_SceneGameObjectList[j]->GetBoundingBoxOriented())))
 					m_SceneGameObjectList[i]->AddInRangeCollider(m_SceneGameObjectList[j]);
 			}
 		}

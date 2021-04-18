@@ -6,9 +6,9 @@
 
 Camera::Camera()
 {
-	Eye = XMFLOAT3(0,10,0);
-	View = XMFLOAT3(0,0,0);
-	Up = XMFLOAT3(0,1,0);
+	Eye = DirectX::XMFLOAT3(0,10,0);
+	View = DirectX::XMFLOAT3(0,0,0);
+	Up = DirectX::XMFLOAT3(0,1,0);
 
 	mThisGO = new SharedInfo;
 	mLookAtTransform = NULL;
@@ -88,10 +88,10 @@ void Camera::Update()
 	g_pGlobalConstantBuffer.mEyePosition.z = Eye.z;
 	g_pGlobalConstantBuffer.mEyePosition.w = 1.0f;
 
-	g_View = XMMatrixLookAtLH(Helper::GMathFV(Eye) , Helper::GMathFV(View),  Helper::GMathFV(Up));
+	g_View = DirectX::XMMatrixLookAtLH(Helper::GMathFV(Eye) , Helper::GMathFV(View),  Helper::GMathFV(Up));
 
 	// Initialize the projection matrix
-	g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, 1024 / (FLOAT)768, 1.0f, 100000.0f );
+	g_Projection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV4, 1024 / (FLOAT)768, 1.0f, 100000.0f );
 	
 }
 void Camera::Destroy()

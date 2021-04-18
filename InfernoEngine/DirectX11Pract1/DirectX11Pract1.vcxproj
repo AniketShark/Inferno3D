@@ -15,6 +15,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DirectX11Pract1</RootNamespace>
     <ProjectName>InfernoEngine</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,8 +43,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\PhysX\Include;$(WindowsSDK_IncludePath);F:\Aniket\DirectX\SDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);F:\Aniket\DirectX\SDK\Lib\x86;$(ProjectDir)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\PhysX\Include;$(WindowsSDK_IncludePath);$(SolutionDir)\packages\directxtk_desktop\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\lib;$(SolutionDir)\packages\directxtk_desktop\native\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -63,7 +64,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dinput8.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;DXUT.lib;Effects11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dinput8.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBMCT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -84,7 +85,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libfbxsdk-md.lib;d3d11.lib;d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk-md.lib;d3d11.lib;d3dcompiler.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files\Autodesk\FBX\FBX SDK\2014.2.1\lib\vs2010\x86\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBMCT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -98,7 +99,6 @@
     <ClInclude Include="AnimationScriptReader.h" />
     <ClInclude Include="CDrawableTex2D_DX11.h" />
     <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="Common\d3dx11effect.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="FbxHandler.h" />
@@ -183,7 +183,6 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WorldCell.h" />
     <ClInclude Include="XmlParser\xmlParser.h" />
-    <ClInclude Include="xnacollision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AABB.cpp" />
@@ -247,7 +246,6 @@
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WorldCell.cpp" />
     <ClCompile Include="XmlParser\xmlParser.cpp" />
-    <ClCompile Include="xnacollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ModelsConfig.txt" />
@@ -257,6 +255,7 @@
     <None Include="Models\QuadBin.ply" />
     <None Include="Models\QuadFire.ply" />
     <None Include="Models\UVSphere.ply" />
+    <None Include="packages.config" />
     <None Include="Resources\LibraryFileNames.txt" />
     <None Include="Shaders\BasicShader.fx" />
     <None Include="Shaders\BasicShaderSkinning.fx" />
@@ -278,5 +277,12 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk_desktop_win10.2021.4.7.2\build\native\directxtk_desktop_win10.targets" Condition="Exists('..\packages\directxtk_desktop_win10.2021.4.7.2\build\native\directxtk_desktop_win10.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk_desktop_win10.2021.4.7.2\build\native\directxtk_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_desktop_win10.2021.4.7.2\build\native\directxtk_desktop_win10.targets'))" />
+  </Target>
 </Project>

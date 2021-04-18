@@ -180,8 +180,8 @@ void Renderer::SetDynamicVertexAndIndexBuffer()
 	}
 	if(mMesh->mFileType == FBX && mMesh->mNoOfBones > 0 && mIsDeformable)
 	{
-		mCurrentGlobalPose = new (std::nothrow) _XMFLOAT4X4[mMesh->mNoOfBones];
-		mCurrentBoneSkinningMatrix = new _XMFLOAT4X4[128]; 
+		mCurrentGlobalPose = new (std::nothrow) DirectX::XMFLOAT4X4[mMesh->mNoOfBones];
+		mCurrentBoneSkinningMatrix = new DirectX::XMFLOAT4X4[128];
 		mCurrentBones = new (std::nothrow) BonePose[mMesh->mNoOfBones];
 		mBoneIndices = new (std::nothrow) WORD[mMesh->mNoOfBones * 2];
 
@@ -204,17 +204,17 @@ void Renderer::SetDynamicVertexAndIndexBuffer()
 			mCurrentGlobalPose[i] = mMesh->mInitialGlobalPose[i];
 			mCurrentBones[i] = mMesh->mInitialBonePose[i];
 
-			XMFLOAT3 tempPoint(0.0f, 0.0f, 0.0f);
-			XMVECTOR temp = XMLoadFloat3(&tempPoint);
-			XMMATRIX m = XMLoadFloat4x4(&mCurrentGlobalPose[i]);
-			XMStoreFloat4(&mNewBoneVerts[b].m_Position, XMVector3Transform(temp, m));
+			DirectX::XMFLOAT3 tempPoint(0.0f, 0.0f, 0.0f);
+			DirectX::XMVECTOR temp = XMLoadFloat3(&tempPoint);
+			DirectX::XMMATRIX m = XMLoadFloat4x4(&mCurrentGlobalPose[i]);
+			XMStoreFloat4(&mNewBoneVerts[b].m_Position, DirectX::XMVector3Transform(temp, m));
 
 			if(mMesh->mSkeleton[i].parent >= 0)
 				m = XMLoadFloat4x4(&mCurrentGlobalPose[mMesh->mSkeleton[i].parent]);
 			XMStoreFloat4(&mNewBoneVerts[b+1].m_Position, XMVector3Transform(temp, m));
 
-			mNewBoneVerts[b].m_Color= XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
-			mNewBoneVerts[b+1].m_Color = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
+			mNewBoneVerts[b].m_Color= DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
+			mNewBoneVerts[b+1].m_Color = DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
 
 			mBoneIndices[b] = b;
 			mBoneIndices[b+1] = b+1;
@@ -305,14 +305,14 @@ void Renderer::UpdateSkinningInfo()
 		for(int boneArrIndex = 0; boneArrIndex < mMesh->mNoOfBones; ++boneArrIndex)
 		{
 			// Bones inverse bind pose matrix
-			XMMATRIX invBoneMatrix = XMLoadFloat4x4(&mMesh->mSkeleton[boneArrIndex].mInverseBindPoseMatrix);
+			DirectX::XMMATRIX invBoneMatrix = XMLoadFloat4x4(&mMesh->mSkeleton[boneArrIndex].mInverseBindPoseMatrix);
 
 			// Convert back to current pose in model-space by multiplying
 			// it by the bone's current transform
-			XMMATRIX curBoneM = XMLoadFloat4x4(&mCurrentGlobalPose[boneArrIndex]);
+			DirectX::XMMATRIX curBoneM = XMLoadFloat4x4(&mCurrentGlobalPose[boneArrIndex]);
 
 			//Skinning Matrices for this Pose
-			XMMATRIX skinningMatrix = XMMatrixTranspose(invBoneMatrix * curBoneM);
+			DirectX::XMMATRIX skinningMatrix = XMMatrixTranspose(invBoneMatrix * curBoneM);
 
 			//XMStoreFloat4x4(&mCurrentBoneSkinningMatrix[boneArrIndex],skinningMatrix);
 			XMStoreFloat4x4(&g_pAnimationMatrices.mBoneMatrices[boneArrIndex],skinningMatrix);
@@ -325,8 +325,8 @@ void Renderer::UpdateSkinningInfo()
 		for(int vertexIndex = 0; vertexIndex < mMesh->mNoOfVertices; ++vertexIndex)
 		{
 
-			XMVECTOR vetexPositionVector = XMLoadFloat4(&mMesh->mVertices[vertexIndex].m_Position);
-			XMVECTOR vc = XMLoadFloat4(&XMFLOAT4(0.0f, 0.0f, 0.0f,0.0f));
+			DirectX::XMVECTOR vetexPositionVector = XMLoadFloat4(&mMesh->mVertices[vertexIndex].m_Position);
+			DirectX::XMVECTOR vc = DirectX::XMVectorZero();
 
 			for(int boneArrIndex = 0; boneArrIndex < 4; ++boneArrIndex)
 			{
@@ -336,17 +336,19 @@ void Renderer::UpdateSkinningInfo()
 
 				// Convert vertex into local bone space by multiplying it 
 				// by the inverse bind-pose transform
-				XMMATRIX invBoneMatrix = XMLoadFloat4x4(&mMesh->mSkeleton[boneIndex].mInverseBindPoseMatrix);
+				DirectX::XMMATRIX invBoneMatrix = XMLoadFloat4x4(&mMesh->mSkeleton[boneIndex].mInverseBindPoseMatrix);
 
 				//vertex position in local space of bone
-				XMVECTOR v = XMVector3Transform(vetexPositionVector, invBoneMatrix); 
+				DirectX::XMVECTOR v = XMVector3Transform(vetexPositionVector, invBoneMatrix);
 
 				// Convert back to current pose in model-space by multiplying
 				// it by the bone's current transform
-				XMMATRIX curBoneM = XMLoadFloat4x4(&mCurrentGlobalPose[boneIndex]);
-				v = XMVector3Transform(v, curBoneM);
+				DirectX::XMMATRIX curBoneM = XMLoadFloat4x4(&mCurrentGlobalPose[boneIndex]);
+				v = DirectX::XMVector3Transform(v, curBoneM);
 
-				vc += v * mMesh->mVertices[vertexIndex].BoneWeight[boneArrIndex];
+				int boneWeight = mMesh->mVertices[vertexIndex].BoneWeight[boneArrIndex];
+				v  = DirectX::XMVectorScale(v, boneWeight);
+				vc = DirectX::XMVectorAdd(vc,v);
 			}
 			XMStoreFloat4(&mCurrentVertices[vertexIndex].m_Position, vc);
 		}
@@ -503,16 +505,18 @@ void Renderer::Draw()
 		if(mMaterial->mDiffuse.w < 1.0f)
 		{
 			mIsTransperant = true;
-			g_pGlobalChangingBuffer.mTransperacyOn = XMFLOAT4(1,1,1,1);
+			g_pGlobalChangingBuffer.mTransperacyOn = DirectX::XMFLOAT4(1,1,1,1);
 		}
 		else
 		{
 			mIsTransperant = false;
-			g_pGlobalChangingBuffer.mTransperacyOn = XMFLOAT4(0,0,0,0);
+			g_pGlobalChangingBuffer.mTransperacyOn = DirectX::XMFLOAT4(0,0,0,0);
 		}
 
 		
-		XMMATRIX transformMatrix =  XMMatrixScaling(transform->scale.x,transform->scale.y,transform->scale.z) * XMMatrixRotationQuaternion(transform->GetWorldRotationQuaternion()) * XMMatrixTranslation(transform->position.x,transform->position.y,transform->position.z) ;
+		DirectX::XMMATRIX transformMatrix = DirectX::XMMatrixScaling(transform->scale.x,transform->scale.y,transform->scale.z) *  // Scale
+											DirectX::XMMatrixRotationQuaternion(transform->GetWorldRotationQuaternion()) * // Rotate
+											DirectX::XMMatrixTranslation(transform->position.x,transform->position.y,transform->position.z); // Translate
 		
 		if(mMesh != NULL)
 		{
@@ -670,7 +674,7 @@ void Renderer::LoadPlane(int rows,int columns,int width,int height)
 	SetVertexStride(sizeof(Vertex));
 	SetVertexOffset(0);
 	mMesh->mTextureArray = new Texture[1];
-	mMesh->mTextureArray[0].Initialize(g_pd3dDevice,"Textures/Grass.jpg");
+	mMesh->mTextureArray[0].Initialize(g_pd3dDevice, g_pImmediateContext, "Textures/Grass.jpg");
 }
 
 IBehaviour* Renderer::Clone()

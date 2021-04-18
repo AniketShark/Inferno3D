@@ -21,9 +21,9 @@ float Helper::DegToRad(float angleInDegrees)
 	return angleRadian;
 }
 
-XMFLOAT3 Helper::Direction(XMFLOAT3 origin, XMFLOAT3 target)
+DirectX::XMFLOAT3 Helper::Direction(DirectX::XMFLOAT3 origin, DirectX::XMFLOAT3 target)
 {
-	XMFLOAT3 resultVec;
+	DirectX::XMFLOAT3 resultVec;
 
 	resultVec.x = target.x - origin.x;
 	resultVec.y = target.y - origin.y;
@@ -33,14 +33,14 @@ XMFLOAT3 Helper::Direction(XMFLOAT3 origin, XMFLOAT3 target)
 
 }
 
-XMVECTOR Helper::GMathFV(XMFLOAT3& val)
+DirectX::XMVECTOR Helper::GMathFV(DirectX::XMFLOAT3& val)
 {
 	return XMLoadFloat3(&val);	
 }
 
-XMFLOAT3 Helper::GMathVF(XMVECTOR& vec)
+DirectX::XMFLOAT3 Helper::GMathVF(DirectX::XMVECTOR& vec)
 {
-	XMFLOAT3 val;
+	DirectX::XMFLOAT3 val;
 	XMStoreFloat3(&val, vec);
 	return val;
 }
@@ -57,15 +57,15 @@ float Helper::RandomRange(float min,float max)
 }
 
 
-XMMATRIX Helper::InverseTranspose(CXMMATRIX M)
+DirectX::XMMATRIX Helper::InverseTranspose(DirectX::CXMMATRIX M)
 {
 	// Inverse-transpose is just applied to normals.  So zero out 
 	// translation row so that it doesn't get into our inverse-transpose
 	// calculation--we don't want the inverse-transpose of the translation.
-	XMMATRIX A = M;
-	A.r[3] = XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
+	DirectX::XMMATRIX A = M;
+	A.r[3] = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
 
-	XMVECTOR det = XMMatrixDeterminant(A);
+	DirectX::XMVECTOR det = XMMatrixDeterminant(A);
 	return XMMatrixTranspose(XMMatrixInverse(&det, A));
 }
 
@@ -93,7 +93,7 @@ std::wstring Helper::ASCIItoUNICODE( std::string ASCIIstring )
 }
 
 // Vector3 convention helpers
-Vector3 Helper::ConvertXMFLOAT3TOVector3(XMFLOAT3 xmVal)
+Vector3 Helper::ConvertXMFLOAT3TOVector3(DirectX::XMFLOAT3 xmVal)
 {
 	Vector3 tempVec;
 
@@ -103,9 +103,9 @@ Vector3 Helper::ConvertXMFLOAT3TOVector3(XMFLOAT3 xmVal)
 	
 	return tempVec;
 }
-XMFLOAT3 Helper::ConvertVector3ToXMFLOAT3(Vector3 xmVal)
+DirectX::XMFLOAT3 Helper::ConvertVector3ToXMFLOAT3(Vector3 xmVal)
 {
-	XMFLOAT3 tempVec;
+	DirectX::XMFLOAT3 tempVec;
 
 	tempVec.x = xmVal.x;
 	tempVec.y = xmVal.y;
@@ -113,9 +113,9 @@ XMFLOAT3 Helper::ConvertVector3ToXMFLOAT3(Vector3 xmVal)
 
 	return tempVec;
 }
-XMFLOAT4 Helper::ConvertVector3ToXMFLOAT4(Vector3 xmVal)
+DirectX::XMFLOAT4 Helper::ConvertVector3ToXMFLOAT4(Vector3 xmVal)
 {
-	XMFLOAT4 tempVec;
+	DirectX::XMFLOAT4 tempVec;
 
 	tempVec.x = xmVal.x;
 	tempVec.y = xmVal.y;
@@ -124,9 +124,9 @@ XMFLOAT4 Helper::ConvertVector3ToXMFLOAT4(Vector3 xmVal)
 
 	return tempVec;
 }
-Vector3 Helper::ConvertXMFLOAT4TOVector3(XMFLOAT4 xmVal)
+Vector3 Helper::ConvertXMFLOAT4TOVector3(DirectX::XMFLOAT4 xmVal)
 {
-	XMFLOAT3 tempVec;
+	DirectX::XMFLOAT3 tempVec;
 	tempVec.x = xmVal.x;
 	tempVec.y = xmVal.y;
 	tempVec.z = xmVal.z;
@@ -135,9 +135,9 @@ Vector3 Helper::ConvertXMFLOAT4TOVector3(XMFLOAT4 xmVal)
 }
 
 // Vector4 conversion helpers
-XMFLOAT3 Helper::ConvertVector4ToXMFLOAT3(Vector4 xmVal)
+DirectX::XMFLOAT3 Helper::ConvertVector4ToXMFLOAT3(Vector4 xmVal)
 {
-	XMFLOAT3 tempVec;
+	DirectX::XMFLOAT3 tempVec;
 
 	tempVec.x = xmVal.x;
 	tempVec.y = xmVal.y;
@@ -145,9 +145,9 @@ XMFLOAT3 Helper::ConvertVector4ToXMFLOAT3(Vector4 xmVal)
 
 	return tempVec;
 }
-XMFLOAT4 Helper::ConvertVector4ToXMFLOAT4(Vector4 xmVal)
+DirectX::XMFLOAT4 Helper::ConvertVector4ToXMFLOAT4(Vector4 xmVal)
 {
-	XMFLOAT4 tempVec;
+	DirectX::XMFLOAT4 tempVec;
 
 	tempVec.x = xmVal.x;
 	tempVec.y = xmVal.y;

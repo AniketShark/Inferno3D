@@ -24,17 +24,17 @@ Collider::Collider(ColliderType type)
 {
 	if(type == SphereCollider)
 	{
-		m_BoundingSphere = new XNA::Sphere;
+		m_BoundingSphere = new DirectX::BoundingSphere();
 	}
 
-	if(type == BoxCollider)
+	else if(type == BoxCollider)
 	{
-		m_BoundingBox = new XNA::AxisAlignedBox;
+		m_BoundingBox = new DirectX::BoundingBox();
 	}
 
-	if(type == BoxColliderOriented)
+	else if(type == BoxColliderOriented)
 	{
-		m_OrientedBoundingBox = new XNA::OrientedBox;
+		m_OrientedBoundingBox = new DirectX::BoundingOrientedBox();
 	}
 }
 
@@ -45,7 +45,7 @@ Collider::~Collider()
 
 void Collider::Initialize()
 {
-	m_OuterBigBoundingSphere = new XNA::Sphere;
+	m_OuterBigBoundingSphere = new DirectX::BoundingSphere();
 	SetOuterBigBoundingSphereMultiplier(20);
 	CollisionWorld::RegisterGameobject(this);
 }
@@ -67,53 +67,53 @@ void Collider::Update()
 			{
 				if(colliderIt->second->GetColliderType() == BoxCollider)
 				{
-					if(XNA::IntersectAxisAlignedBoxAxisAlignedBox(this->m_BoundingBox,colliderIt->second->GetBoundingBox()))
-						collided = true;
+					if(this->m_BoundingBox->Intersects(*(colliderIt->second->GetBoundingBox())))
+						collided = true; 
 				}
 				if(colliderIt->second->GetColliderType() == SphereCollider)
 				{
-					if(XNA::IntersectSphereAxisAlignedBox(colliderIt->second->GetBoundingSphere(),this->m_BoundingBox))
+					if(this->m_BoundingBox->Intersects(*(colliderIt->second->GetBoundingSphere())))
 						collided = true;
 				}
 				if(colliderIt->second->GetColliderType() == BoxColliderOriented)
 				{
-					if(XNA::IntersectAxisAlignedBoxOrientedBox(this->m_BoundingBox,colliderIt->second->GetBoundingBoxOriented()))
+					if(this->m_BoundingBox->Intersects(*(colliderIt->second->GetBoundingBoxOriented())))
 						collided = true;
 				}
 			}
-			if(m_ColliderType == SphereCollider )
+			else if(m_ColliderType == SphereCollider )
 			{
 				if(colliderIt->second->GetColliderType() == BoxCollider)
 				{
-					if(XNA::IntersectSphereAxisAlignedBox(this->m_BoundingSphere,colliderIt->second->GetBoundingBox()))
+					if(this->m_BoundingSphere->Intersects(*(colliderIt->second->GetBoundingBox())))
 						collided = true;
 				}
 				if(colliderIt->second->GetColliderType() == SphereCollider)
 				{
-					if(XNA::IntersectSphereSphere(colliderIt->second->GetBoundingSphere(),this->m_BoundingSphere))
+					if(this->m_BoundingSphere->Intersects(*(colliderIt->second->GetBoundingSphere())))
 						collided = true;
 				}
 				if(colliderIt->second->GetColliderType() == BoxColliderOriented)
 				{
-					if(XNA::IntersectSphereOrientedBox(this->m_BoundingSphere,colliderIt->second->GetBoundingBoxOriented()))
+					if(this->m_BoundingSphere->Intersects(*(colliderIt->second->GetBoundingBoxOriented())))
 						collided = true;
 				}
 			}
-			if(m_ColliderType == BoxColliderOriented )
+			else if(m_ColliderType == BoxColliderOriented )
 			{
 				if(colliderIt->second->GetColliderType() == BoxCollider)
 				{
-					if(XNA::IntersectAxisAlignedBoxOrientedBox(colliderIt->second->GetBoundingBox(),this->m_OrientedBoundingBox))
+					if(this->m_OrientedBoundingBox->Intersects(*(colliderIt->second->GetBoundingBox())))
 						collided = true;
 				}
 				if(colliderIt->second->GetColliderType() == SphereCollider)
 				{
-					if(XNA::IntersectSphereOrientedBox(colliderIt->second->GetBoundingSphere(),this->m_OrientedBoundingBox))
+					if(this->m_OrientedBoundingBox->Intersects(*(colliderIt->second->GetBoundingSphere())))
 						collided = true;
 				}
 				if(colliderIt->second->GetColliderType() == BoxColliderOriented)
 				{
-					if(XNA::IntersectSphereOrientedBox(this->m_BoundingSphere,colliderIt->second->GetBoundingBoxOriented()))
+					if(this->m_BoundingSphere->Intersects(*(colliderIt->second->GetBoundingBoxOriented())))
 						collided = true;
 				}
 			}
@@ -144,7 +144,7 @@ ComponentType Collider::GetType()
 void Collider::AssignSphereCollider(Vector3 center,float radius)
 {
 	this->m_ColliderType = SphereCollider; 
-	m_BoundingSphere = new XNA::Sphere;
+	m_BoundingSphere = new DirectX::BoundingSphere;
 	m_BoundingSphere->Center = Helper::ConvertVector3ToXMFLOAT3(center);
 	m_BoundingSphere->Radius = radius;
 }
@@ -152,7 +152,7 @@ void Collider::AssignSphereCollider(Vector3 center,float radius)
 void Collider::AssignAxisAlignedBoxCollider(Vector3 center,Vector3 extents)
 {
 	this->m_ColliderType = BoxCollider; 
-	m_BoundingBox = new XNA::AxisAlignedBox;
+	m_BoundingBox = new DirectX::BoundingBox;
 	m_BoundingBox->Center =  Helper::ConvertVector3ToXMFLOAT3(center);
 	m_BoundingBox->Extents =  Helper::ConvertVector3ToXMFLOAT3(extents);
 
@@ -161,7 +161,7 @@ void Collider::AssignAxisAlignedBoxCollider(Vector3 center,Vector3 extents)
 void Collider::AssignOrientedBoxColliderCollider(Vector3 center,Vector3 extents,Vector4 orientation)
 {
 	this->m_ColliderType = BoxColliderOriented; 
-	m_OrientedBoundingBox = new XNA::OrientedBox;
+	m_OrientedBoundingBox = new DirectX::BoundingOrientedBox;
 	m_OrientedBoundingBox->Center =  Helper::ConvertVector3ToXMFLOAT3(center);
 	m_OrientedBoundingBox->Extents =  Helper::ConvertVector3ToXMFLOAT3(extents);
 	m_OrientedBoundingBox->Orientation =  Helper::ConvertVector4ToXMFLOAT4(orientation);
@@ -173,22 +173,22 @@ ColliderType Collider::GetColliderType()
 	return m_ColliderType;
 }
 
-XNA::Sphere* Collider::GetBoundingSphere()
+DirectX::BoundingSphere* Collider::GetBoundingSphere()
 {
 	return m_BoundingSphere;
 }
 
-XNA::Sphere* Collider::GetOuterBoundingSphere()
+DirectX::BoundingSphere* Collider::GetOuterBoundingSphere()
 {
 	return m_OuterBigBoundingSphere;
 }
 
-XNA::AxisAlignedBox* Collider::GetBoundingBox()
+DirectX::BoundingBox* Collider::GetBoundingBox()
 {
 	return m_BoundingBox;
 }
 
-XNA::OrientedBox* Collider::GetBoundingBoxOriented()
+DirectX::BoundingOrientedBox* Collider::GetBoundingBoxOriented()
 {
 	return m_OrientedBoundingBox;
 }
@@ -204,7 +204,7 @@ Vector3 Collider::GetExtents()
 	{
 		return Helper::ConvertXMFLOAT3TOVector3(m_BoundingBox->Extents);
 	}
-	if(m_ColliderType == BoxColliderOriented)
+	else if(m_ColliderType == BoxColliderOriented)
 	{
 		return Helper::ConvertXMFLOAT3TOVector3(m_OrientedBoundingBox->Extents);
 	}
@@ -264,9 +264,9 @@ void Collider::SetCenter(Vector3 center)
 {
 	if(m_ColliderType == SphereCollider)
 		m_BoundingSphere->Center =  Helper::ConvertVector3ToXMFLOAT3(center);
-	if(m_ColliderType == BoxCollider)
+	else if(m_ColliderType == BoxCollider)
 		m_BoundingBox->Center =  Helper::ConvertVector3ToXMFLOAT3(center);
-	if(m_ColliderType == BoxColliderOriented)
+	else if(m_ColliderType == BoxColliderOriented)
 		m_OrientedBoundingBox->Center =  Helper::ConvertVector3ToXMFLOAT3(center);
 }
 
@@ -274,7 +274,7 @@ void Collider::SetExtents(Vector3 extents)
 {
 	if(m_ColliderType == BoxCollider)
 		m_BoundingBox->Extents =  Helper::ConvertVector3ToXMFLOAT3(extents);
-	if(m_ColliderType == BoxColliderOriented)
+	else if(m_ColliderType == BoxColliderOriented)
 		m_OrientedBoundingBox->Extents =  Helper::ConvertVector3ToXMFLOAT3(extents);
 }
 
@@ -284,11 +284,11 @@ void Collider::SetOuterBigBoundingSphereMultiplier(float multiplier)
 	{
 		m_OuterBigBoundingSphere->Radius = m_BoundingSphere->Radius * multiplier;
 	}
-	if(m_ColliderType == BoxCollider)
+	else if(m_ColliderType == BoxCollider)
 	{
 		m_OuterBigBoundingSphere->Radius =  Helper::ConvertXMFLOAT3TOVector3(m_BoundingBox->Extents).Magnitude() * multiplier;
 	}
-	if(m_ColliderType == BoxColliderOriented)
+	else if(m_ColliderType == BoxColliderOriented)
 	{
 		m_OuterBigBoundingSphere->Radius =  Helper::ConvertXMFLOAT3TOVector3(m_OrientedBoundingBox->Extents).Magnitude() * multiplier;
 	}

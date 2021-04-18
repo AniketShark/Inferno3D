@@ -216,9 +216,6 @@
     <ClInclude Include="Biped.h">
       <Filter>Header Files\Core\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="xnacollision.h">
-      <Filter>Header Files\Core\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="global.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
@@ -383,9 +380,6 @@
     </ClInclude>
     <ClInclude Include="Scripts\BunnyScript.h">
       <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\d3dx11effect.h">
-      <Filter>Header Files\DXUT</Filter>
     </ClInclude>
     <ClInclude Include="CDrawableTex2D_DX11.h">
       <Filter>OffScreenTexture</Filter>
@@ -602,9 +596,6 @@
     <ClCompile Include="RenderToTexture.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="xnacollision.cpp">
-      <Filter>Source Files\Core\Components</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\LightingAndTexturingShader.fx">
@@ -682,5 +673,6 @@
     <None Include="Models\Crate.ply">
       <Filter>Resource Files\Models</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

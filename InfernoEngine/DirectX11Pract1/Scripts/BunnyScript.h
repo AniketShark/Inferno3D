@@ -6,7 +6,7 @@
 #include "global.h"
 #include "CHRTimer.h"
 #include "GameObject.h"
-#include "xnacollision.h"
+#include<DirectXCollision.h>
 
 class BunnyScript: public IBehaviour
 {
@@ -53,12 +53,12 @@ void BunnyScript::Update()
 	if(g_input.GetKey(DIK_1))
 	{
 		factor += factor;
-		mThisGO->light->mLightInfo->attenuation = XMFLOAT4(factor,factor,factor,1);
+		mThisGO->light->mLightInfo->attenuation = DirectX::XMFLOAT4(factor,factor,factor,1);
 	}
 	if(g_input.GetKey(DIK_2))
 	{
 		factor -= factor;
-		mThisGO->light->mLightInfo->attenuation =  XMFLOAT4(factor,factor,factor,1);
+		mThisGO->light->mLightInfo->attenuation = DirectX::XMFLOAT4(factor,factor,factor,1);
 	}
 
 	if(g_input.GetKey(DIK_Q))

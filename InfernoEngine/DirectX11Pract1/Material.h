@@ -4,8 +4,8 @@
 
 #include <windows.h>
 #include <d3d11.h>
-#include <d3dx11.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
+//#include <xnamath.h>
 #include <sstream>
 
 class Material
@@ -15,10 +15,10 @@ public:
 	Material(const Material&);
 	~Material();
 
-	XMFLOAT4 mDiffuse;
-	XMFLOAT4 mAmbient;
-	XMFLOAT4 mSpecular;
-	XMFLOAT4 mMeshColor;
+	DirectX::XMFLOAT4 mDiffuse;
+	DirectX::XMFLOAT4 mAmbient;
+	DirectX::XMFLOAT4 mSpecular;
+	DirectX::XMFLOAT4 mMeshColor;
 };
 
 

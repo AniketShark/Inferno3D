@@ -1,5 +1,4 @@
 
-
 struct Material
 {
 	float4 diffuse;

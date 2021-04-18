@@ -3,26 +3,25 @@
 
 #include <windows.h>
 #include <d3d11.h>
-#include <d3dx11.h>
 #include <d3dcompiler.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
 
 struct SimpleVertex
 {
-    XMFLOAT3 Pos;
-    XMFLOAT4 Color;
+    DirectX::XMFLOAT3 Pos;
+    DirectX::XMFLOAT4 Color;
 };
 
 struct FBXConstantBuffer
 {
-	XMMATRIX mWorld;
-	XMMATRIX mView;
-	XMMATRIX mProjection;
+	DirectX::XMMATRIX mWorld;
+	DirectX::XMMATRIX mView;
+	DirectX::XMMATRIX mProjection;
 };
 
 struct Bone
 {
-    _XMFLOAT4X4 mInverseBindPoseMatrix;
+    DirectX::XMFLOAT4X4 mInverseBindPoseMatrix;
     int      parent;   
     char     name[28];
 
@@ -32,17 +31,17 @@ struct Bone
 
 struct BonePose
 {
-    XMFLOAT3 translation;
-    XMFLOAT4 rotation;
-    XMFLOAT3 scale;
+    DirectX::XMFLOAT3 translation;
+    DirectX::XMFLOAT4 rotation;
+    DirectX::XMFLOAT3 scale;
 
-    XMMATRIX GetTransform() const;
+    DirectX::XMMATRIX GetTransform() const;
 };
 
 struct SimpleSkinnedVertex
 {
-    XMFLOAT3      Pos;              
-    XMFLOAT4      Color;
+    DirectX::XMFLOAT3      Pos;              
+    DirectX::XMFLOAT4      Color;
 
     unsigned char BoneIndex[4];    
     float         BoneWeight[4];

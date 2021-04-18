@@ -65,15 +65,15 @@ public:
 	/// <summary>
 	/// The m specular color
 	/// </summary>
-	XMFLOAT4 mSpecularColor;
+	DirectX::XMFLOAT4 mSpecularColor;
 	/// <summary>
 	/// The m diffuse color
 	/// </summary>
-	XMFLOAT4 mDiffuseColor;
+	DirectX::XMFLOAT4 mDiffuseColor;
 	/// <summary>
 	/// The m ambient color
 	/// </summary>
-	XMFLOAT4 mAmbientColor;
+	DirectX::XMFLOAT4 mAmbientColor;
 
 	/// <summary>
 	/// The m vertex shader

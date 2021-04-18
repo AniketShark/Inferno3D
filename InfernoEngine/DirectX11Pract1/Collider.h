@@ -3,12 +3,11 @@
 #ifndef Collider_H_
 #define Collider_H_
 
-#include "xnacollision.h"
+#include<DirectXCollision.h>
 #include "Vector.h"
 #include <vector>
 #include "IBehavior.h"
 #include <map>
-using namespace XNA;
 
 enum ColliderType
 {
@@ -54,10 +53,11 @@ public:
 	Vector3 GetCenter();
 	Vector4 GetOrientation();
 	GUID GetColliderID();
-	XNA::Sphere* GetOuterBoundingSphere();
-	XNA::Sphere* GetBoundingSphere();
-	XNA::AxisAlignedBox* GetBoundingBox();
-	XNA::OrientedBox* GetBoundingBoxOriented();
+	 
+	DirectX::BoundingSphere* GetOuterBoundingSphere();
+	DirectX::BoundingSphere* GetBoundingSphere();
+	DirectX::BoundingBox* GetBoundingBox();
+	DirectX::BoundingOrientedBox* GetBoundingBoxOriented();
 
 	void SetBounds(Bounds bounds);
 	void SetRadius(float radius);
@@ -69,11 +69,10 @@ public:
 
 private:
 	ColliderType m_ColliderType;
-	XNA::Sphere* m_BoundingSphere;
-	XNA::AxisAlignedBox* m_BoundingBox;
-	XNA::OrientedBox* m_OrientedBoundingBox;
-	
-	XNA::Sphere* m_OuterBigBoundingSphere;
+	DirectX::BoundingSphere* m_BoundingSphere;
+	DirectX::BoundingBox* m_BoundingBox;
+	DirectX::BoundingOrientedBox* m_OrientedBoundingBox;
+	DirectX::BoundingSphere* m_OuterBigBoundingSphere;
 	GUID mColliderID;
 	Vector3 m_CachedPosition;
 	std::map<GUID*,Collider*> m_InRangeColliders;

@@ -7,8 +7,7 @@
 // mfeeney@fanshawec.ca
 
 #include <D3D11.h>
-#include <D3DX11core.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
 
 class CDrawableTex2D_DX11
 {

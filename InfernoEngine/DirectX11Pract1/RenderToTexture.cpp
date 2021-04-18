@@ -218,7 +218,7 @@ ID3D11ShaderResourceView* RenderToTexture::GetSRVOfTargetTexture()
 	return mTargetSRV;
 }
 
-void RenderToTexture::SetViewProjectionMatrix(XMMATRIX* matrix)
+void RenderToTexture::SetViewProjectionMatrix(DirectX::XMMATRIX* matrix)
 {
 	mViewProjectionMatrix = matrix;
 }

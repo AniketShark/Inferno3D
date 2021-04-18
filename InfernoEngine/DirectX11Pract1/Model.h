@@ -52,7 +52,7 @@ public:
 	bool CreateBiped(Model* parentModel);
 	void SwitchAnimationImmidiately(std::string animationName);
 	void SwitchAnimationAfterCurrent(std::string animationName);
-	void CalculateTangentBinormal(Vertex vertex1, Vertex vertex2, Vertex vertex3,XMFLOAT4& tangent, XMFLOAT4& binormal);
+	void CalculateTangentBinormal(Vertex vertex1, Vertex vertex2, Vertex vertex3, DirectX::XMFLOAT4& tangent, DirectX::XMFLOAT4& binormal);
 
 private:
 	std::string m_LastAnimationFile;

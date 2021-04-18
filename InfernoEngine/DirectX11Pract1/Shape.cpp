@@ -89,9 +89,9 @@ void CreatePlane(int noOfRows,int noOfColumns,int width,int depth,ShapeData& sha
 
 			Vertex* tempVertex = new Vertex;
 
-			tempVertex->m_Position = XMFLOAT4(x,0,z,1);
-			tempVertex->m_Normal = XMFLOAT4(0,1,0,1);
-			tempVertex->m_Tangent = XMFLOAT4(1,0,0,1);
+			tempVertex->m_Position = DirectX::XMFLOAT4(x,0,z,1);
+			tempVertex->m_Normal = DirectX::XMFLOAT4(0,1,0,1);
+			tempVertex->m_Tangent = DirectX::XMFLOAT4(1,0,0,1);
 			tempVertex->m_TexCoord.x = j*du;
 			tempVertex->m_TexCoord.y = i*dv;
 

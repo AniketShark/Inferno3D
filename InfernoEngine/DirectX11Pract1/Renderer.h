@@ -23,7 +23,8 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include "Material.h"
-#include "xnacollision.h"
+#include<DirectXCollision.h>
+
 /// <summary>
 /// Class Renderer.
 /// </summary>
@@ -33,7 +34,7 @@ public:
 	Renderer();
 	~Renderer();
 	
-	XNA::AxisAlignedBox mCollider;
+	DirectX::BoundingBox mCollider;
 
 	bool mIsDeformable;  //whether mesh is deformable
 	bool mGpuSkinnig;  //Toggles between cpu and gpu skinning
@@ -91,18 +92,18 @@ public:
 
 	BonePose*              mCurrentBones; //saves changed bone positions
 
-	_XMFLOAT4X4*            mCurrentGlobalPose; //saves changed bone matrix
+	DirectX::XMFLOAT4X4*            mCurrentGlobalPose; //saves changed bone matrix
 
 	SimpleVertex*           mBoneVerts; //bone vertices's
 	
 	WORD*                   mBoneIndices; //bone indices
 
-	_XMFLOAT4X4*            mCurrentBoneSkinningMatrix; //Skinning matrices for GPU skinning
+	DirectX::XMFLOAT4X4*            mCurrentBoneSkinningMatrix; //Skinning matrices for GPU skinning
 
 
-	XMMATRIX      mExternalTransformationMatrix;
+	DirectX::XMMATRIX      mExternalTransformationMatrix;
 
-	XMMATRIX	  mTransformMatrix;
+	DirectX::XMMATRIX	  mTransformMatrix;
 	/// <summary>
 	/// Dynamic Vertex Buffer
 	/// </summary>

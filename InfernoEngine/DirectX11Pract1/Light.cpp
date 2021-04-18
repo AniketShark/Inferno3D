@@ -18,10 +18,10 @@ void Light::Initialize()
 {
 	mLightInfo = new LightInfo;
 	
-	mLightInfo->attenuation = XMFLOAT4(0.001f, 0.001f, 0.001f,1);
-	mLightInfo->vLightDirection =  XMFLOAT4(2,1,1,1);
-	mLightInfo->material.mDiffuse = XMFLOAT4(1,0,0,1);
-	mLightInfo->material.mAmbient = XMFLOAT4(0.5f,0.5f,0.5f,1);
+	mLightInfo->attenuation = DirectX::XMFLOAT4(0.001f, 0.001f, 0.001f,1);
+	mLightInfo->vLightDirection = DirectX::XMFLOAT4(2,1,1,1);
+	mLightInfo->material.mDiffuse = DirectX::XMFLOAT4(1,0,0,1);
+	mLightInfo->material.mAmbient = DirectX::XMFLOAT4(0.5f,0.5f,0.5f,1);
 	mLightInfo->power = 1000;
 	mLightInfo->range = 1000;
 	mLightInfo->typeOfLight = 0;

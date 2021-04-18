@@ -7,9 +7,9 @@
 #define Transform_H_
 
 #include <windows.h>
-#include <xnamath.h>
 #include "Vector.h"
 #include "Helper.h"
+#include <DirectXMath.h>
 
 class Transform
 {
@@ -39,15 +39,15 @@ public:
 	void RotateAroundLocal(Vector3 axis,float angle,float deltaTime);
 	void RotateAroundLocal(float x,float y,float z);
 
-	XMVECTOR GetLocalRotationQuaternion();
-	XMVECTOR GetWorldRotationQuaternion();
+	DirectX::XMVECTOR GetLocalRotationQuaternion();
+	DirectX::XMVECTOR GetWorldRotationQuaternion();
 	//Set local rotation quaternion from euler rotation
 	void SetLocalRotationQuaternion(Vector3 eulerRotation);
 	//Set world rotation quaternion from euler rotation
 	void SetWorldRotationQuaternion(Vector3 eulerRotation);
 
 	//Calculate euler angles from quaternion rotation
-	void SetEulerRotationFromQuaternion(Vector3&,XMVECTOR theQuaternionRotation);
+	void SetEulerRotationFromQuaternion(Vector3&, DirectX::XMVECTOR theQuaternionRotation);
 
 	//Todo : move this to animationObject class
 	//void SetLocalQuaternionRotationSpeed(Vector3 eulerRotationSpeed);

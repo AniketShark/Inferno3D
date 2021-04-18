@@ -1,5 +1,5 @@
+#include<WICTextureLoader.h>
 #include "Texture.h"
-
 Texture::Texture()
 {
 	mTexture = NULL;
@@ -28,18 +28,43 @@ void Texture::operator =(const Texture* other)
 }
 
 
-bool Texture::Initialize(ID3D11Device* device,std::string fileName)
+//bool Texture::Initialize(ID3D11Device* device,std::string fileName)
+//{
+//	HRESULT result = S_OK;
+//	std::wstring stemp = std::wstring(fileName.begin(), fileName.end());
+//	LPCWSTR sw = stemp.c_str();
+//	// Load the texture in.
+//	result = DirectX::CreateWICTextureFromFile(device,sw, 
+//		/*sw, 
+//		NULL, 
+//		NULL, 
+//		&mTexture, 
+//		NULL);*/
+//	if(FAILED(result))
+//	{
+//		return false;
+//	}
+//
+//	return true;
+//}
+
+bool Texture::Initialize(ID3D11Device* device,ID3D11DeviceContext* deviceContext, std::string fileName)
 {
 	HRESULT result = S_OK;
 	std::wstring stemp = std::wstring(fileName.begin(), fileName.end());
 	LPCWSTR sw = stemp.c_str();
-
 	// Load the texture in.
-	result =  D3DX11CreateShaderResourceViewFromFile(device, sw, NULL, NULL, &mTexture, NULL);
-	if(FAILED(result))
-	{
-		return false;
-	}
+	result = DirectX::CreateWICTextureFromFile(device,
+		deviceContext,
+		sw,
+		NULL,
+		&mTexture,
+		NULL);
+		
+		if (FAILED(result))
+		{
+			return false;
+		}
 
 	return true;
 }

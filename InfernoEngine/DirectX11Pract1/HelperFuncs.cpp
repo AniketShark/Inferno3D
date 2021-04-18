@@ -7,11 +7,11 @@
 
 FBXConstantBuffer          g_cb;
 
-XMMATRIX BonePose::GetTransform() const
+DirectX::XMMATRIX BonePose::GetTransform() const
 {
-    XMMATRIX m = XMMatrixScaling(scale.x, scale.y, scale.z) *
-                 XMMatrixRotationQuaternion(XMLoadFloat4(&rotation)) *
-                 XMMatrixTranslation(translation.x, translation.y, translation.z);
+    DirectX::XMMATRIX m = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z) *
+        DirectX::XMMatrixRotationQuaternion(XMLoadFloat4(&rotation)) *
+        DirectX::XMMatrixTranslation(translation.x, translation.y, translation.z);
     return(m);
 }
 

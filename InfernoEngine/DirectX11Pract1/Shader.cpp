@@ -18,12 +18,19 @@ bool CompileShaderFromFile( std::wstring shaderFileName,
 
 	// 
 	ID3DBlob* pErrorBlob = NULL;
-	std::string ASCIIentryPoint = Helper::UNICODEtoASCII( entryPoint);
-	std::string ASCIIshaderModel = Helper::UNICODEtoASCII( shaderModel);
-	hr = D3DX11CompileFromFile( shaderFileName.c_str(), NULL, NULL, 
+	std::string ASCIIentryPoint = Helper::UNICODEtoASCII(entryPoint);
+	std::string ASCIIshaderModel = Helper::UNICODEtoASCII(shaderModel);
+	hr = D3DCompileFromFile( 
+		shaderFileName.c_str(), 
+		NULL,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		ASCIIentryPoint.c_str(), 
 		ASCIIshaderModel.c_str(), 
-		dwShaderFlags, 0, NULL, ppBlobOut, &pErrorBlob, NULL );
+		dwShaderFlags,  
+		NULL,
+		ppBlobOut, 
+		&pErrorBlob );
+
 	if( FAILED(hr) )
 	{
 		if( pErrorBlob != NULL )

@@ -82,8 +82,8 @@ public:
 	void StiffnessFactor(int noOfIterations);
 	void ApplyAccelerationInDirection(Vector3 direction,float power);
 	CParticleSystem m_InternalParticleSystem;
-	XNA::AxisAlignedBox* mCrateCollider;
-	XNA::Sphere* mPointColliders;
+	DirectX::BoundingBox* mCrateCollider;
+	DirectX::BoundingSphere* mPointColliders;
 	int mNoOfColliders;
 private:
 	void VerletFunc();

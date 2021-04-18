@@ -6,9 +6,8 @@
 
 #include <windows.h>
 #include <d3d11.h>
-#include <d3dx11.h>
 #include <d3dcompiler.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
 #include "Material.h"
 #include "Vertex.h"
 #include "Input.h"
@@ -51,9 +50,9 @@ extern WORD* g_GlobalStaticIndexArray;
 
 struct LightInfo
 {
-	XMFLOAT4 vPosition;
-	XMFLOAT4 vLightDirection;
-	XMFLOAT4 attenuation;
+	DirectX::XMFLOAT4 vPosition;
+	DirectX::XMFLOAT4 vLightDirection;
+	DirectX::XMFLOAT4 attenuation;
 	float power;
 	float range;
 	float typeOfLight;
@@ -64,11 +63,12 @@ struct LightInfo
 
 struct ConstantBuffer
 {
-	XMMATRIX  mWorld;
-	XMMATRIX  mView;
-	XMMATRIX  mProjection;
-	XMMATRIX  mInverseTransposedWorld;
-	XMFLOAT4  mEyePosition;
+
+	DirectX::XMMATRIX  mWorld;
+	DirectX::XMMATRIX  mView;
+	DirectX::XMMATRIX  mProjection;
+	DirectX::XMMATRIX  mInverseTransposedWorld;
+	DirectX::XMFLOAT4  mEyePosition;
 	UINT	  mNoOfLights;
 	UINT      mNoOfBones;
 	UINT      mGpuSkinnig; 
@@ -79,12 +79,12 @@ struct ConstantBuffer
 struct ChangingBuffer
 {
 	Material mObjectMaterial;
-	XMFLOAT4 mTransperacyOn;
+	DirectX::XMFLOAT4 mTransperacyOn;
 };
 
 struct AnimationMatrices
 {
-	_XMFLOAT4X4 mBoneMatrices[128];
+	DirectX::XMFLOAT4X4 mBoneMatrices[128];
 };
 
 
@@ -168,8 +168,8 @@ extern ID3D11BlendState*      g_pBlendState_Transparent;
 extern ID3D11BlendState*      g_pBlendState_Normal;
 extern ID3D11BlendState*      g_pBlendState_DontWriteToRenderTarget;
 
-extern XMMATRIX                g_World;
-extern XMMATRIX                g_View;
-extern XMMATRIX                g_Projection;
+extern DirectX::XMMATRIX                g_World;
+extern DirectX::XMMATRIX                g_View;
+extern DirectX::XMMATRIX                g_Projection;
 
 #endif

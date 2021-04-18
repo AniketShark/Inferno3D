@@ -3,7 +3,8 @@
 #define Vertex_H_
 
 #include <windows.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
+//#include <xnamath.h>
 #include "Vector.h"
 
 class Vertex
@@ -11,12 +12,12 @@ class Vertex
 
 public:
 
-	XMFLOAT4 m_Position;
-	XMFLOAT4 m_Normal;
-	XMFLOAT4 m_Color;
-	XMFLOAT2 m_TexCoord;
-	XMFLOAT4 m_Tangent;
-	XMFLOAT4 m_Binormal;
+	DirectX::XMFLOAT4 m_Position;
+	DirectX::XMFLOAT4 m_Normal;
+	DirectX::XMFLOAT4 m_Color;
+	DirectX::XMFLOAT2 m_TexCoord;
+	DirectX::XMFLOAT4 m_Tangent;
+	DirectX::XMFLOAT4 m_Binormal;
 
 	// animation variables
 	unsigned char BoneIndex[4];    

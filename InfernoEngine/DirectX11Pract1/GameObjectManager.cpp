@@ -362,11 +362,11 @@ bool LoadDataInStaticVBAndIB(Mesh* mesh,Vertex* vertexArray,WORD* indexArray)
 	{
 		try
 		{
-			XMFLOAT4 pos = mesh->mVertices[index].m_Position;
-			XMFLOAT4 normal = mesh->mVertices[index].m_Normal;
-			XMFLOAT2 texCoord = mesh->mVertices[index].m_TexCoord;
-			XMFLOAT4 binormal = mesh->mVertices[index].m_Binormal;
-			XMFLOAT4 tangent = mesh->mVertices[index].m_Tangent;
+			DirectX::XMFLOAT4 pos = mesh->mVertices[index].m_Position;
+			DirectX::XMFLOAT4 normal = mesh->mVertices[index].m_Normal;
+			DirectX::XMFLOAT2 texCoord = mesh->mVertices[index].m_TexCoord;
+			DirectX::XMFLOAT4 binormal = mesh->mVertices[index].m_Binormal;
+			DirectX::XMFLOAT4 tangent = mesh->mVertices[index].m_Tangent;
 
 			int indexOffset = mesh->mRenderInfo.mVertexBufferStartIndex + index;
 			vertexArray[indexOffset].m_Position.x = pos.x;
@@ -385,7 +385,7 @@ bool LoadDataInStaticVBAndIB(Mesh* mesh,Vertex* vertexArray,WORD* indexArray)
 			vertexArray[indexOffset].m_Binormal = binormal;
 			vertexArray[indexOffset].m_Tangent = tangent;
 
-			vertexArray[indexOffset].m_Color = XMFLOAT4(1,1,1,1);
+			vertexArray[indexOffset].m_Color = DirectX::XMFLOAT4(1,1,1,1);
 		}
 		catch (std::exception& e)
 		{
@@ -549,11 +549,11 @@ bool LoadDataInVBAndIB(Model &inputModel,Vertex* vertexArray,DWORD* indexArray)
 	for(int index = 0; index != inputModel.modelInfo.mNoOfVertices;index++)
 	{
 
-		XMFLOAT4 pos = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Position;
-		XMFLOAT4 normal = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Normal;
-		XMFLOAT2 texCoord = inputModel.mPlyLoader.GetVertexAtIndex(index).m_TexCoord;
-		XMFLOAT4 binormal = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Binormal;
-		XMFLOAT4 tangent = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Tangent;
+		DirectX::XMFLOAT4 pos = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Position;
+		DirectX::XMFLOAT4 normal = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Normal;
+		DirectX::XMFLOAT2 texCoord = inputModel.mPlyLoader.GetVertexAtIndex(index).m_TexCoord;
+		DirectX::XMFLOAT4 binormal = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Binormal;
+		DirectX::XMFLOAT4 tangent = inputModel.mPlyLoader.GetVertexAtIndex(index).m_Tangent;
 
 		int indexOffset = inputModel.modelInfo.mVertexBufferStartIndex + index;
 		vertexArray[indexOffset].m_Position.x = pos.x;

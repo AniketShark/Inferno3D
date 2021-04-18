@@ -232,7 +232,7 @@ bool Input::ReadMouse()
 
 void Input::ProcessInput()
 {
-	// Update the location of the mouse cursor based on the change of the mouse location during the frame.
+	// Update the location of the mouse cursor based on the change of the mouse location during the frame.     
 	m_mouseX += m_mouseState.lX;
 	m_mouseY += m_mouseState.lY;
 

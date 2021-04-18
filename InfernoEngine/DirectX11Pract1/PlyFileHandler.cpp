@@ -99,7 +99,7 @@ bool LoadTexturesAndCreateResourceViews(Mesh* mesh)
 	{
 		Texture* textPoint = new Texture;
 		std::string str = mesh->mTextureNameList[textureIt];
-		hr = textPoint->Initialize(g_pd3dDevice,str);
+		hr = textPoint->Initialize(g_pd3dDevice, g_pImmediateContext,str);
 		if(hr == false)
 			return false;
 		mesh->mTextureArray[textureIt] = textPoint;

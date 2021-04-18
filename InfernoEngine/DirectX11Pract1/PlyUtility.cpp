@@ -94,7 +94,7 @@ bool PlyUtility::LoadPlyFile(std::string fileName)
 		plyFile >> tempVertex.m_Position.y;
 		plyFile >> tempVertex.m_Position.z;
 
-		XMFLOAT4 pos = tempVertex.m_Position;
+		DirectX::XMFLOAT4 pos = tempVertex.m_Position;
 
 		if(pos.x > m_Max.x)
 			m_Max.x = tempVertex.m_Position.x;
@@ -220,8 +220,8 @@ void PlyUtility::ScaleModelTo(float scale)
 void PlyUtility::CalculateTangentBinormal(Vertex& vertex1, Vertex& vertex2, Vertex& vertex3)
 {
 	Vector3 vector1, vector2;
-	XMFLOAT2 tuVector, tvVector;
-	XMFLOAT4 tangent,binormal;
+	DirectX::XMFLOAT2 tuVector, tvVector;
+	DirectX::XMFLOAT4 tangent,binormal;
 	float den;
 	float length;
 

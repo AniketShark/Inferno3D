@@ -1,6 +1,6 @@
 #include "GameObject.h"
 #include <math.h>
-#include <typeinfo.h>
+//#include <typeinfo.h>
 #include "Scene.h"
 #include "SharedInfo.h"
 #include "Console.h"

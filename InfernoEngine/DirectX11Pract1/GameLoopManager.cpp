@@ -67,7 +67,7 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow );
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
-void DrawObject(std::vector<Model*>::iterator objectIt, const XMMATRIX& parentLocalWorldMatrix);
+void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix);
 void Render();
 void LoadAllShaders();
 float distanceToCamera( Model* pObject );
@@ -891,7 +891,7 @@ void Render()
 	//Clears Depth buffer to max depth 1.0f and stencil buffer to 0
 	g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView,D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL ,1.0f ,0 );
 
-	g_World = XMMatrixIdentity();
+	g_World = DirectX::XMMatrixIdentity();
 
 	Scene::Update();
 
@@ -928,7 +928,7 @@ void Render()
 }
 
 // Draws the Object with its children 
-void DrawObject(std::vector<Model*>::iterator objectIt, const XMMATRIX& parentLocalWorldMatrix)
+void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix)
 {
 
 	//XMMATRIX rotationMatrix = XMMatrixIdentity();

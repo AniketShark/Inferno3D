@@ -7,7 +7,7 @@
 #include "global.h"
 #include "CHRTimer.h"
 #include "GameObject.h"
-#include "xnacollision.h"
+#include<DirectXCollision.h>
 
 class SimulationScript: public IBehaviour
 {

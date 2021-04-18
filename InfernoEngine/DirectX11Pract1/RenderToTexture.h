@@ -21,7 +21,7 @@ public:
 
 	ID3D11ShaderResourceView* GetSRVOfTargetTexture();
 
-	void SetViewProjectionMatrix(XMMATRIX*);
+	void SetViewProjectionMatrix(DirectX::XMMATRIX*);
 
 	int GetTextureWidth();
 	int GetTextureHeight();
@@ -45,7 +45,7 @@ private:
 	ID3D11DepthStencilView* mDepthMapDSV;
 	ID3D11DeviceContext* mDeviceContext;
 	
-	XMMATRIX* mViewProjectionMatrix;
+	DirectX::XMMATRIX* mViewProjectionMatrix;
 
 	DXGI_FORMAT mDepthMapFormat;
 	DXGI_FORMAT mTextureFormat;

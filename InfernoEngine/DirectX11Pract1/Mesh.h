@@ -79,7 +79,7 @@ public:
 	/// <summary>
 	/// holds the global matrix of each bone in particular pose in animation
 	/// </summary>
-	_XMFLOAT4X4*          mInitialGlobalPose;
+	DirectX::XMFLOAT4X4*          mInitialGlobalPose;
 	/// <summary>
 	///Total no of bones in the fbx model
 	/// </summary>

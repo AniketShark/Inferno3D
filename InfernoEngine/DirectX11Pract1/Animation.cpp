@@ -616,9 +616,9 @@ void Animation::AnimationUpdate()
 					BonePose* jntA = &(mCurrentAnimation->mKeys[prevFrame].mBones[mChannelMap[i]]);
 					BonePose* jntB = &(mCurrentAnimation->mKeys[frame].mBones[mChannelMap[i]]);
 
-					XMStoreFloat3(&localReferenceToRenderer->mCurrentBones[i].translation, XMVectorLerp(XMLoadFloat3(&jntA->translation), XMLoadFloat3(&jntB->translation), t));
-					XMStoreFloat4(&localReferenceToRenderer->mCurrentBones[i].rotation, XMQuaternionSlerp(XMLoadFloat4(&jntA->rotation), XMLoadFloat4(&jntB->rotation), t));
-					XMStoreFloat3(&localReferenceToRenderer->mCurrentBones[i].scale, XMVectorLerp(XMLoadFloat3(&jntA->scale), XMLoadFloat3(&jntB->scale), t));
+					XMStoreFloat3(&localReferenceToRenderer->mCurrentBones[i].translation, DirectX::XMVectorLerp(XMLoadFloat3(&jntA->translation), XMLoadFloat3(&jntB->translation), t));
+					XMStoreFloat4(&localReferenceToRenderer->mCurrentBones[i].rotation, DirectX::XMQuaternionSlerp(XMLoadFloat4(&jntA->rotation), XMLoadFloat4(&jntB->rotation), t));
+					XMStoreFloat3(&localReferenceToRenderer->mCurrentBones[i].scale, DirectX::XMVectorLerp(XMLoadFloat3(&jntA->scale), XMLoadFloat3(&jntB->scale), t));
 				}
 			}
 		}
@@ -628,10 +628,10 @@ void Animation::AnimationUpdate()
 	//update the current pose
 	for(int i = 0; i < mMesh->mNoOfBones; ++i)
 	{
-		XMMATRIX m = localReferenceToRenderer->mCurrentBones[i].GetTransform();
+		DirectX::XMMATRIX m = localReferenceToRenderer->mCurrentBones[i].GetTransform();
 		if(mMesh->mSkeleton[i].parent >= 0)
 		{
-			XMMATRIX c = XMLoadFloat4x4(&localReferenceToRenderer->mCurrentGlobalPose[mMesh->mSkeleton[i].parent]);
+			DirectX::XMMATRIX c = XMLoadFloat4x4(&localReferenceToRenderer->mCurrentGlobalPose[mMesh->mSkeleton[i].parent]);
 			m *= c;
 		}
 		XMStoreFloat4x4(&localReferenceToRenderer->mCurrentGlobalPose[i], m);

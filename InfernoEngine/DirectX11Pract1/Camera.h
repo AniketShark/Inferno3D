@@ -9,7 +9,7 @@
 #define Camera_H_
 
 #include <windows.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
 #include "Vector.h"
 #include "IBehavior.h"
 
@@ -24,9 +24,9 @@ public:
 	float mNearClipPlaneDistance;
 	float mFarClipPlaneDistance;
 
-	XMFLOAT3 Eye;
-	XMFLOAT3 View;
-	XMFLOAT3 Up;
+	DirectX::XMFLOAT3 Eye;
+	DirectX::XMFLOAT3 View;
+	DirectX::XMFLOAT3 Up;
 
 	virtual void Initialize();
 	virtual void Update();

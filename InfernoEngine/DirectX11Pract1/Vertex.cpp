@@ -4,11 +4,11 @@
 
 Vertex::Vertex()
 {
-	m_Position = XMFLOAT4(0,0,0,1);
-	m_Color = XMFLOAT4(0,0,0,1);
-	m_Normal = XMFLOAT4(0,0,0,1);
-	m_Tangent = XMFLOAT4(0,0,0,1);
-	m_TexCoord = XMFLOAT2(0,0);
+	m_Position = DirectX::XMFLOAT4(0,0,0,1);
+	m_Color =    DirectX::XMFLOAT4(0,0,0,1);
+	m_Normal =   DirectX::XMFLOAT4(0,0,0,1);
+	m_Tangent =  DirectX::XMFLOAT4(0,0,0,1);
+	m_TexCoord = DirectX::XMFLOAT2(0,0);
 
 	{
 		BoneIndex[0] = BoneIndex[1] = BoneIndex[2] = BoneIndex[3] = 0; 

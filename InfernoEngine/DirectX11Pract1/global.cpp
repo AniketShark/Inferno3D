@@ -108,6 +108,6 @@ ID3D11BlendState*      g_pBlendState_Normal = NULL;
 ID3D11BlendState*      g_pBlendState_DontWriteToRenderTarget = NULL;
 
 
-XMMATRIX                g_World;
-XMMATRIX                g_View;
-XMMATRIX                g_Projection;
+DirectX::XMMATRIX                g_World;
+DirectX::XMMATRIX                g_View;
+DirectX::XMMATRIX                g_Projection;

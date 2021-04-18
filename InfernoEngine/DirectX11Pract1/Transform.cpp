@@ -57,14 +57,14 @@ void Transform::RotateAroundLocal(float x,float y,float z)
 	this->localEulerRotation = this->localEulerRotation + Vector3(x,y,z);
 }
 
-XMVECTOR Transform:: GetLocalRotationQuaternion()
+DirectX::XMVECTOR Transform:: GetLocalRotationQuaternion()
 {
-	return XMVectorSet(localQuaternionRotation.x,localQuaternionRotation.y,localQuaternionRotation.z,localQuaternionRotation.w);
+	return DirectX::XMVectorSet(localQuaternionRotation.x,localQuaternionRotation.y,localQuaternionRotation.z,localQuaternionRotation.w);
 }
 
-XMVECTOR Transform::GetWorldRotationQuaternion()
+DirectX::XMVECTOR Transform::GetWorldRotationQuaternion()
 {
-	return XMVectorSet(worldQuaternionRotation.x,worldQuaternionRotation.y,worldQuaternionRotation.z,worldQuaternionRotation.w);
+	return DirectX::XMVectorSet(worldQuaternionRotation.x,worldQuaternionRotation.y,worldQuaternionRotation.z,worldQuaternionRotation.w);
 }
 
 void Transform::SetLocalRotationQuaternion(Vector3 eulerRotation)
@@ -72,8 +72,8 @@ void Transform::SetLocalRotationQuaternion(Vector3 eulerRotation)
 	float x = Helper::DegToRad(eulerRotation.x);
 	float y = Helper::DegToRad(eulerRotation.y);
 	float z = Helper::DegToRad(eulerRotation.z);
-	XMFLOAT4 tempQuat = XMFLOAT4(0,0,0,0);
-	XMStoreFloat4(&tempQuat,XMQuaternionRotationRollPitchYaw(x,y,z));
+	DirectX::XMFLOAT4 tempQuat = DirectX::XMFLOAT4(0,0,0,0);
+	DirectX::XMStoreFloat4(&tempQuat, DirectX::XMQuaternionRotationRollPitchYaw(x,y,z));
 	localQuaternionRotation = Vector4(tempQuat.x,tempQuat.y,tempQuat.z,tempQuat.w);
 }
 
@@ -82,18 +82,18 @@ void Transform::SetWorldRotationQuaternion(Vector3 eulerRotation)
 	float x = Helper::DegToRad(eulerRotation.x);
 	float y = Helper::DegToRad(eulerRotation.y);
 	float z = Helper::DegToRad(eulerRotation.z);
-	XMFLOAT4 tempQuat = XMFLOAT4(0,0,0,0);
-	XMStoreFloat4(&tempQuat,XMQuaternionRotationRollPitchYaw(x,y,z));
+	DirectX::XMFLOAT4 tempQuat = DirectX::XMFLOAT4(0,0,0,0);
+	DirectX::XMStoreFloat4(&tempQuat, DirectX::XMQuaternionRotationRollPitchYaw(x,y,z));
 	worldQuaternionRotation = Vector4(tempQuat.x,tempQuat.y,tempQuat.z,tempQuat.w);
 }
 
-void Transform::SetEulerRotationFromQuaternion(Vector3& rotationVector,XMVECTOR theQuaternionRotation)
+void Transform::SetEulerRotationFromQuaternion(Vector3& rotationVector, DirectX::XMVECTOR theQuaternionRotation)
 {
-	XMVECTOR axis;
+	DirectX::XMVECTOR axis;
 	float angle;
-	XMFLOAT4 floatAxis;
-	XMQuaternionToAxisAngle(&axis,&angle,theQuaternionRotation);
-	XMStoreFloat4(&floatAxis,axis);
+	DirectX::XMFLOAT4 floatAxis;
+	DirectX::XMQuaternionToAxisAngle(&axis,&angle,theQuaternionRotation);
+	DirectX::XMStoreFloat4(&floatAxis,axis);
 	rotationVector = Helper::ConvertXMFLOAT4TOVector3(floatAxis) * angle;
 }
 

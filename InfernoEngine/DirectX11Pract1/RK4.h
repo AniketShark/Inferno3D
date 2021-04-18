@@ -2,7 +2,8 @@
 #define RK4_H_
 
 #include <windows.h>
-#include <xnamath.h>
+#include <DirectXMath.h>
+//#include <xnamath.h>
 #include <stdio.h>
 #include <math.h>
 #include "Vector.h"
