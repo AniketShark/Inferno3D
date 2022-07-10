@@ -1,9 +1,6 @@
 #ifndef Component_H_
 #define Component_H_
 
-#include "Object.h"
-#include "Transform.h"
-
 enum ComponentType
 {
 	AnimationComp,
@@ -19,7 +16,6 @@ enum ComponentType
 class Component 
 {
 public:
-	Transform* transform;
 	virtual ~Component();
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;

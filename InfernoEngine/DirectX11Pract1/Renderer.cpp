@@ -514,9 +514,9 @@ void Renderer::Draw()
 		}
 
 		
-		DirectX::XMMATRIX transformMatrix = DirectX::XMMatrixScaling(transform->scale.x,transform->scale.y,transform->scale.z) *  // Scale
-											DirectX::XMMatrixRotationQuaternion(transform->GetWorldRotationQuaternion()) * // Rotate
-											DirectX::XMMatrixTranslation(transform->position.x,transform->position.y,transform->position.z); // Translate
+		DirectX::XMMATRIX transformMatrix = DirectX::XMMatrixScaling(mThisGO->transform->scale.x,mThisGO->transform->scale.y,mThisGO->transform->scale.z) *  // Scale
+											DirectX::XMMatrixRotationQuaternion(mThisGO->transform->GetWorldRotationQuaternion()) * // Rotate
+											DirectX::XMMatrixTranslation(mThisGO->transform->position.x,mThisGO->transform->position.y,mThisGO->transform->position.z); // Translate
 		
 		if(mMesh != NULL)
 		{

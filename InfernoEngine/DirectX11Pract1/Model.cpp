@@ -23,7 +23,7 @@ Model::~Model()
 
 Model::Model(const Model& otherModel)
 {
-	this->mBounds = otherModel.mBounds;
+	//this->mBounds = otherModel.mBounds;
 	this->mPlyLoader = otherModel.mPlyLoader;
 	this->modelInfo = otherModel.modelInfo;
 	this->mMaterial = otherModel.mMaterial;
@@ -42,7 +42,7 @@ Model::Model(const Model& otherModel)
 
 void Model::operator= (const Model& otherModel)
 {
-	this->mBounds = otherModel.mBounds;
+	//this->mBounds = otherModel.mBounds;
 	this->mPlyLoader = otherModel.mPlyLoader;
 	this->modelInfo = otherModel.modelInfo;
 	this->mMaterial = otherModel.mMaterial;
@@ -76,7 +76,7 @@ Model::Model(std::string modelName)
 
 void Model::CalculateModelBounds()
 {
-	this->mBounds.mMin = this->mPlyLoader.m_Min;
+	/*this->mBounds.mMin = this->mPlyLoader.m_Min;
 	this->mBounds.mMax = this->mPlyLoader.m_Max;
 
 	Vector3 center;
@@ -88,7 +88,7 @@ void Model::CalculateModelBounds()
 	this->mBounds.mExtents.y = (this->mBounds.mMax.x - this->mBounds.mMin.x)/2;
 	this->mBounds.mExtents.z = (this->mBounds.mMax.x - this->mBounds.mMin.x)/2;
 
-	mBounds.mCenter = center;
+	mBounds.mCenter = center;*/
 }
 
 void Model::UpdateChildsTransforms()
@@ -96,39 +96,39 @@ void Model::UpdateChildsTransforms()
 
 }
 
-void Model::ReadBVHFile(std::wstring bvhFileName,AnimationType animationType)
-{
-	int errorCode;
-	std::string animationName = std::string(bvhFileName.begin(),bvhFileName.end()); 
-	bvhFileName = L"Animations/" + std::wstring(bvhFileName.begin(),bvhFileName.end()); 
-	mBvhFileList[animationName] = new CBVHFile;
-	mBvhFileList[animationName]->LoadBVHFile(bvhFileName,errorCode);
-	mBvhFileList[animationName]->mAnimationType = animationType;
-	mBvhFileList[animationName]->m_FileName = animationName;
-	m_LastAnimationFile = animationName;
-}
+//void Model::ReadBVHFile(std::wstring bvhFileName,AnimationType animationType)
+//{
+//	int errorCode;
+//	std::string animationName = std::string(bvhFileName.begin(),bvhFileName.end()); 
+//	bvhFileName = L"Animations/" + std::wstring(bvhFileName.begin(),bvhFileName.end()); 
+//	mBvhFileList[animationName] = new CBVHFile;
+//	mBvhFileList[animationName]->LoadBVHFile(bvhFileName,errorCode);
+//	mBvhFileList[animationName]->mAnimationType = animationType;
+//	mBvhFileList[animationName]->m_FileName = animationName;
+//	m_LastAnimationFile = animationName;
+//}
 
 bool Model::CreateBiped(Model* parentModel)
 {
-	mBiped = new Biped;
+	/*mBiped = new Biped;
 	mBiped->LoadJointMeshMap(L"Animations/JointMeshConfig.txt");
 	mBiped->RepresentModel(mBvhFileList[m_LastAnimationFile]->rootJoint,parentModel);
 	for (std::map<std::string,CBVHFile*>::iterator bvhIt = mBvhFileList.begin();bvhIt != mBvhFileList.end();bvhIt++)
 	{
 		bvhIt->second->SetBipedReference(mBiped);
-	}
+	}*/
 	
 	return 0;
 }
 
 void Model::SwitchAnimationImmidiately(std::string animationName)
 {
-	mBiped->mSwitchAnimationImmidiate = true;
+	//mBiped->mSwitchAnimationImmidiate = true;
 	m_SwitchToAnimationName = animationName;
 }
 void Model::SwitchAnimationAfterCurrent(std::string animationName)
 {
-	mBiped->mSwitchAnimationAfterCurrent = true;
+	//mBiped->mSwitchAnimationAfterCurrent = true;
 	m_SwitchToAnimationName = animationName;
 }
 

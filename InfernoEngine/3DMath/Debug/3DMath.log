@@ -1,0 +1,5 @@
+﻿  Helper.cpp
+E:\Engines\Inferno Engine\InfernoEngine\3DMath\src\Helper.cpp(50,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Vector.cpp
+  Generating Code...
+  3DMath.vcxproj -> E:\Engines\Inferno Engine\InfernoEngine\Debug\3DMath.lib

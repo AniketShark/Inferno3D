@@ -1,4 +1,5 @@
 #include "SkeletalAnimation.h"
+#include <vcruntime_string.h>
 
 SkeletalAnimation::SkeletalAnimation() :
 	mSkeleton(NULL),

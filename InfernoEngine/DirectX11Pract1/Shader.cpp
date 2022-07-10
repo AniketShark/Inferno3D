@@ -1,5 +1,5 @@
 #include "Shader.h"
-
+#include "Helper.h"
 
 // This is based on the helper file from the DirectX 11 SDK
 // Uses all wstring (instead of a mix of unicode and ASCII)

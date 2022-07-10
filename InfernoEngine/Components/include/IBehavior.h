@@ -38,7 +38,7 @@ public:
 	//Clones the behavior
 	virtual IBehaviour* Clone();
 	/// <summary>
-	/// The  shared information pointer
+	/// The shared information pointer
 	/// </summary>
 	SharedInfo* mThisGO;
 	GameObject* mGameObjectPointer;

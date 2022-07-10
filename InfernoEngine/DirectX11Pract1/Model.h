@@ -3,15 +3,9 @@
 #ifndef Model_H_
 #define Model_H_
 
-#include "Animation.h"
-#include "Rigidbody.h"
 #include "Material.h"
 #include "Texture.h"
 #include "PlyUtility.h"
-#include "AABB.h"
-#include "AIManager.h"
-#include "CBVHFile.h"
-#include "Biped.h"
 #include "GameObject.h"
 
 
@@ -36,19 +30,14 @@ public:
 
 	std::vector<Model*> mChildObjectsList;
 	Material mMaterial;
-	AABB mBounds;
 	std::vector<Texture> mTextureArray;
 	PlyUtility mPlyLoader;
 	RenderInfo modelInfo;
 	
-	std::map<std::string,CBVHFile*> mBvhFileList;
-	Biped* mBiped;
-
 	void operator= (const Model&);
 
 	void CalculateModelBounds();
 	void UpdateChildsTransforms();
-	void ReadBVHFile(std::wstring bvhFileName,AnimationType animationType);
 	bool CreateBiped(Model* parentModel);
 	void SwitchAnimationImmidiately(std::string animationName);
 	void SwitchAnimationAfterCurrent(std::string animationName);

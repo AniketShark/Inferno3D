@@ -1,8 +1,6 @@
 #ifndef Rigidbody_H_
 #define Rigidbody_H_
 
-#include "RK4.h"
-#include "Euler.h"
 #include "CHRTimer.h"
 #include "Vector.h"
 
@@ -35,8 +33,5 @@ public:
 
 private :
 	float mLastSimulationUpdateTime;
-	State mRigidbodyState;
-	EulerState mRigidbodyEulerState;
-	Derivative mRigidbodyDerivative;
 };
 #endif

@@ -1,0 +1,28 @@
+﻿  Animation.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,19): error C2614: 'SkeletalAnimation::Frame': illegal member initialization: 'mBones' is not a base or member
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\Animation.cpp(8,10): fatal error C1083: Cannot open include file: 'SharedInfo.h': No such file or directory
+  AnimationCommand.cpp
+  AnimationManager.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,26): error C2065: 'NULL': undeclared identifier
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,19): error C2614: 'SkeletalAnimation::Frame': illegal member initialization: 'mBones' is not a base or member
+  AnimationScriptReader.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,19): error C2614: 'SkeletalAnimation::Frame': illegal member initialization: 'mBones' is not a base or member
+  Biped.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\Biped.cpp(2,10): fatal error C1083: Cannot open include file: 'GameObjectManager.h': No such file or directory
+  CBVHChannel.cpp
+  CBVHFile.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\CBVHFile.h(7,10): fatal error C1083: Cannot open include file: 'CHRTimer.h': No such file or directory
+  CBVHJoint.cpp
+  CBVHPoint3f.cpp
+  SkeletalAnimation.cpp
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,26): error C2065: 'NULL': undeclared identifier
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(18,19): error C2614: 'SkeletalAnimation::Frame': illegal member initialization: 'mBones' is not a base or member
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(5,2): error C2614: 'SkeletalAnimation': illegal member initialization: 'mSkeleton' is not a base or member
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(16,5): error C2065: 'mSkeleton': undeclared identifier
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(16,26): error C2065: 'mSkeleton': undeclared identifier
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(16,35): error C2541: 'delete': cannot delete objects that are not pointers
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(22,25): error C2039: 'mBones': is not a member of 'SkeletalAnimation::Frame'
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(13): message : see declaration of 'SkeletalAnimation::Frame'
+E:\Engines\Inferno Engine\InfernoEngine\Animation\src\SkeletalAnimation.cpp(24,36): error C2039: 'mBones': is not a member of 'SkeletalAnimation::Frame'
+E:\Engines\Inferno Engine\InfernoEngine\Animation\include\SkeletalAnimation.h(13): message : see declaration of 'SkeletalAnimation::Frame'
+  Generating Code...

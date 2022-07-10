@@ -57,19 +57,19 @@ void PlayerScript::Update()
 
 	if(g_input.GetKey(DIK_W))
 	{
-		transform->position.z += 0.1f;
+		mThisGO->transform->position.z += 0.1f;
 	}
 	if(g_input.GetKey(DIK_S))
 	{
-		transform->position.z -= 0.1f;
+		mThisGO->transform->position.z -= 0.1f;
 	}
 	if(g_input.GetKey(DIK_A))
 	{
-		transform->position.x -= 0.1f;
+		mThisGO->transform->position.x -= 0.1f;
 	}
 	if(g_input.GetKey(DIK_D))
 	{
-		transform->position.x += 0.1f;
+		mThisGO->transform->position.x += 0.1f;
 	}
 
 	//if(g_input.GetKey(DIK_LCONTROL))

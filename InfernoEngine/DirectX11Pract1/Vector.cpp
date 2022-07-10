@@ -1,8 +1,7 @@
 #include "Vector.h"
 #include <math.h>
-
-#include "Helper.h"
-
+#include<limits>
+#include"Helper.h"
 #pragma region Vector3 region
 
 Vector3::Vector3(){};
@@ -130,6 +129,7 @@ bool Vector3::IsEqual( Vector3 a, Vector3 b)
 
 }
 
+
 float Vector3::Magnitude()
 {
 	float magnitude = ((this->x*this->x)  + (this->y*this->y) +(this->z*this->z));
@@ -256,7 +256,7 @@ float Vector2::DotProduct(Vector2 v1,Vector2 v2)
 bool Vector2::IsEqual( Vector2 a, Vector2 b)
 {
 	bool x,y;
-	x = Helper::AreEqual(a.x,b.x);
+	x = Helper::AreEqual(a.x, b.x);
 	y = Helper::AreEqual(a.y,b.y);
 	if(x&&y)
 		return true;

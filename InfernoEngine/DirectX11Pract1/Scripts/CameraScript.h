@@ -77,7 +77,7 @@ void CameraScript::Update()
 		}
 
 		std::stringstream newatream;
-		newatream<<"Position "<<transform->position.x<<","<<transform->position.y<<","<<transform->position.z;
+		newatream<<"Position "<< mThisGO->transform->position.x<<","<< mThisGO->transform->position.y<<","<< mThisGO->transform->position.z;
 		std::string str = newatream.str();
 		std::wstring w = std::wstring(str.begin(),str.end());
 		SetWindowText(g_hWnd,w.c_str());

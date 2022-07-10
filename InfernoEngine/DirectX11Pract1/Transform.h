@@ -8,7 +8,6 @@
 
 #include <windows.h>
 #include "Vector.h"
-#include "Helper.h"
 #include <DirectXMath.h>
 
 class Transform

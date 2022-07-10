@@ -1,4 +1,6 @@
+#include<pch.h>
 #include "IBehavior.h"
+
 
 /// <summary>
 /// Initializes a new instance of the <see cref="IBehaviour"/> class.

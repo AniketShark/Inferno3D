@@ -12,9 +12,7 @@
 #include <map>
 #include <string>
 #include "Vector.h"
-#include "CHRTimer.h"
 #include "IBehavior.h"
-#include "Mesh.h"
 #include "SkeletalAnimation.h"
 
 
@@ -63,7 +61,6 @@ public:
 	AnimationState m_objectAnimationState;
 	AnimationState m_previousObjectAnimationState;
 
-	CHRTimer m_timer;
 
 	virtual void Initialize();
 	virtual void Update();

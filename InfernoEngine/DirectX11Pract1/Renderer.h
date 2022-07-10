@@ -25,6 +25,7 @@
 #include "Material.h"
 #include<DirectXCollision.h>
 
+
 /// <summary>
 /// Class Renderer.
 /// </summary>

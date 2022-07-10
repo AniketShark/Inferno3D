@@ -22,14 +22,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -45,6 +45,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)\PhysX\Include;$(WindowsSDK_IncludePath);$(SolutionDir)\packages\directxtk_desktop\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\lib;$(SolutionDir)\packages\directxtk_desktop\native\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(SolutionDir)3DMath\include;$(SolutionDir)Components\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -91,40 +92,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
-    <ClInclude Include="AABBManager.h" />
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="AnimationCommand.h" />
-    <ClInclude Include="AnimationManager.h" />
-    <ClInclude Include="AnimationScriptReader.h" />
-    <ClInclude Include="CDrawableTex2D_DX11.h" />
-    <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="Component.h" />
     <ClInclude Include="Console.h" />
-    <ClInclude Include="FbxHandler.h" />
-    <ClInclude Include="HelperFuncs.h" />
-    <ClInclude Include="IBehavior.h" />
-    <ClInclude Include="Biped.h" />
-    <ClInclude Include="BoundingMeshGenerator.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CBVHChannel.h" />
-    <ClInclude Include="CBVHFile.h" />
-    <ClInclude Include="CBVHJoint.h" />
-    <ClInclude Include="CBVHPoint3f.h" />
     <ClInclude Include="CHRTimer.h" />
-    <ClInclude Include="Collider.h" />
-    <ClInclude Include="enumBVHErrorCodes.h" />
-    <ClInclude Include="Euler.h" />
-    <ClInclude Include="Folder\Armor.h" />
-    <ClInclude Include="Folder\Health.h" />
-    <ClInclude Include="Folder\PathNode.h" />
-    <ClInclude Include="Folder\PowerUp.h" />
-    <ClInclude Include="Folder\Queue.h" />
-    <ClInclude Include="Folder\Weapon.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="global.h" />
-    <ClInclude Include="Helper.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="jsoncons\error_handler.hpp" />
     <ClInclude Include="jsoncons\json.hpp" />
@@ -149,7 +122,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
-    <ClInclude Include="Particle.h" />
     <ClInclude Include="PlyFileHandler.h" />
     <ClInclude Include="PlyUtility.h" />
     <ClInclude Include="PrefabManager.h" />
@@ -157,7 +129,6 @@
     <ClInclude Include="RenderToTexture.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rigidbody.h" />
-    <ClInclude Include="RK4.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScriptsManager.h" />
     <ClInclude Include="Scripts\BunnyScript.h" />
@@ -168,48 +139,21 @@
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SharedInfo.h" />
-    <ClInclude Include="SkeletalAnimation.h" />
-    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector.h" />
     <ClInclude Include="Element.h" />
-    <ClInclude Include="VerletFiles\BasicTypes.h" />
-    <ClInclude Include="VerletFiles\CConstraint.h" />
-    <ClInclude Include="VerletFiles\CParticleSystem.h" />
-    <ClInclude Include="VerletFiles\CRigidBody.h" />
-    <ClInclude Include="VerletFiles\CSpring.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="WorldCell.h" />
     <ClInclude Include="XmlParser\xmlParser.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AABB.cpp" />
-    <ClCompile Include="AABBManager.cpp" />
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="AnimationCommand.cpp" />
-    <ClCompile Include="AnimationManager.cpp" />
-    <ClCompile Include="AnimationScriptReader.cpp" />
-    <ClCompile Include="Biped.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CBVHChannel.cpp" />
-    <ClCompile Include="CBVHFile.cpp" />
-    <ClCompile Include="CBVHJoint.cpp" />
-    <ClCompile Include="CBVHPoint3f.cpp" />
-    <ClCompile Include="CDrawableTex2D_DX11.cpp" />
     <ClCompile Include="CHRTimer.cpp" />
-    <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Console.cpp" />
-    <ClCompile Include="Euler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="global.cpp" />
-    <ClCompile Include="Helper.cpp" />
-    <ClCompile Include="HelperFuncs.cpp" />
-    <ClCompile Include="IBehaviour.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JsonInterface.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -218,31 +162,22 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
-    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PlyFileHandler.cpp" />
     <ClCompile Include="PlyUtility.cpp" />
     <ClCompile Include="PrefabManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderToTexture.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
-    <ClCompile Include="RK4.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="SkeletalAnimation.cpp" />
-    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="GameLoopManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Element.cpp" />
-    <ClCompile Include="VerletFiles\BasicTypes.cpp" />
-    <ClCompile Include="VerletFiles\CConstraint.cpp" />
-    <ClCompile Include="VerletFiles\CParticleSystem.cpp" />
-    <ClCompile Include="VerletFiles\CRigidBody.cpp" />
-    <ClCompile Include="VerletFiles\CSpring.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WorldCell.cpp" />
     <ClCompile Include="XmlParser\xmlParser.cpp" />
@@ -274,6 +209,14 @@
     <None Include="Shaders\SingleTextureOnly.fx" />
     <None Include="Shaders\TwoTexturesOnlyWithComputeShader.fx" />
     <None Include="Shaders\TwoTexturesPlusLightingOnly.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\3DMath\3DMath.vcxproj">
+      <Project>{de0d5b1c-bfed-45c4-bcc7-b59a2c93335a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Components\Components.vcxproj">
+      <Project>{67c24d9d-aadd-4dd6-8852-fc54fd7c91b3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

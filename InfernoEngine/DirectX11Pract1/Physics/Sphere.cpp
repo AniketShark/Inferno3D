@@ -18,7 +18,7 @@ MySphere::MySphere(const MySphere& other)
 }
 
 bool MySphere::CheckCollision(const MySphere& other)
-{
+{ 
 	 float distance =  Vector3::Distance(this->mCenter,other.mCenter);
 	 float threshold = this->mRadius + other.mRadius;
 	 if (distance < threshold)

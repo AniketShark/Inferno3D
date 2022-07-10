@@ -20,7 +20,6 @@
 #include <map>
 #include "Material.h"
 #include "Texture.h"
-#include "Helper.h"
 
 bool CompileShaderFromFile( std::wstring shaderFileName, 
 	std::wstring entryPoint, 

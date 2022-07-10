@@ -8,10 +8,10 @@
 #ifndef Camera_H_
 #define Camera_H_
 
-#include <windows.h>
-#include <DirectXMath.h>
 #include "Vector.h"
 #include "IBehavior.h"
+#include "Helper.h"
+#include "Transform.h"
 
 class Camera : public IBehaviour
 {

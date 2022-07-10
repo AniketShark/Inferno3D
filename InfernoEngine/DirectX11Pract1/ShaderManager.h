@@ -9,7 +9,6 @@
 #include <vector>
 #include <map>
 #include "Shader.h"
-#include "Helper.h"
 
 
 extern std::map<std::wstring,Shader> m_ShaderList;

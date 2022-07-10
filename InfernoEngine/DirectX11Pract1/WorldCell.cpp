@@ -1,5 +1,4 @@
 #include "WorldCell.h"
-#include "CollisionManager.h"
 
 WorldCell::WorldCell()
 {

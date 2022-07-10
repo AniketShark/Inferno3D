@@ -23,13 +23,10 @@
 #include "Vector.h"
 #include "Transform.h"
 #include "Renderer.h"
-#include "Animation.h"
-#include "Helper.h"
 #include "IBehavior.h"
 #include "Camera.h"
-#include "Cloth.h"
 #include "Light.h"
-#include "Collider.h"
+
 /// <summary>
 /// Class GameObject.
 /// </summary>
@@ -59,16 +56,11 @@ public:
 	
 	Renderer* renderer;
 	
-	Animation* animation;
 	
 	Camera* camera;
 	
-	Cloth* cloth;
-
 	Light* light;
 	
-	Collider* collider;
-
 	
 	void AddComponent(ComponentType component);
 
@@ -85,7 +77,7 @@ public:
 		try
 		{
 			newCastedPointer = dynamic_cast<IBehaviour*>(newScriptObject);
-			newCastedPointer->transform =  &transform;
+			newCastedPointer->mThisGO->transform =  &transform;
 			m_InterlinkComponents(newCastedPointer);
 			m_ComponentMap[Script] = newCastedPointer;
 		}
@@ -128,7 +120,6 @@ public:
 	std::map<ComponentType,IBehaviour*> GetComponentMap();
 	GameObject* Clone();
 	void AddClonedComponent(ComponentType,IBehaviour*);
-	void OnCollisionEnter(Collision collision);
 
 private:
 	std::map<ComponentType,IBehaviour*> m_ComponentMap;

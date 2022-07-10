@@ -926,108 +926,108 @@ void LoadAnimationTake(FbxTakeInfo* pTake, FbxScene* pScene, SkeletalAnimation* 
     //char buffer[500];
     //buffer[499] = '\0';
     //
-    int numKeys = static_cast<int>(pTake->mLocalTimeSpan.GetDuration().GetFrameCount() + 1);
+    //int numKeys = static_cast<int>(pTake->mLocalTimeSpan.GetDuration().GetFrameCount() + 1);
     //_snprintf_s(buffer, 499, "  Take[%s] [%d frames]\n", pTake->mName.Buffer(), numKeys);
     //OutputDebugStringA(buffer);
 
-    _snprintf_s(pAnim->mName, 99, "%s", pTake->mName.Buffer());
+//    _snprintf_s(pAnim->mName, 99, "%s", pTake->mName.Buffer());
 
     // We flatten the joint hierarchy into an array of FbxNode* so it is easier to 
     // sample the joint poses during the animation
-    FbxNode** lFlattenedNodes = new (std::nothrow) FbxNode*[pAnim->mNumBones];
-    if(!lFlattenedNodes)
-    {
-        return;
-    }
-    int numNodes = 0;
-    FlattenHeirarchyRecursive(pScene->GetRootNode(), lFlattenedNodes, &numNodes, -1);
+    //FbxNode** lFlattenedNodes = new (std::nothrow) FbxNode*[pAnim->mNumBones];
+    //if(!lFlattenedNodes)
+    //{
+    //    return;
+    //}
+    //int numNodes = 0;
+    //FlattenHeirarchyRecursive(pScene->GetRootNode(), lFlattenedNodes, &numNodes, -1);
 
-    pAnim->mKeys = new (std::nothrow) SkeletalAnimation::Frame[numKeys];
+    //pAnim->mKeys = new (std::nothrow) SkeletalAnimation::Frame[numKeys];
 
-    if(!pAnim->mKeys)
-    {
-        delete [] lFlattenedNodes;
-        return;
-    }
+    //if(!pAnim->mKeys)
+    //{
+    //    delete [] lFlattenedNodes;
+    //    return;
+    //}
 
-    //prepare some intermediate arrays of matricies
-    _XMFLOAT4X4* globalPose = new (std::nothrow) _XMFLOAT4X4[numNodes];
-    if(!globalPose)
-    {
-        delete [] lFlattenedNodes;
-        return;
-    }
-    _XMFLOAT4X4* invPose = new (std::nothrow) _XMFLOAT4X4[numNodes];
-    if(!invPose)
-    {
-        delete [] lFlattenedNodes;
-        delete [] globalPose;
-        return;
-    }
+    ////prepare some intermediate arrays of matricies
+    //_XMFLOAT4X4* globalPose = new (std::nothrow) _XMFLOAT4X4[numNodes];
+    //if(!globalPose)
+    //{
+    //    delete [] lFlattenedNodes;
+    //    return;
+    //}
+    //_XMFLOAT4X4* invPose = new (std::nothrow) _XMFLOAT4X4[numNodes];
+    //if(!invPose)
+    //{
+    //    delete [] lFlattenedNodes;
+    //    delete [] globalPose;
+    //    return;
+    //}
 
-    FbxTime curTime = pTake->mLocalTimeSpan.GetStart();
-    float startTime = static_cast<float>(curTime.GetSecondDouble());
-    FbxTime period;
-    // Set our desired sample-rate.
-    // Time is specified in Hours, Minutes, Seconds, Frames, Fields
-    period.SetTime(0, 0, 0, 1, 0);
-    for(int i = 0; i < numKeys; ++i)
-    {
-        pAnim->mKeys[i].mBones = new (std::nothrow) BonePose[pAnim->mNumBones];
-        if(!pAnim->mKeys[i].mBones)
-        {
-            delete [] lFlattenedNodes;
-            delete [] globalPose;
-            delete [] invPose;
-            return;
-        }
-        //store the 'time-stamp' for this frame
-        pAnim->mKeys[i].mTime = static_cast<float>(curTime.GetSecondDouble()) - startTime;
+    //FbxTime curTime = pTake->mLocalTimeSpan.GetStart();
+    //float startTime = static_cast<float>(curTime.GetSecondDouble());
+    //FbxTime period;
+    //// Set our desired sample-rate.
+    //// Time is specified in Hours, Minutes, Seconds, Frames, Fields
+    //period.SetTime(0, 0, 0, 1, 0);
+    //for(int i = 0; i < numKeys; ++i)
+    //{
+    //    pAnim->mKeys[i].mBones = new (std::nothrow) BonePose[pAnim->mNumBones];
+    //    if(!pAnim->mKeys[i].mBones)
+    //    {
+    //        delete [] lFlattenedNodes;
+    //        delete [] globalPose;
+    //        delete [] invPose;
+    //        return;
+    //    }
+    //    //store the 'time-stamp' for this frame
+    //    pAnim->mKeys[i].mTime = static_cast<float>(curTime.GetSecondDouble()) - startTime;
 
-        for(int b = 0; b < numNodes; ++b)
-        {
-            // Ask the scene to 'evaluate' the global transform of the node at the specified time
-            FbxMatrix m = pScene->GetAnimationEvaluator()->GetNodeGlobalTransform(lFlattenedNodes[b], curTime);
-            // note that we are only scaling the translation when we convert to our own matrix format
-            _XMMATRIX mb(static_cast<float>(m[0][0] * 1.00), static_cast<float>(m[0][1] * 1.00), static_cast<float>(m[0][2] * 1.00), static_cast<float>(m[0][3] * 1.00),
-                static_cast<float>(m[1][0] * 1.00), static_cast<float>(m[1][1] * 1.00), static_cast<float>(m[1][2] * 1.00), static_cast<float>(m[1][3] * 1.00),
-                static_cast<float>(m[2][0] * 1.00), static_cast<float>(m[2][1] * 1.00), static_cast<float>(m[2][2] * 1.00), static_cast<float>(m[2][3] * 1.00),
-                static_cast<float>(m[3][0] * 0.01), static_cast<float>(m[3][1] * 0.01), static_cast<float>(m[3][2] * 0.01), static_cast<float>(m[3][3] * 1.00));
+    //    for(int b = 0; b < numNodes; ++b)
+    //    {
+    //        // Ask the scene to 'evaluate' the global transform of the node at the specified time
+    //        FbxMatrix m = pScene->GetAnimationEvaluator()->GetNodeGlobalTransform(lFlattenedNodes[b], curTime);
+    //        // note that we are only scaling the translation when we convert to our own matrix format
+    //        _XMMATRIX mb(static_cast<float>(m[0][0] * 1.00), static_cast<float>(m[0][1] * 1.00), static_cast<float>(m[0][2] * 1.00), static_cast<float>(m[0][3] * 1.00),
+    //            static_cast<float>(m[1][0] * 1.00), static_cast<float>(m[1][1] * 1.00), static_cast<float>(m[1][2] * 1.00), static_cast<float>(m[1][3] * 1.00),
+    //            static_cast<float>(m[2][0] * 1.00), static_cast<float>(m[2][1] * 1.00), static_cast<float>(m[2][2] * 1.00), static_cast<float>(m[2][3] * 1.00),
+    //            static_cast<float>(m[3][0] * 0.01), static_cast<float>(m[3][1] * 0.01), static_cast<float>(m[3][2] * 0.01), static_cast<float>(m[3][3] * 1.00));
 
-            XMStoreFloat4x4(&globalPose[b], mb);
+    //        XMStoreFloat4x4(&globalPose[b], mb);
 
-            XMVECTOR det;
-            XMMATRIX invMb = XMMatrixInverse(&det, mb);
-            XMStoreFloat4x4(&invPose[b], invMb);
+    //        XMVECTOR det;
+    //        XMMATRIX invMb = XMMatrixInverse(&det, mb);
+    //        XMStoreFloat4x4(&invPose[b], invMb);
 
-            XMMATRIX lb = XMLoadFloat4x4(&globalPose[b]);
-            if(pAnim->mSkeleton[b].parent >= 0)
-            {
-                // get the local joint tranform
-                lb *= XMLoadFloat4x4(&invPose[pAnim->mSkeleton[b].parent]);
-            }
+    //        XMMATRIX lb = XMLoadFloat4x4(&globalPose[b]);
+    //        if(pAnim->mSkeleton[b].parent >= 0)
+    //        {
+    //            // get the local joint tranform
+    //            lb *= XMLoadFloat4x4(&invPose[pAnim->mSkeleton[b].parent]);
+    //        }
 
-            //store the individual components
-            XMVECTOR scale;
-            XMVECTOR rotQuat;
-            XMVECTOR trans;
-            if(XMMatrixDecompose(&scale, &rotQuat, &trans, lb))
-            {
-                XMStoreFloat3(&pAnim->mKeys[i].mBones[b].translation, trans);
-                XMStoreFloat4(&pAnim->mKeys[i].mBones[b].rotation, rotQuat);
-                XMStoreFloat3(&pAnim->mKeys[i].mBones[b].scale, scale);
-            }
-        }
-        pAnim->mDuration = static_cast<float>(curTime.GetSecondDouble()) - startTime;
-        //advance our time period
-        curTime += period;
+    //        //store the individual components
+    //        XMVECTOR scale;
+    //        XMVECTOR rotQuat;
+    //        XMVECTOR trans;
+    //        if(XMMatrixDecompose(&scale, &rotQuat, &trans, lb))
+    //        {
+    //            XMStoreFloat3(&pAnim->mKeys[i].mBones[b].translation, trans);
+    //            XMStoreFloat4(&pAnim->mKeys[i].mBones[b].rotation, rotQuat);
+    //            XMStoreFloat3(&pAnim->mKeys[i].mBones[b].scale, scale);
+    //        }
+    //    }
+    //    pAnim->mDuration = static_cast<float>(curTime.GetSecondDouble()) - startTime;
+    //    //advance our time period
+    //    curTime += period;
 
-        ++pAnim->mNumKeys;
-    }
+    //    ++pAnim->mNumKeys;
+    //}
 
-    delete [] lFlattenedNodes;
-    delete [] globalPose;
-    delete [] invPose;
+    //delete [] lFlattenedNodes;
+    //delete [] globalPose;
+    //delete [] invPose;
 }
 
 SkeletalAnimation* LoadAnimationFromFbx(const char* szFileName)

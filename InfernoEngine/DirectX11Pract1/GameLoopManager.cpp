@@ -13,11 +13,8 @@
 #include "Scene.h"
 #include "ScriptsManager.h"
 #include "PrefabManager.h"
-#include "VerletFiles\CParticleSystem.h"
 #include "ObjectFactory.h"
-#include "Particle.h"
 #include "RenderToTexture.h"
-#include "CollisionManager.h"
 bool once = false;
 
 Shader* shaderToBeUsed;
@@ -29,8 +26,6 @@ bool collisionMeshGenerated = false;
 std::wstring orderOfDraw;
 
 std::string currenAnimationName;
-
-ParticleEmitter* emmiter;
 
 bool switchAnimation = false;
 
@@ -426,7 +421,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	crate->renderer->LoadMesh("Crate.ply");
 	crate->transform.scale = Vector3::One * scale;
 	crate->transform.position = Vector3(-20,(scale*0.5f),0);
-	crate->collider->AssignAxisAlignedBoxCollider(crate->transform.position,Vector3::One*2);
 	crate->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
 
 
@@ -437,7 +431,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	crate1->renderer->LoadMesh("Crate.ply");
 	crate1->transform.scale = Vector3::One * scale;
 	crate1->transform.position = Vector3(20,(scale*0.5f),0);
-	crate1->collider->AssignAxisAlignedBoxCollider(crate1->transform.position,Vector3::One*2);
 	crate1->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
 
 	//scale = 10;
@@ -478,7 +471,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 			mGlobalDeltaTime = g_globalDeltaTime;
 			mTimeSinceStart += g_globalDeltaTime;
 			timer.Start();
-			CollisionWorld::UpdateCollisionWorld();
 			Render();
 		}
 	}
@@ -904,11 +896,10 @@ void Render()
 	//renderTexture.End();
 
 	//g_pImmediateContext->OMSetRenderTargets(1,&g_pRenderTargetView,g_pDepthStencilView);
-
 	////Clears Depth buffer to max depth 1.0f and stencil buffer to 0
 	//g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView,D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL ,1.0f ,0 ); 
 
- //   g_World = XMMatrixIdentity();
+	//g_World = XMMatrixIdentity();
 	//camerascript->Update();
 	//MainCamera.camera->Update();
 
@@ -916,7 +907,6 @@ void Render()
 	//ID3D11ShaderResourceView* reText = renderTexture.GetSRVOfTargetTexture();
 	//if(reText != NULL)
 	//	mirror->renderer->SetRenderTexture(reText);
-
 	//mirror->renderer->Update();
 
 	g_pSwapChain->Present( 0, 0 );
@@ -942,37 +932,27 @@ void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX&
 
 	////SRT(Scale*Rotate*Translate) should be the sequence of multiplication of matrices 
 	////if you want to get the Rotation of the GameObject around the local axis
-
 	//scalingMatrix = XMMatrixScaling((*objectIt)->transform.scale.x,(*objectIt)->transform.scale.y,(*objectIt)->transform.scale.z);
-
 	//translationMatrix = XMMatrixTranslation((*objectIt)->transform.position.x,(*objectIt)->transform.position.y,(*objectIt)->transform.position.z);
-
 	////rotationMatrix =  XMMatrixRotationRollPitchYaw(radX,radY,radZ);
-
 	////localRotationMatrix = XMMatrixRotationRollPitchYaw(localRadX,localRadY,localRadZ);
-
 	//rotationMatrix = XMMatrixRotationQuaternion((*objectIt)->transform.GetWorldRotationQuaternion());
-
 	//localRotationMatrix =  XMMatrixRotationQuaternion((*objectIt)->transform.GetLocalRotationQuaternion());
 
 
 	//g_World = XMMatrixMultiply(g_World,scalingMatrix);
-
 	//g_World = XMMatrixMultiply(g_World,localRotationMatrix);
 	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,localRotationMatrix);
-
 	//g_World = XMMatrixMultiply(g_World,translationMatrix);
 	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,translationMatrix);
-
 	//g_World = XMMatrixMultiply(g_World,rotationMatrix);
 	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,rotationMatrix);
 
 
 	//// Apply this object matrix to the world transform...
 	//// Start with "parent" world matrix
-	//g_World = XMMatrixMultiply( g_World, parentLocalWorldMatrix );	
+	//g_World = XMMatrixMultiply( g_World, parentLocalWorldMatrix );
 	//matWorldFinalNoScale = XMMatrixMultiply( matWorldFinalNoScale, parentLocalWorldMatrix );
-
 	//g_pGlobalConstantBuffer.mWorld = XMMatrixTranspose( g_World );
 	//g_pGlobalConstantBuffer.mView = XMMatrixTranspose( g_View );
 	//g_pGlobalConstantBuffer.mProjection = XMMatrixTranspose( g_Projection );
@@ -980,7 +960,6 @@ void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX&
 
 	//g_pImmediateContext->UpdateSubresource( g_pConstantBuffer, 0, NULL, &g_pGlobalConstantBuffer, 0, 0 );
 
-	//
 	//g_pGlobalChangingBuffer.mObjectMaterial.mDiffuse = (*objectIt)->mMaterial.mDiffuse;
 	//g_pGlobalChangingBuffer.mObjectMaterial.mAmbient = (*objectIt)->mMaterial.mAmbient;
 	//g_pGlobalChangingBuffer.mObjectMaterial.mSpecular = (*objectIt)->mMaterial.mSpecular;

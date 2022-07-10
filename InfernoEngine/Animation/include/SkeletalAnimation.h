@@ -1,8 +1,6 @@
 #ifndef SKELETAL_ANIM_H
 #define SKELETAL_ANIM_H
 
-#include "HelperFuncs.h"
-
 class SkeletalAnimation
 {
 public:

@@ -11,9 +11,7 @@
 GameObject::GameObject()
 {
 	HRESULT hr = CoCreateGuid(&mObjectID);
-	animation = NULL;
 	renderer = NULL;
-	cloth = NULL;
 	transform.position = Vector3::Zero;
 	transform.worldEulerRotation = Vector3::Zero;
 	transform.localEulerRotation = Vector3::Zero;
@@ -122,19 +120,19 @@ void GameObject::AddComponent(ComponentType componentType)
 	switch(componentType)
 	{
 	case AnimationComp:
-		animation = new Animation();
-		m_InterlinkComponents(animation);
-		m_ComponentMap[componentType] = animation;
+		//animation = new Animation();
+		//m_InterlinkComponents(animation);
+		//m_ComponentMap[componentType] = animation;
 		break;
 	case RenderComp:
 		renderer = new Renderer();
-		renderer->transform = &transform;
+		renderer->mThisGO->transform = &transform;
 		m_InterlinkComponents(renderer);
 		m_ComponentMap[componentType] = renderer;
 		break;
 	case CameraComp:
 		camera = new Camera();
-		camera->transform = &transform;
+		camera->mThisGO->transform = &transform;
 		m_InterlinkComponents(camera);
 		m_ComponentMap[componentType] = camera;
 		break;
@@ -146,15 +144,15 @@ void GameObject::AddComponent(ComponentType componentType)
 		break;
 	case LightComp:
 		light = new(std::nothrow) Light();
-		light->transform = &transform;
+		light->mThisGO->transform = &transform;
 		m_InterlinkComponents(light);
 		m_ComponentMap[componentType] = light;
 		break;
 	case ColliderComp:
-		collider = new(std::nothrow) Collider();
-		collider->transform = &transform;
-		m_InterlinkComponents(collider);
-		m_ComponentMap[componentType] = collider;
+		//collider = new(std::nothrow) Collider();
+		//collider->transform = &transform;
+		/*m_InterlinkComponents(collider);
+		m_ComponentMap[componentType] = collider;*/
 		break;
 	}
 }
@@ -232,7 +230,7 @@ void GameObject::m_InterlinkComponents(IBehaviour* behaviour)
 		ConsolePrint(mName);
 		if(componentIt->first == AnimationComp)
 		{
-			behaviour->mThisGO->animation = animation;
+			//behaviour->mThisGO->animation = animation;
 		}
 		if(componentIt->first == RenderComp)
 		{
@@ -244,7 +242,7 @@ void GameObject::m_InterlinkComponents(IBehaviour* behaviour)
 		}
 		if(componentIt->first == ClothComp)
 		{
-			behaviour->mThisGO->cloth = cloth;
+			//behaviour->mThisGO->cloth = cloth;
 		}
 		if(componentIt->first == LightComp)
 		{
@@ -252,7 +250,7 @@ void GameObject::m_InterlinkComponents(IBehaviour* behaviour)
 		}
 	}
 
-	behaviour->mThisGO->transform = &transform;
+	//behaviour->mThisGO->transform = &transform;
 	behaviour->mGameObjectPointer = this;
 }
 
@@ -269,15 +267,15 @@ void GameObject::AddClonedComponent(ComponentType componentType,IBehaviour* comp
 		camera =  dynamic_cast<Camera*> (component);
 		break;
 	case AnimationComp:
-		animation =  dynamic_cast<Animation*>(component);
+		//animation =  dynamic_cast<Animation*>(component);
 		break;
 	}
 }
 
-void GameObject::OnCollisionEnter(Collision collision)
-{
-	ConsolePrint(collision.mCollidedTo->mName);
-}
+//void GameObject::OnCollisionEnter(Collision collision)
+//{
+//	ConsolePrint(collision.mCollidedTo->mName);
+//}
 
 /// <summary>
 /// Clones this instance.

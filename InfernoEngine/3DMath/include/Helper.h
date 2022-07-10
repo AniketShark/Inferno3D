@@ -37,8 +37,8 @@ public:
 	static DirectX::XMFLOAT3 ConvertVector4ToXMFLOAT3(Vector4 xmVal);
 	static DirectX::XMFLOAT4 ConvertVector4ToXMFLOAT4(Vector4 xmVal);
 
-	static std::string Helper::NumberToString( int Number );
-	static int  Helper::StringToNumber (std::string &Text );
+	static std::string NumberToString( int Number );
+	static int  StringToNumber (std::string &Text );
 	static void trim2(std::string& str);
 
 	static std::string SplitFilename (const std::string& str);
@@ -46,14 +46,6 @@ public:
 
 };
 
-class MathHelper
-{
-public:
-
- 
-protected:
-private:
-};
 
  
 #endif

@@ -32,7 +32,7 @@ void Light::Initialize()
 void Light::Update()
 {
 	if(mLightInfo != NULL)
-		mLightInfo->vPosition = Helper::ConvertVector3ToXMFLOAT4(transform->position);
+		mLightInfo->vPosition = Helper::ConvertVector3ToXMFLOAT4(mThisGO->transform->position);
 }
 void Light::Destroy()
 {

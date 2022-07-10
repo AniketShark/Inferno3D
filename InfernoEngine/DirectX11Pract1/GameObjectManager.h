@@ -21,7 +21,6 @@
 #include <windows.h>
 #include "GameObject.h"
 #include "Model.h"
-#include "AnimationScriptReader.h"
 
 extern std::string MODELS_LOCATION; 
 extern std::map<std::string,Mesh*> mStaticMeshList;
