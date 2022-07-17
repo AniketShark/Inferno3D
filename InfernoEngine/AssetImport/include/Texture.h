@@ -1,7 +1,8 @@
 #ifndef Texture_H_
 #define Texture_H_
 
-#include "global.h"
+#include <d3d11.h>
+#include<string>
 class Texture
 {
 

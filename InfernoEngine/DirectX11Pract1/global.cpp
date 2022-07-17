@@ -24,8 +24,8 @@ int g_TotalNoOfVertices = 0;
 int g_TotalNoOfTriangles = 0;
 int g_TotalNoOfIndices = 0;
 
-Vertex* g_GlobalStaticVertexArray = NULL;
-WORD* g_GlobalStaticIndexArray = NULL;
+//Vertex* g_GlobalStaticVertexArray = NULL;
+//WORD* g_GlobalStaticIndexArray = NULL;
 
 ConstantBuffer g_pGlobalConstantBuffer;
 ChangingBuffer g_pGlobalChangingBuffer;

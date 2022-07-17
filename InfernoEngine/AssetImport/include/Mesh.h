@@ -88,7 +88,6 @@ public:
 	Vertex*  mVertices;
 
 	PlyUtility* mPlyInfo;
-	
 	Element* mElements;
 	int mNoOfElements;
 

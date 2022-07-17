@@ -16,7 +16,6 @@
 #define Shape_H_
 
 #include <vector>
-#include "Vector.h"
 #include "Vertex.h"
 
 /// <summary>
@@ -55,11 +54,11 @@ public:
 	/// <summary>
 	/// The m start
 	/// </summary>
-	Vector3 mStart;
+	DirectX::XMFLOAT4 mStart;
 	/// <summary>
 	/// The m end
 	/// </summary>
-	Vector3 mEnd;
+	DirectX::XMFLOAT4 mEnd;
 };
 
 /// <summary>
@@ -71,18 +70,18 @@ public:
 	Triangle();
 	Triangle(const Triangle&); 
 	~Triangle();
-	Vector3 mNormal;
-	Vector3 mCenter;
-	Vector3 mPointA;
-	Vector3 mPointB;
-	Vector3 mPointC;
-	
+
+	DirectX::XMFLOAT4 mNormal;
+	DirectX::XMFLOAT4 mCenter;
+	DirectX::XMFLOAT4 mPointA;
+	DirectX::XMFLOAT4 mPointB;
+	DirectX::XMFLOAT4 mPointC;
 
 	Line mLineAB;
 	Line mLineBC;
 	Line mLineCA;
 
-	void Move(Vector3 direction,float delta);
+	void Move(DirectX::XMFLOAT4 direction,float delta);
 	void CalculateCenter();
 };
 

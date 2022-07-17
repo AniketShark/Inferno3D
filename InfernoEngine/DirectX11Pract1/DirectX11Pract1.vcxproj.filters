@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\Models">
-      <UniqueIdentifier>{85eec3f5-20ad-451c-952d-c76adc13af0a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{5af29d3a-44ce-433b-b7af-a78f9fee3718}</UniqueIdentifier>
     </Filter>
@@ -49,12 +46,6 @@
     <Filter Include="Header Files\Core\General Classes">
       <UniqueIdentifier>{208c8cb5-0f86-41cc-bcfa-d223236ff1b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Physics">
-      <UniqueIdentifier>{d97f4dbe-b7e6-47f8-a74d-518f0ed68463}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\PlyFileFramework">
-      <UniqueIdentifier>{23e0fc84-891e-4290-b3c5-24b94629c8e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Scripts">
       <UniqueIdentifier>{69cb6177-d27d-4394-8155-8ac894ed102c}</UniqueIdentifier>
     </Filter>
@@ -73,9 +64,6 @@
     <Filter Include="Source Files\JsonInterface">
       <UniqueIdentifier>{3cff41d0-a254-4b1b-830b-66ce70a323b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Core\PlyFileFramework">
-      <UniqueIdentifier>{cb481fd9-d9e3-440e-a0ea-f37d409ac189}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Core\Components">
       <UniqueIdentifier>{97e6c416-e6e4-4a6d-b513-8626c203f43a}</UniqueIdentifier>
     </Filter>
@@ -93,15 +81,6 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files\Core\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\Core\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files\Core\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Header Files\Core\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="global.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
@@ -109,12 +88,6 @@
       <Filter>Header Files\Core\General Classes</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Header Files\Core\General Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files\Core\General Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
       <Filter>Header Files\Core\General Classes</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
@@ -128,24 +101,6 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Core\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="PlyUtility.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="Element.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="PlyFileHandler.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
     </ClInclude>
     <ClInclude Include="ObjectFactory.h">
       <Filter>Header Files\Core\Managers</Filter>
@@ -243,24 +198,12 @@
     <ClInclude Include="RenderToTexture.h">
       <Filter>Header Files\Core\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Core\PlyFileFramework</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="ShaderManager.cpp">
-      <Filter>Source Files\Core\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Source Files\Core\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Core\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="global.cpp">
@@ -275,16 +218,10 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Source Files\Core\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Vector.cpp">
-      <Filter>Source Files\Core\General Classes</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\Core\General Classes</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Core\General Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Core\General Classes</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
@@ -292,24 +229,6 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Core\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="PlyUtility.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="Element.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
-    <ClCompile Include="PlyFileHandler.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
     </ClCompile>
     <ClCompile Include="ObjectFactory.cpp">
       <Filter>Source Files\Core\Managers</Filter>
@@ -344,9 +263,6 @@
     <ClCompile Include="RenderToTexture.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\PlyFileFramework</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\LightingAndTexturingShader.fx">
@@ -360,9 +276,6 @@
     </None>
     <None Include="Shaders\ShaderSource.dat">
       <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="ModelsConfig.txt">
-      <Filter>Resource Files</Filter>
     </None>
     <None Include="Shaders\Skybox.fx">
       <Filter>Resource Files\Shaders</Filter>
@@ -403,27 +316,14 @@
     <None Include="Shaders\SkinningShaderWithLighting.fx">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Models\1x1_2Tri_Quad_2_Sided.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
-    <None Include="Models\BunnyWithNormals.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
-    <None Include="Models\QuadBin.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
-    <None Include="Models\QuadFire.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
-    <None Include="Models\UVSphere.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
     <None Include="Shaders\TwoTexturesOnlyWithComputeShader.fx">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Models\Crate.ply">
-      <Filter>Resource Files\Models</Filter>
-    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\ModelsConfig.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

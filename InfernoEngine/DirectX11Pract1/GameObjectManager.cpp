@@ -78,7 +78,7 @@ DWORD WINAPI PlyLoadingThread(PVOID param)
 {
 	FileLoadInfo* path = static_cast<FileLoadInfo*>(param);
 	std::string pathstring = (path->path);
-	LoadPlyFileToMesh(pathstring,true);
+	LoadPlyFileToMesh(pathstring,g_pd3dDevice,g_pImmediateContext, true);
 	//Sleep(100);
 	return 0;
 }
@@ -152,7 +152,7 @@ bool LoadModelsFromConfigFileThreaded(std::string configFile)
 				{
 					if(extension == "ply")
 					{
-						//mStaticMeshList[modelName] = LoadPlyFileToMesh((MODELS_LOCATION + modelName),true);
+						mStaticMeshList[modelName] = LoadPlyFileToMesh((MODELS_LOCATION + modelName),g_pd3dDevice,g_pImmediateContext, true);
 						FileLoadInfo* newPath = new FileLoadInfo;
 						newPath->type = PLY;
 						newPath->path = (MODELS_LOCATION + modelName);
@@ -211,7 +211,7 @@ bool LoadModelsFromConfigFileThreaded(std::string configFile)
 
 	CreateGlobalVertexBufferAndIndexBuffer();
 	
-	//file.close();
+	file.close();
 	return true;
 }
 
@@ -254,7 +254,7 @@ bool LoadModelsFromConfigFileNormal(std::string configFile)
 				{
 					if(extension == "ply")
 					{
-						SaveMeshToList(LoadPlyFileToMesh((MODELS_LOCATION + modelName),true));
+						SaveMeshToList(LoadPlyFileToMesh((MODELS_LOCATION + modelName), g_pd3dDevice, g_pImmediateContext, true));
 						//FileLoadInfo* newPath = new FileLoadInfo;
 						//newPath->type = PLY;
 						//newPath->path = (MODELS_LOCATION + modelName);
@@ -277,39 +277,8 @@ bool LoadModelsFromConfigFileNormal(std::string configFile)
 		}
 	}
 
-	//InitializeCriticalSection(&assetLoadingCriticalSection);
-
-	//InitializeCriticalSection(&fbxCriticalSection);
-
-	//int noOfThreads = assetsPathList.size();
-
-	//HANDLE threadHandleArray[10000];
-
-	//DWORD threadsCount = static_cast<DWORD>(noOfThreads); 
-	//LPDWORD mThreads[10000];
-	//int index = 0;
-	//for (int i  = 0; i !=  assetsPathList.size(); i++)
-	//{
-	//	if(assetsPathList[i]->type == PLY)
-	//	{
-	//		//std::string path = fileIt->second;
-	//		threadHandleArray[index] = CreateThread(NULL,0,PlyLoadingThread,assetsPathList[i],0,(DWORD*)&mThreads[index]);
-	//		index++;
-	//	}
-	//	else if(assetsPathList[i]->type == FBX)
-	//	{
-	//		//std::string path = fileIt->second;
-	//		threadHandleArray[index] = CreateThread(NULL,0,FBXLoadingThread,assetsPathList[i],0,(DWORD*)&mThreads[index]);
-	//		index++;
-	//	}
-	//}
-
-	//WaitForMultipleObjects(threadsCount,threadHandleArray,true,INFINITE);
-
-	//DeleteCriticalSection(&fbxCriticalSection);
-	//DeleteCriticalSection(&assetLoadingCriticalSection);
-
 	CreateGlobalVertexBufferAndIndexBuffer();
+	file.close();
 	return true;
 }
 
@@ -539,7 +508,7 @@ bool CreateConstantBuffers(Vertex* vertexArray,WORD* indexArray)
 /// <param name="vertexArray">The vertex array.</param>
 /// <param name="indexArray">The index array.</param>
 /// <returns>bool.</returns>
-bool LoadDataInVBAndIB(Model &inputModel,Vertex* vertexArray,DWORD* indexArray)
+bool LoadDataInVBAndIB(Model_Inf &inputModel,Vertex* vertexArray,DWORD* indexArray)
 {
 
 	inputModel.modelInfo.mVertexBufferStartIndex = g_LastVertexBufferIndex;

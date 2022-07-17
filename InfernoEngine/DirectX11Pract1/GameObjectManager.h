@@ -20,7 +20,7 @@
 #include <map>
 #include <windows.h>
 #include "GameObject.h"
-#include "Model.h"
+#include "Model_Inf.h"
 
 extern std::string MODELS_LOCATION; 
 extern std::map<std::string,Mesh*> mStaticMeshList;
@@ -37,7 +37,7 @@ bool LoadModelsFromConfigFileNormal(std::string configFile);
 
 bool CreateGlobalVertexBufferAndIndexBuffer();
 
-bool LoadDataInVBAndIB(Model &inputModel,Vertex* vertexArray,DWORD* indexArray);
+bool LoadDataInVBAndIB(Model_Inf &inputModel,Vertex* vertexArray,DWORD* indexArray);
 
 bool LoadTexturesAndCreateResourceViews(Mesh* mesh);
 
@@ -45,7 +45,7 @@ void CreateObject(std::string objectName);
 
 bool CreateConstantBuffers(Vertex* vertexArray,WORD* indexArray);
 
-void CreateObjectInstance(Model& modelObject,std::string modelName,Vector3 position,Vector3 rotation,Vector3 scale);
+void CreateObjectInstance(Model_Inf & modelObject,std::string modelName,Vector3 position,Vector3 rotation,Vector3 scale);
 
 bool LevelBuilder(std::string fileName);
 

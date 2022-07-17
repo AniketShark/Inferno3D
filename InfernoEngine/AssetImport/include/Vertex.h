@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <DirectXMath.h>
 //#include <xnamath.h>
-#include "Vector.h"
+//#include "Vector.h"
 
 class Vertex
 {
@@ -32,7 +32,7 @@ public:
 	
 	void operator= (const Vertex& );
 
-	void ScaleVertexTo(Vector3 scale);
+	void ScaleVertexTo(DirectX::XMFLOAT4 scale);
 
 };
 

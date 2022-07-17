@@ -1,5 +1,5 @@
 
-ModelLocation ../Assets/Models/
+ModelLocation /Asstes/Models/
 
 end_header
 

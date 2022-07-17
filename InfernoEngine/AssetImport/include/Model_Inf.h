@@ -6,18 +6,17 @@
 #include "Material.h"
 #include "Texture.h"
 #include "PlyUtility.h"
-#include "GameObject.h"
 
 
 #define MAX_NO_OF_TEXTURES 3
 
-class  Model : public GameObject
+class  Model_Inf
 {
 public:
-	Model();
-	virtual ~Model();
-	Model(const Model&);
-	Model(std::string modelName);
+	Model_Inf();
+	virtual ~Model_Inf();
+	Model_Inf(const Model_Inf&);
+	Model_Inf(std::string modelName);
 
 	bool mIsSkybox;
 	bool mIsTransperent;
@@ -28,17 +27,17 @@ public:
 	bool mIsTwoTextureAndLightingOnly;
 	bool mIsNormalMapped;
 
-	std::vector<Model*> mChildObjectsList;
+	std::vector<Model_Inf*> mChildObjectsList;
 	Material mMaterial;
 	std::vector<Texture> mTextureArray;
 	PlyUtility mPlyLoader;
 	RenderInfo modelInfo;
 	
-	void operator= (const Model&);
+	void operator= (const Model_Inf&);
 
 	void CalculateModelBounds();
 	void UpdateChildsTransforms();
-	bool CreateBiped(Model* parentModel);
+	bool CreateBiped(Model_Inf* parentModel);
 	void SwitchAnimationImmidiately(std::string animationName);
 	void SwitchAnimationAfterCurrent(std::string animationName);
 	void CalculateTangentBinormal(Vertex vertex1, Vertex vertex2, Vertex vertex3, DirectX::XMFLOAT4& tangent, DirectX::XMFLOAT4& binormal);

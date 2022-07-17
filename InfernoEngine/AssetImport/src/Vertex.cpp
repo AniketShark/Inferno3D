@@ -75,7 +75,7 @@ void Vertex::operator= (const Vertex& other)
 }
 
 
-void Vertex::ScaleVertexTo(Vector3 scale)
+void Vertex::ScaleVertexTo(DirectX::XMFLOAT4  scale)
 {
 	this->m_Position.x *= scale.x;
 	this->m_Position.y *= scale.y;

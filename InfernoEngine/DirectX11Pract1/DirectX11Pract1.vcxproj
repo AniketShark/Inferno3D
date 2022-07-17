@@ -45,7 +45,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)\PhysX\Include;$(WindowsSDK_IncludePath);$(SolutionDir)\packages\directxtk_desktop\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\PhysX\Lib\win32;$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\lib;$(SolutionDir)\packages\directxtk_desktop\native\lib\Win32\Debug;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>$(SolutionDir)3DMath\include;$(SolutionDir)Components\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(SolutionDir)3DMath\include;$(SolutionDir)AssetImport\include;$(SolutionDir)Components\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -116,14 +116,8 @@
     <ClInclude Include="jsoncons\output_format.hpp" />
     <ClInclude Include="JsonInterface.h" />
     <ClInclude Include="Light.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
-    <ClInclude Include="PlyFileHandler.h" />
-    <ClInclude Include="PlyUtility.h" />
     <ClInclude Include="PrefabManager.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderToTexture.h" />
@@ -137,13 +131,7 @@
     <ClInclude Include="Scripts\SimulationScript.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
-    <ClInclude Include="Shape.h" />
     <ClInclude Include="SharedInfo.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Element.h" />
-    <ClInclude Include="Vertex.h" />
     <ClInclude Include="WorldCell.h" />
     <ClInclude Include="XmlParser\xmlParser.h" />
   </ItemGroup>
@@ -157,13 +145,8 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JsonInterface.cpp" />
     <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
-    <ClCompile Include="PlyFileHandler.cpp" />
-    <ClCompile Include="PlyUtility.cpp" />
     <ClCompile Include="PrefabManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderToTexture.cpp" />
@@ -171,25 +154,11 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="GameLoopManager.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="Element.cpp" />
-    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="WorldCell.cpp" />
     <ClCompile Include="XmlParser\xmlParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ModelsConfig.txt" />
-    <None Include="Models\1x1_2Tri_Quad_2_Sided.ply" />
-    <None Include="Models\BunnyWithNormals.ply" />
-    <None Include="Models\Crate.ply" />
-    <None Include="Models\QuadBin.ply" />
-    <None Include="Models\QuadFire.ply" />
-    <None Include="Models\UVSphere.ply" />
     <None Include="packages.config" />
     <None Include="Resources\LibraryFileNames.txt" />
     <None Include="Shaders\BasicShader.fx" />
@@ -214,9 +183,15 @@
     <ProjectReference Include="..\3DMath\3DMath.vcxproj">
       <Project>{de0d5b1c-bfed-45c4-bcc7-b59a2c93335a}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\AssetImport\AssetImport.vcxproj">
+      <Project>{8410f8c7-24c9-41ee-a4fe-b8c2b586b0d5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Components\Components.vcxproj">
       <Project>{67c24d9d-aadd-4dd6-8852-fc54fd7c91b3}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\ModelsConfig.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

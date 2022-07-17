@@ -5,7 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include "Helper.h"
+//#include "Helper.h"
 
 using namespace std;
 
@@ -15,8 +15,6 @@ PlyUtility::PlyUtility()
 	m_bContainsTextureCoords = false;
 	m_bContainsTextureCoordsWithIndex = false;
 	m_bContainsVertexColors = false;
-	m_Min = Vector3::Zero;
-	m_Max = Vector3::Zero;
 }
 
 PlyUtility::~PlyUtility()
@@ -27,14 +25,11 @@ PlyUtility::~PlyUtility()
 
 PlyUtility::PlyUtility(const PlyUtility& otherPlyLoader)
 {
-	this->m_Max = otherPlyLoader.m_Max;
-	this->m_Min = otherPlyLoader.m_Min;
 	this->m_numberOfElements = otherPlyLoader.m_numberOfElements;
 	this->m_numberOfVertices = otherPlyLoader.m_numberOfVertices;
 	this->m_vecTriangles = otherPlyLoader.m_vecTriangles;
 	this->m_vecVertices = otherPlyLoader.m_vecVertices;
 	this->textureFileNames = otherPlyLoader.textureFileNames;
-
 }
 
 bool PlyUtility::LoadPlyFile(std::string fileName)
@@ -96,7 +91,7 @@ bool PlyUtility::LoadPlyFile(std::string fileName)
 
 		DirectX::XMFLOAT4 pos = tempVertex.m_Position;
 
-		if(pos.x > m_Max.x)
+		/*if(pos.x > m_Max.x)
 			m_Max.x = tempVertex.m_Position.x;
 		if(pos.y > m_Max.y)
 			m_Max.y = tempVertex.m_Position.y;
@@ -108,7 +103,7 @@ bool PlyUtility::LoadPlyFile(std::string fileName)
 		if(pos.y < m_Min.y)
 			m_Min.y = tempVertex.m_Position.y;
 		if(pos.z < m_Min.z)
-			m_Min.z = tempVertex.m_Position.z;
+			m_Min.z = tempVertex.m_Position.z;*/
 
 		if(m_bContainsNormals)
 		{
@@ -136,15 +131,27 @@ bool PlyUtility::LoadPlyFile(std::string fileName)
 		plyFile>>tempElement.index_v2;
 		plyFile>>tempElement.index_v3;
 
-		tempTriangle.mPointA = Helper::ConvertXMFLOAT4TOVector3(GetVertexAtIndex(tempElement.index_v1).m_Position);
-		tempTriangle.mPointB = Helper::ConvertXMFLOAT4TOVector3(GetVertexAtIndex(tempElement.index_v2).m_Position);
-		tempTriangle.mPointC = Helper::ConvertXMFLOAT4TOVector3(GetVertexAtIndex(tempElement.index_v3).m_Position);
+		tempTriangle.mPointA = GetVertexAtIndex(tempElement.index_v1).m_Position;
+		tempTriangle.mPointB = GetVertexAtIndex(tempElement.index_v2).m_Position;
+		tempTriangle.mPointC = GetVertexAtIndex(tempElement.index_v3).m_Position;
 		
-		tempElement.restlength1 = Vector3::Distance(tempTriangle.mPointA,tempTriangle.mPointB);
-		tempElement.restlength2 = Vector3::Distance(tempTriangle.mPointB,tempTriangle.mPointC);
-		tempElement.restlength3 = Vector3::Distance(tempTriangle.mPointC,tempTriangle.mPointA);
+		auto VecA = DirectX::XMLoadFloat4(&tempTriangle.mPointA);
+		auto VecB = DirectX::XMLoadFloat4(&tempTriangle.mPointB);
+		auto VecC = DirectX::XMLoadFloat4(&tempTriangle.mPointC);
+		
+		DirectX::XMFLOAT4 length;
+		DirectX::XMStoreFloat4(&length, DirectX::XMVector4Length(DirectX::XMVectorSubtract(VecA, VecB)));
+		tempElement.restlength1 = length.x;
+		DirectX::XMStoreFloat4(&length, DirectX::XMVector4Length(DirectX::XMVectorSubtract(VecB, VecC)));
+		tempElement.restlength2 = length.x;
+		DirectX::XMStoreFloat4(&length, DirectX::XMVector4Length(DirectX::XMVectorSubtract(VecC, VecA)));
+		tempElement.restlength3 = length.x;
 
-		tempTriangle.mNormal =  Helper::ConvertXMFLOAT4TOVector3(GetVertexAtIndex(tempElement.index_v1).m_Normal);
+		//tempElement.restlength1 = Vector3::Distance(tempTriangle.mPointA,tempTriangle.mPointB);
+		//tempElement.restlength2 = Vector3::Distance(tempTriangle.mPointB,tempTriangle.mPointC);
+		//tempElement.restlength3 = Vector3::Distance(tempTriangle.mPointC,tempTriangle.mPointA);
+
+		tempTriangle.mNormal =  GetVertexAtIndex(tempElement.index_v1).m_Normal;
 
 		tempTriangle.CalculateCenter();
 
@@ -213,13 +220,19 @@ void PlyUtility::ScaleModelTo(float scale)
 	std::vector<Vertex>::iterator vertexIt;
 	for (vertexIt = m_vecVertices.begin(); vertexIt != m_vecVertices.end();vertexIt++)
 	{
-		vertexIt->ScaleVertexTo(Vector3::One*scale);
+		DirectX::XMFLOAT4 one;
+		one.x = scale,
+		one.y = scale;
+		one.z = scale;
+		one.w = scale;
+		
+		vertexIt->ScaleVertexTo(one);
 	}
 }
 
 void PlyUtility::CalculateTangentBinormal(Vertex& vertex1, Vertex& vertex2, Vertex& vertex3)
 {
-	Vector3 vector1, vector2;
+	DirectX::XMFLOAT4 vector1, vector2;
 	DirectX::XMFLOAT2 tuVector, tvVector;
 	DirectX::XMFLOAT4 tangent,binormal;
 	float den;

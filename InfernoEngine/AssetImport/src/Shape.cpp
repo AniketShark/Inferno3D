@@ -40,7 +40,7 @@ Triangle::Triangle(const Triangle& other)
 /// </summary>
 /// <param name="direction">The direction.</param>
 /// <param name="delta">The delta.</param>
-void Triangle::Move(Vector3 direction,float delta)
+void Triangle::Move(DirectX::XMFLOAT4 direction,float delta)
 {
 	//this->transform.position = this->transform.position + direction*delta;
 	//this->mPointA =  this->mPointA + direction*delta;
@@ -53,7 +53,7 @@ void Triangle::Move(Vector3 direction,float delta)
 /// </summary>
 void Triangle::CalculateCenter()
 {
-	Vector3 center = Vector3::Zero;
+	DirectX::XMFLOAT4 center =  DirectX::XMFLOAT4();
 
 	center.x = (this->mPointA.x + this->mPointB.x +this->mPointC.x)/3;
 	center.y = (this->mPointA.y + this->mPointB.y +this->mPointC.y)/3; 

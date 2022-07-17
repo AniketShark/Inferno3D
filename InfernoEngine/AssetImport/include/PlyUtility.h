@@ -4,7 +4,7 @@
 #include <string>
 #include<vector>
 #include "Vertex.h"
-#include "Vector.h"
+//#include "Vector.h"
 #include "Element.h"
 #include "Shape.h"
 
@@ -31,8 +31,9 @@ public:
 	void CalculateTangentBinormal(Vertex& vertex1, Vertex& vertex2, Vertex& vertex3);
 	std::vector<std::string> textureFileNames;
 	std::vector<Triangle> m_TriangleListWithPoints;
-	Vector3 m_Min;
-	Vector3 m_Max;
+	//Vector3 m_Min;
+	//Vector3 m_Max;
+	
 
 protected:
 

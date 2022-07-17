@@ -1,5 +1,6 @@
-#include<WICTextureLoader.h>
 #include "Texture.h"
+#include<WICTextureLoader.h>
+
 Texture::Texture()
 {
 	mTexture = NULL;
@@ -51,7 +52,7 @@ void Texture::operator =(const Texture* other)
 bool Texture::Initialize(ID3D11Device* device,ID3D11DeviceContext* deviceContext, std::string fileName)
 {
 	HRESULT result = S_OK;
-	std::wstring stemp = std::wstring(fileName.begin(), fileName.end());
+	std::wstring stemp = std::wstring(fileName.begin(), fileName.end());  
 	LPCWSTR sw = stemp.c_str();
 	// Load the texture in.
 	result = DirectX::CreateWICTextureFromFile(device,

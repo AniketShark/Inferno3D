@@ -62,12 +62,12 @@ HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow );
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
-void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix);
+void DrawObject(std::vector<Model_Inf*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix);
 void Render();
 void LoadAllShaders();
-float distanceToCamera( Model* pObject );
-bool PredicateFunction_CloserToCamera( Model* pA, Model* pB );
-void SortObjects( std::vector<Model*> &vecObjects );
+float distanceToCamera(Model_Inf* pObject );
+bool PredicateFunction_CloserToCamera(Model_Inf* pA, Model_Inf* pB );
+void SortObjects( std::vector<Model_Inf*> &vecObjects );
 DWORD dwThreadId;
 RenderToTexture renderTexture;
 
@@ -918,7 +918,7 @@ void Render()
 }
 
 // Draws the Object with its children 
-void DrawObject(std::vector<Model*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix)
+void DrawObject(std::vector<Model_Inf*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix)
 {
 
 	//XMMATRIX rotationMatrix = XMMatrixIdentity();

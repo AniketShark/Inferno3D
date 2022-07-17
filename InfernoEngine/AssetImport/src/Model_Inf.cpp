@@ -1,11 +1,11 @@
 
-#include "Model.h"
+#include "Model_Inf.h"
 
-Model::Model()
+Model_Inf::Model_Inf()
 {
-	transform.position = Vector3::Zero;
-	transform.worldEulerRotation = Vector3::Zero;
-	transform.scale = Vector3::One;
+	//transform.position = Vector3::Zero;
+	//transform.worldEulerRotation = Vector3::Zero;
+	//transform.scale = Vector3::One;
 	mIsSkybox = false;
 	mIsTransperent = false;
 	mIsLightingOnly = false;
@@ -16,12 +16,12 @@ Model::Model()
 	mIsNormalMapped = false;
 	
 }
-Model::~Model()
+Model_Inf::~Model_Inf()
 {
 	
 }
 
-Model::Model(const Model& otherModel)
+Model_Inf::Model_Inf(const Model_Inf& otherModel)
 {
 	//this->mBounds = otherModel.mBounds;
 	this->mPlyLoader = otherModel.mPlyLoader;
@@ -29,18 +29,18 @@ Model::Model(const Model& otherModel)
 	this->mMaterial = otherModel.mMaterial;
 	this->mChildObjectsList = otherModel.mChildObjectsList;
 
-	this->mName = otherModel.mName;
-	this->transform.position = otherModel.transform.position;
-	this->transform.worldEulerRotation = otherModel.transform.worldEulerRotation;
-	this->transform.localEulerRotation = otherModel.transform.localEulerRotation;
-	this->transform.scale = otherModel.transform.scale;
+	//this->mName = otherModel.mName;
+	//this->transform.position = otherModel.transform.position;
+	//this->transform.worldEulerRotation = otherModel.transform.worldEulerRotation;
+	//this->transform.localEulerRotation = otherModel.transform.localEulerRotation;
+	//this->transform.scale = otherModel.transform.scale;
 	for (int index = 0; index != otherModel.mTextureArray.size();index++)
 	{
 		this->mTextureArray.push_back(otherModel.mTextureArray[index]);
 	}
 } 
 
-void Model::operator= (const Model& otherModel)
+void Model_Inf::operator= (const Model_Inf& otherModel)
 {
 	//this->mBounds = otherModel.mBounds;
 	this->mPlyLoader = otherModel.mPlyLoader;
@@ -48,11 +48,11 @@ void Model::operator= (const Model& otherModel)
 	this->mMaterial = otherModel.mMaterial;
 	this->mChildObjectsList = otherModel.mChildObjectsList;
 
-	this->mName = otherModel.mName;
-	this->transform.position = otherModel.transform.position;
-	this->transform.worldEulerRotation = otherModel.transform.worldEulerRotation;
-	this->transform.localEulerRotation = otherModel.transform.localEulerRotation;
-	this->transform.scale = otherModel.transform.scale;
+	//this->mName = otherModel.mName;
+	//this->transform.position = otherModel.transform.position;
+	//this->transform.worldEulerRotation = otherModel.transform.worldEulerRotation;
+	//this->transform.localEulerRotation = otherModel.transform.localEulerRotation;
+	//this->transform.scale = otherModel.transform.scale;
 
 	for (int index = 0; index != otherModel.mTextureArray.size();index++)
 	{
@@ -60,9 +60,9 @@ void Model::operator= (const Model& otherModel)
 	}
 }
 
-Model::Model(std::string modelName)
+Model_Inf::Model_Inf(std::string modelName)
 {
-	HRESULT hr = CoCreateGuid(&mObjectID);
+	//HRESULT hr = CoCreateGuid(&mObjectID);
 
 	if(!mPlyLoader.LoadPlyFile(modelName))
 	{
@@ -74,7 +74,7 @@ Model::Model(std::string modelName)
 	}
 }
 
-void Model::CalculateModelBounds()
+void Model_Inf::CalculateModelBounds()
 {
 	/*this->mBounds.mMin = this->mPlyLoader.m_Min;
 	this->mBounds.mMax = this->mPlyLoader.m_Max;
@@ -91,7 +91,7 @@ void Model::CalculateModelBounds()
 	mBounds.mCenter = center;*/
 }
 
-void Model::UpdateChildsTransforms()
+void Model_Inf::UpdateChildsTransforms()
 {
 
 }
@@ -108,7 +108,7 @@ void Model::UpdateChildsTransforms()
 //	m_LastAnimationFile = animationName;
 //}
 
-bool Model::CreateBiped(Model* parentModel)
+bool Model_Inf::CreateBiped(Model_Inf* parentModel)
 {
 	/*mBiped = new Biped;
 	mBiped->LoadJointMeshMap(L"Animations/JointMeshConfig.txt");
@@ -121,12 +121,12 @@ bool Model::CreateBiped(Model* parentModel)
 	return 0;
 }
 
-void Model::SwitchAnimationImmidiately(std::string animationName)
+void Model_Inf::SwitchAnimationImmidiately(std::string animationName)
 {
 	//mBiped->mSwitchAnimationImmidiate = true;
 	m_SwitchToAnimationName = animationName;
 }
-void Model::SwitchAnimationAfterCurrent(std::string animationName)
+void Model_Inf::SwitchAnimationAfterCurrent(std::string animationName)
 {
 	//mBiped->mSwitchAnimationAfterCurrent = true;
 	m_SwitchToAnimationName = animationName;

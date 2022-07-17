@@ -9,7 +9,7 @@
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include "Material.h"
-#include "Vertex.h"
+#include "Light.h"
 #include "Input.h"
 
 #define MAX_LIGHTS 10
@@ -44,37 +44,12 @@ extern float g_globalDeltaTime;
 extern int g_TotalNoOfTriangles;
 extern int g_TotalNoOfIndices;
 extern int g_TotalNoOfVertices;
-extern Vertex* g_GlobalStaticVertexArray;
-extern WORD* g_GlobalStaticIndexArray;
+//extern Vertex* g_GlobalStaticVertexArray;
+//extern WORD* g_GlobalStaticIndexArray;
 
 
-struct LightInfo
-{
-	DirectX::XMFLOAT4 vPosition;
-	DirectX::XMFLOAT4 vLightDirection;
-	DirectX::XMFLOAT4 attenuation;
-	float power;
-	float range;
-	float typeOfLight;
-	float padding;
-	Material material;
 
-};
 
-struct ConstantBuffer
-{
-
-	DirectX::XMMATRIX  mWorld;
-	DirectX::XMMATRIX  mView;
-	DirectX::XMMATRIX  mProjection;
-	DirectX::XMMATRIX  mInverseTransposedWorld;
-	DirectX::XMFLOAT4  mEyePosition;
-	UINT	  mNoOfLights;
-	UINT      mNoOfBones;
-	UINT      mGpuSkinnig; 
-	UINT      mPadding;
-	LightInfo mlights[MAX_LIGHTS];
-};
 
 struct ChangingBuffer
 {
@@ -88,7 +63,7 @@ struct AnimationMatrices
 };
 
 
-extern ConstantBuffer g_pGlobalConstantBuffer;
+extern struct ConstantBuffer g_pGlobalConstantBuffer;
 extern ChangingBuffer g_pGlobalChangingBuffer;
 extern AnimationMatrices g_pAnimationMatrices;
 
