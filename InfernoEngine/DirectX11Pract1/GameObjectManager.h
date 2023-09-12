@@ -23,7 +23,7 @@
 #include "Model_Inf.h"
 
 extern std::string MODELS_LOCATION; 
-extern std::map<std::string,Mesh*> mStaticMeshList;
+extern std::map<std::string,Mesh*> mStaticMeshList; 
 
 extern std::map<std::string,Mesh*> mDynamicMeshList;
 

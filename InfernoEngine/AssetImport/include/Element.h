@@ -1,5 +1,3 @@
-
-
 #ifndef Element_H_
 #define Element_H_
 

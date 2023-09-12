@@ -13,12 +13,12 @@ Camera::Camera()
 	mThisGO = new SharedInfo;
 	mLookAtTransform = NULL;
 }
+
 Camera::~Camera()
 {
 	if(mThisGO)
 		delete mThisGO;
 }
-
 
 //Sets the Camera to given Position
 void Camera::SetCamera(float posX,float posY,float posZ)
@@ -66,6 +66,7 @@ void Camera::MoveAroundPoint(Vector3 point,float distance,float moveSpeed)
 {
 	
 }
+
 void Camera::SetLookAtTransform(Transform* transform)
 {
 	mLookAtTransform = transform;
@@ -76,6 +77,7 @@ void Camera::Initialize()
 	if(mThisGO->transform != NULL)
 		mThisGO->transform->position = Vector3::Forward*-10;
 }
+
 void Camera::Update()
 {
 	if(mLookAtTransform != NULL)
@@ -94,10 +96,12 @@ void Camera::Update()
 	g_Projection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV4, 1024 / (FLOAT)768, 1.0f, 100000.0f );
 	
 }
+
 void Camera::Destroy()
 {
 
 }
+
 ComponentType Camera::GetType()
 {
 	return CameraComp;

@@ -19,7 +19,7 @@
 #include "global.h"
 #include <map>
 #include "Material.h"
-#include "Texture.h"
+//#include "Texture.h"
 
 bool CompileShaderFromFile( std::wstring shaderFileName, 
 	std::wstring entryPoint, 
@@ -87,10 +87,10 @@ public:
 	/// </summary>
 	ID3D11RasterizerState* mRasterizerState;
 
-	/// <summary>
-	/// The m array of textures
-	/// </summary>
-	Texture* mArrayOfTextures;
+	///// <summary>
+	///// The m array of textures
+	///// </summary>
+	//Texture* mArrayOfTextures;
 
 	void CopyPropertiesFromShader(Shader&);
 

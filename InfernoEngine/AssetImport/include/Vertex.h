@@ -11,7 +11,6 @@ class Vertex
 {
 
 public:
-
 	DirectX::XMFLOAT4 m_Position;
 	DirectX::XMFLOAT4 m_Normal;
 	DirectX::XMFLOAT4 m_Color;

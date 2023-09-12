@@ -1,5 +1,6 @@
 #ifndef _CHRTimer_HG_
 #define _CHRTimer_HG_
+#include <cstdint>
 
 // Used to do high resulution timing
 // Used QueryPerformanceTimer() 
@@ -26,10 +27,10 @@ public:
 	float GetElapsedSeconds(void);	// Can also use __int64 (win32 specific)
 	unsigned long long GetFrequency(void);	
 private:
-	unsigned long long m_elapsedTime;	// Can also use __int64 (win32 specific)
-	unsigned long long m_startTime;		// Can also use __int64 (win32 specific)
-	unsigned long long m_stopTime;		// Can also use __int64 (win32 specific)
-	unsigned long long m_frequency;		// Can also use __int64 (win32 specific)
+	uint64_t m_elapsedTime;	   
+	uint64_t m_startTime;	
+	uint64_t m_stopTime;	
+	uint64_t m_frequency;	
 };
 
 #endif // _CHRTimer_HG_

@@ -77,13 +77,6 @@ Shader::Shader()
 //}
 
 
-
-
-
-
-
-
-
 /// <summary>
 /// Copies the properties from shader.
 /// </summary>
@@ -91,13 +84,13 @@ Shader::Shader()
 void Shader::CopyPropertiesFromShader(Shader& otherShader)
 {
 	this->mNoOfTexturesShaderNeeds = otherShader.mNoOfTexturesShaderNeeds;
-	delete this->mArrayOfTextures;
+	/*delete this->mArrayOfTextures;
 	mArrayOfTextures = new Texture[otherShader.mNoOfTexturesShaderNeeds];
 	for (int i = 0; i != otherShader.mNoOfTexturesShaderNeeds; i++)
 	{
 		mArrayOfTextures[i] = otherShader.mArrayOfTextures[i];  
 	}
-	this->mArrayOfTextures = otherShader.mArrayOfTextures;
+	this->mArrayOfTextures = otherShader.mArrayOfTextures;*/
 	this->mShaderName = otherShader.mShaderName;
 
 	this->mVertexShader = otherShader.mVertexShader;

@@ -15,6 +15,7 @@
 #include "PrefabManager.h"
 #include "ObjectFactory.h"
 #include "RenderToTexture.h"
+
 bool once = false;
 
 Shader* shaderToBeUsed;
@@ -40,128 +41,21 @@ int numRows = 20;
 int numCols = 20;
 
 
-//////////////////////////////////////////////////////////////////////////
-//  Graphics Midterm Variables
-//////////////////////////////////////////////////////////////////////////
-
 std::vector<GameObject*> listOfGameobjectsOnScreen;
-
-GameObject* light1;
 
 GameObject* ground;
 GameObject* teapot;
-
 GameObject* crate;
 GameObject* crate1;
-
-
 CameraScript* camerascript;
-//////////////////////////////////////////////////////////////////////////
 
 HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow );
 HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
-void DrawObject(std::vector<Model_Inf*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix);
 void Render();
 void LoadAllShaders();
-float distanceToCamera(Model_Inf* pObject );
-bool PredicateFunction_CloserToCamera(Model_Inf* pA, Model_Inf* pB );
-void SortObjects( std::vector<Model_Inf*> &vecObjects );
 DWORD dwThreadId;
-RenderToTexture renderTexture;
-
-//////////////////////////////////////////////////////////////////////////
-//  Helper functions
-//////////////////////////////////////////////////////////////////////////
-
-void PlaceObjectsInGrid(GameObject* go,int rows,int columns,Vector2 gridStart,float offset)
-{
-	float x = 0;float z = 0;
-	
-	for (int index = 0; index < rows;index++)
-	{
-		x = index * offset + gridStart.x;
-		for (int innerIndex = 0; innerIndex < columns; innerIndex++)
-		{
-			z = innerIndex * offset + gridStart.y;
-			GameObject* newgo = Instantiate(go,Vector3(x,0,z),Vector3::Zero);
-			newgo->renderer->SetPixelShader(g_pPixelShaderLightingOnly);
-			newgo->renderer->SetRasterizerState(g_pRS_SolidCullBack);
-			newgo->transform.scale = Vector3::One * (Helper::RandomBetween0n1() * 3 + 1);
-			listOfGameobjectsOnScreen.push_back(newgo);
-			
-		}
-	}
-}
-
-void CreateCompound(GameObject* go,Vector3 compStart,int preSideFenceNum,float offset)
-{
-	GameObject* currentGameObject = go;
-	Vector3 currentPosition = compStart;
-	int totalNoOfFence = 4 * preSideFenceNum; 
-	int halfOfTOtal = static_cast<int>(preSideFenceNum*0.5f);
-	int switchSides = 0;
-	for (int index = 0; index < totalNoOfFence;index++)
-	{
-		if(index % preSideFenceNum == 0)
-		{
-			switchSides += 1;
-		}
-		if(switchSides == 1)
-		{
-			Vector3 pos = (Vector3::Right * offset + currentPosition);
-			GameObject* quad = new GameObject;
-			quad->AddComponent(RenderComp);
-			quad->transform.SetWorldRotationQuaternion(Vector3(0, 0, 0));
-			quad->transform.position = pos;
-			quad->renderer->LoadMesh("Quad.ply");
-			quad->transform.scale = Vector3::One *(10);
-			quad->renderer->SetRasterizerState(g_pRS_SolidCullBack);
-			quad->renderer->SetPixelShader(g_pPixelShaderDiscardTransperacy);
-			currentPosition = pos;
-		}
-		if(switchSides == 2)
-		{
-			Vector3 pos =(Vector3::Forward * offset + currentPosition);
-			GameObject* quad = new GameObject;
-			quad->AddComponent(RenderComp);
-			quad->transform.SetWorldRotationQuaternion(Vector3(0, 90, 0));
-			quad->transform.position = pos;
-			quad->renderer->LoadMesh("Quad.ply");
-			quad->transform.scale = Vector3::One *(10);
-			quad->renderer->SetRasterizerState(g_pRS_SolidCullBack);
-			quad->renderer->SetPixelShader(g_pPixelShaderDiscardTransperacy);
-			currentPosition = pos;
-		}
-		if(switchSides == 3)
-		{
-			Vector3 pos = (Vector3::Left * offset+ currentPosition);
-			GameObject* quad = new GameObject;
-			quad->AddComponent(RenderComp);
-			quad->transform.SetWorldRotationQuaternion(Vector3(0, 0, 0));
-			quad->transform.position = pos;
-			quad->renderer->LoadMesh("Quad.ply");
-			quad->transform.scale = Vector3::One *(10);
-			quad->renderer->SetRasterizerState(g_pRS_SolidCullBack);
-			quad->renderer->SetPixelShader(g_pPixelShaderDiscardTransperacy);
-			currentPosition = pos;
-		}
-		if(switchSides == 4)
-		{
-			Vector3 pos = (Vector3::Backward * offset + currentPosition);
-			GameObject* quad = new GameObject;
-			quad->AddComponent(RenderComp);
-			quad->transform.SetWorldRotationQuaternion(Vector3(0, 90, 0));
-			quad->transform.position = pos;
-			quad->renderer->LoadMesh("Quad.ply");
-			quad->transform.scale = Vector3::One *(10);
-			quad->renderer->SetRasterizerState(g_pRS_SolidCullBack);
-			quad->renderer->SetPixelShader(g_pPixelShaderDiscardTransperacy);
-			currentPosition = pos;
-		}
-	}
-}
 
 bool CreateDepthStencilStates()
 {
@@ -288,11 +182,11 @@ bool CreateDepthStencilStates()
 bool CreateRasterizerStates()
 {
 	HRESULT hr = S_OK;
-	// Prepare the "rasterizer state" so that we can change to wire frame, etc.
-	// Set up the "rasterizer state" so we can not "cull" the "back facing" triangles
 	D3D11_RASTERIZER_DESC descrip;
 	ZeroMemory( &descrip, sizeof( D3D11_RASTERIZER_DESC ) );	// Clear it
+	// Set up the "rasterizer state" so we can not "cull" the "back facing" triangles
 	descrip.CullMode = D3D11_CULL_NONE;
+	// Prepare the "rasterizer state" so that we can change to wire frame, etc.
 	descrip.FillMode = D3D11_FILL_WIREFRAME;
 
 	::g_pd3dDevice->CreateRasterizerState( &descrip, &(g_pRS_WireFrameNoCull));
@@ -326,17 +220,11 @@ bool CreateRasterizerStates()
 	return true;
 }
 
-//////////////////////////////////////////////////////////////////////////
-
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
 {
 	UNREFERENCED_PARAMETER( hPrevInstance );
 	UNREFERENCED_PARAMETER( lpCmdLine );
-
-
-	//OpenConsole();
-	//std::srand(time(0));
-	//InitializeFbxSdk();
+	
 	if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
 		return 0;
 
@@ -354,53 +242,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	light->AddComponent(LightComp);
 	light->transform.position = Vector3::Zero;
 
-	
-	//GameObject* quad = new GameObject;
-	//quad->AddComponent(RenderComp);
-	//quad->AddComponent(AnimationComp);
-	//quad->transform.SetWorldRotationQuaternion(Vector3(0, 0, 0));
-	//quad->transform.position = Vector3::Zero;
-	//quad->renderer->LoadMesh("DefaultAvatar.fbx");
-	//quad->animation->LoadSkeletalAnimationFromFile("Animations/DefaultAvatar_Idle_Neutral.fbx");
-	//quad->transform.scale = Vector3(10,10,10);
-	//quad->renderer->SetVertexLayout(g_pVertexLayout);
-	//quad->renderer->SetRasterizerState(g_pRS_WireFrameNoCull);
-	//quad->renderer->SetVertexShader(g_pSkinnigVertexShader);
-	//quad->renderer->SetPixelShader(g_pPixelShaderLightingOnly);
-	//PlayerScript* plScript = new PlayerScript;
-	//quad->AttachScript(plScript);
-
-	//	CreateCompound(quad,Vector3(-20,5,20),10,10);
-//	PlaceObjectsInGrid(testObject,4,5,Vector2(-20,40),20);
-
-	//////////////////////////////////////////////////////////////////////////
-	//  Cloth Simulation Code
-	//////////////////////////////////////////////////////////////////////////
-	
-	//Plane.AddComponent(RenderComp);
-	//Plane.renderer->mEnabled = false;
-	//Plane.AddComponent(ClothComp);
-	//SimulationScript* script = new SimulationScript;
-	//
-	//Plane.renderer->LoadPlane(20,25,200,250);
-	//Plane.cloth->InitCloth(20,25,3);
-	//int particleCount = Plane.cloth->mNoOfRows * Plane.cloth->mNoOfColumn;
-	//particleObjects  = new GameObject[particleCount];
-	//for(int i = 0; i < particleCount; i++)
-	//{
-	//	particleObjects[i].AddComponent(RenderComp);
-	//	particleObjects[i].renderer->LoadMesh("UVSphere.ply");
-	//	particleObjects[i].transform.scale = Vector3::One;
-	//}
-	//script->m_SpheresList = particleObjects;
-	//script->noOfParticles = particleCount;
-	//script->mCollidingSphere = &testObject;
-	//Plane.AttachScript(script);
-
-	//Plane.transform.scale = Vector3::Forward * 20;
-	//Plane.transform.position = Vector3::Zero;
-	//////////////////////////////////////////////////////////////////////////
-
 	ground = new GameObject;
 	teapot = new GameObject;
 	crate = new GameObject;
@@ -408,7 +249,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
 	
 	ground->AddComponent(RenderComp); 
-	//ground->AttachScript<PlayerScript>();
 	ground->renderer->SetDiffuseColor(Vector4(1,1,1,1)); 
 	ground->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
 	ground->renderer->LoadPlane(20,20,200,200);
@@ -433,29 +273,12 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	crate1->transform.position = Vector3(20,(scale*0.5f),0);
 	crate1->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
 
-	//scale = 10;
-	//teapot->AddComponent(RenderComp);
-	//teapot->AddComponent(ClothComp);
-	//PlayerScript* pl = new PlayerScript;
-	//pl->crate = crate;
-	//teapot->AttachScript(pl);
-	//teapot->renderer->LoadMesh("QuadBin.ply");
-	//teapot->renderer->ScaleUniformaly(10);
-	//teapot->transform.scale = Vector3::One;
-	//teapot->transform.position = Vector3(0,1 * (scale * 5),0) ;
-	//teapot->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
-	//teapot->cloth->mCrateCollider = &crate->renderer->mCollider;
-
 	Scene::Initialize();
 	MainCamera.transform.position = Vector3(0,20, -100);
 	MainCamera.camera->SetLookAtTransform(&teapot->transform);
 	ground->transform.position =  Vector3(0, 0, 0);
 
-	//renderTexture.Initialize(g_pd3dDevice,width,height,DXGI_FORMAT_R32G32B32A32_FLOAT);
-	//renderTexture.SetDeviceContext(g_pImmediateContext);
-
 	MSG msg = {0};
-	
 	timer.Start();
 	while( WM_QUIT != msg.message )
 	{ 
@@ -479,7 +302,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
 	return ( int )msg.wParam;
 }
-
 
 HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 {
@@ -847,228 +669,14 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 
 void Render()
 {
-	//std::wstringstream ss;
-	//std::wstring windowText;
-
-	//ss<<L"Light Index : "<< currentLightIndex << L"XYZ: " << g_pGlobalConstantBuffer.mlights[currentLightIndex].vPosition.x << L", " 
-	//	<< g_pGlobalConstantBuffer.mlights[currentLightIndex].vPosition.y << L", "
-	//	<< g_pGlobalConstantBuffer.mlights[currentLightIndex].vPosition.z << L"  "
-	//	<< L"Attenuation: " << g_pGlobalConstantBuffer.mlights[currentLightIndex].attenuation.x << L", " 
-	//	<< g_pGlobalConstantBuffer.mlights[currentLightIndex].attenuation.y << L", "
-	//	<< g_pGlobalConstantBuffer.mlights[currentLightIndex].attenuation.z << L"  "
-	//	//<< L"Direction : " << g_pGlobalConstantBuffer.mlights[currentLightIndex].vLightDirection.x << L", " 
-	//	//<< g_pGlobalConstantBuffer.mlights[currentLightIndex].vLightDirection.y << L", "
-	//	//<< g_pGlobalConstantBuffer.mlights[currentLightIndex].vLightDirection.z << L"  "
-	//	<< L"DrawCalls : " << noOfDrawCalls
-	//	<< L"DrawOrder: " << orderOfDraw;//g_pGlobalConstantBuffer.mlights[currentLightIndex].range;
-
-	//windowText = ss.str();
-	//SetWindowText( ::g_hWnd, windowText.c_str());
-
-
-
-	// Initialize the view matrix
-
-	//g_View = XMMatrixLookAtLH(Helper::GMathFV(XMFLOAT3(0,0,-10)) , Helper::GMathFV(XMFLOAT3(0,0,0)), Helper::GMathFV(XMFLOAT3(0,1,0)));
-
-	//// Initialize the projection matrix
-	//g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 1.0f, 100000.0f );
-
-	//g_Projection = XMMatrixOrthographicLH( (float)width , (FLOAT)height, 1.0f, 100000.0f );
-
 	float ClearColor[4] = { 0.1f, 0.1f, 0.5f, 1.0f }; // red,green,blue,alpha
 	float blendFactor[4] = { 0, 0, 0, 0 }; 
 	g_pImmediateContext->ClearRenderTargetView( g_pRenderTargetView, ClearColor );
-
 	//Clears Depth buffer to max depth 1.0f and stencil buffer to 0
 	g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView,D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL ,1.0f ,0 );
-
 	g_World = DirectX::XMMatrixIdentity();
-
 	Scene::Update();
-
-	//camerascript->Update();
-	//MainCamera.camera->Update();
-	//renderTexture.Begin();
-	//ground->renderer->Update();
-	//teapot->renderer->Update();
-
-	//renderTexture.End();
-
-	//g_pImmediateContext->OMSetRenderTargets(1,&g_pRenderTargetView,g_pDepthStencilView);
-	////Clears Depth buffer to max depth 1.0f and stencil buffer to 0
-	//g_pImmediateContext->ClearDepthStencilView(g_pDepthStencilView,D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL ,1.0f ,0 ); 
-
-	//g_World = XMMatrixIdentity();
-	//camerascript->Update();
-	//MainCamera.camera->Update();
-
-	//mirror->renderer->mIsRenderTexture = true;
-	//ID3D11ShaderResourceView* reText = renderTexture.GetSRVOfTargetTexture();
-	//if(reText != NULL)
-	//	mirror->renderer->SetRenderTexture(reText);
-	//mirror->renderer->Update();
-
 	g_pSwapChain->Present( 0, 0 );
-
-	if(!once)
-	{
-		once = true;
-	}
-}
-
-// Draws the Object with its children 
-void DrawObject(std::vector<Model_Inf*>::iterator objectIt, const DirectX::XMMATRIX& parentLocalWorldMatrix)
-{
-
-	//XMMATRIX rotationMatrix = XMMatrixIdentity();
-	//XMMATRIX localRotationMatrix = XMMatrixIdentity();
-	//XMMATRIX scalingMatrix = XMMatrixIdentity();
-	//XMMATRIX translationMatrix = XMMatrixIdentity();
-
-	//XMMATRIX matWorldFinalNoScale = XMMatrixIdentity();
-
-	//g_World = XMMatrixIdentity();
-
-	////SRT(Scale*Rotate*Translate) should be the sequence of multiplication of matrices 
-	////if you want to get the Rotation of the GameObject around the local axis
-	//scalingMatrix = XMMatrixScaling((*objectIt)->transform.scale.x,(*objectIt)->transform.scale.y,(*objectIt)->transform.scale.z);
-	//translationMatrix = XMMatrixTranslation((*objectIt)->transform.position.x,(*objectIt)->transform.position.y,(*objectIt)->transform.position.z);
-	////rotationMatrix =  XMMatrixRotationRollPitchYaw(radX,radY,radZ);
-	////localRotationMatrix = XMMatrixRotationRollPitchYaw(localRadX,localRadY,localRadZ);
-	//rotationMatrix = XMMatrixRotationQuaternion((*objectIt)->transform.GetWorldRotationQuaternion());
-	//localRotationMatrix =  XMMatrixRotationQuaternion((*objectIt)->transform.GetLocalRotationQuaternion());
-
-
-	//g_World = XMMatrixMultiply(g_World,scalingMatrix);
-	//g_World = XMMatrixMultiply(g_World,localRotationMatrix);
-	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,localRotationMatrix);
-	//g_World = XMMatrixMultiply(g_World,translationMatrix);
-	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,translationMatrix);
-	//g_World = XMMatrixMultiply(g_World,rotationMatrix);
-	//matWorldFinalNoScale = XMMatrixMultiply(matWorldFinalNoScale,rotationMatrix);
-
-
-	//// Apply this object matrix to the world transform...
-	//// Start with "parent" world matrix
-	//g_World = XMMatrixMultiply( g_World, parentLocalWorldMatrix );
-	//matWorldFinalNoScale = XMMatrixMultiply( matWorldFinalNoScale, parentLocalWorldMatrix );
-	//g_pGlobalConstantBuffer.mWorld = XMMatrixTranspose( g_World );
-	//g_pGlobalConstantBuffer.mView = XMMatrixTranspose( g_View );
-	//g_pGlobalConstantBuffer.mProjection = XMMatrixTranspose( g_Projection );
-	//g_pGlobalConstantBuffer.mInverseTransposedWorld = Helper::InverseTranspose(g_World);
-
-	//g_pImmediateContext->UpdateSubresource( g_pConstantBuffer, 0, NULL, &g_pGlobalConstantBuffer, 0, 0 );
-
-	//g_pGlobalChangingBuffer.mObjectMaterial.mDiffuse = (*objectIt)->mMaterial.mDiffuse;
-	//g_pGlobalChangingBuffer.mObjectMaterial.mAmbient = (*objectIt)->mMaterial.mAmbient;
-	//g_pGlobalChangingBuffer.mObjectMaterial.mSpecular = (*objectIt)->mMaterial.mSpecular;
-
-	//g_pImmediateContext->UpdateSubresource(g_pChangingBuffer,0,NULL,&g_pGlobalChangingBuffer,0,0);
-
-	//
-
-
-
-	//g_pImmediateContext->VSSetShader( g_pVertexShader, NULL, 0 );
-	//g_pImmediateContext->VSSetConstantBuffers( 0, 1, &g_pConstantBuffer);
-	//g_pImmediateContext->VSSetConstantBuffers( 1, 1, &g_pChangingBuffer);
-	//g_pImmediateContext->PSSetConstantBuffers( 0, 1, &g_pConstantBuffer);
-	//g_pImmediateContext->PSSetConstantBuffers( 1, 1, &g_pChangingBuffer);
-
-	//std::string name = (*objectIt)->Name;
-	//int noOfIndexes = (*objectIt)->modelInfo.mNoOfElements * 3;
-	//int indexBufferStartIndex = (*objectIt)->modelInfo.mIndexBufferStartIndex;
-	//int vertexBufferStartIndex = (*objectIt)->modelInfo.mVertexBufferStartIndex;
-
-
-	//if((*objectIt)->modelInfo.mNoofTextures > 0)
-	//{
-	//	if((*objectIt)->mIsTwoTextureOnly)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1,&(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_2, 1,&(*objectIt)->mTextureArray[1].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderTwoTexturesOnly, NULL, 0 );
-	//	}
-	//	else if((*objectIt)->mIsTextureOnly)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1, &(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		if(g_pGlobalChangingBuffer.mTransperacyOn.x == 1.0f)
-	//			(*objectIt)->mIsTransperent = true;
-	//		else
-	//			(*objectIt)->mIsTransperent = false;
-
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderSingleTextureOnly, NULL, 0 );
-	//	}
-	//	else if((*objectIt)->mIsTextureAndLightingOnly)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1, &(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderSingleTexturePlusLightingOnly, NULL, 0 );
-	//	}
-	//	else if((*objectIt)->mIsTwoTextureAndLightingOnly)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1, &(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1, &(*objectIt)->mTextureArray[1].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderTwoTexturePlusLightingOnly, NULL, 0 );
-	//	}
-	//	else if((*objectIt)->mIsSkybox)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( SKYBOX_TEXTURE, 1,&(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderSkybox, NULL, 0 );
-	//	}
-	//	else if((*objectIt)->mIsNormalMapped)
-	//	{
-	//		g_pImmediateContext->PSSetShaderResources( DIFFUSE_TEXTURE_1, 1, &(*objectIt)->mTextureArray[0].mTexture);
-	//		g_pImmediateContext->PSSetShaderResources( BUMPMAP_TEXTURE  , 1, &(*objectIt)->mTextureArray[1].mTexture);
-	//		g_pImmediateContext->PSSetSamplers( 0, 1, &g_pSamplerStateLinear);
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderNormalMap, NULL, 0 );
-	//	}
-	//	else
-	//	{
-	//		g_pImmediateContext->PSSetShader( g_pPixelShaderLightingOnly, NULL, 0 );
-	//	}
-	//}
-	//else
-	//{
-	//	g_pImmediateContext->PSSetShader( g_pPixelShaderLightingOnly, NULL, 0 );
-	//}
-
-
-	//float blendFactor[] = {0.0f, 0.0f, 0.0f, 0.0f};
-
-	//if ( (*objectIt)->mIsTransperent)
-	//{
-	//	::g_pImmediateContext->OMSetBlendState( ::g_pBlendState_Transparent, 
-	//		blendFactor, 0xffffffff );
-	//}
-	////******************************************************************	
-	//
-	//g_pImmediateContext->DrawIndexed(noOfIndexes, indexBufferStartIndex, vertexBufferStartIndex);
-
-	//if (!(*objectIt)->mChildObjectsList.empty())
-	//{
-	//	// Draw all the child objects...
-	//	
-	//	std::vector<Model*>::iterator itChildObject;
-	//	for ( itChildObject = (*objectIt)->mChildObjectsList.begin(); itChildObject != (*objectIt)->mChildObjectsList.end(); itChildObject++)
-	//	{
-	//		DrawObject(itChildObject, matWorldFinalNoScale);
-	//	}
-	//}
-
-	//// ********************************************
-	//// Was the last thing we drew transparent?
-	//if ( (*objectIt)->mIsTransperent )
-	//{	// Yup, so set the blend state back to normal
-	//	::g_pImmediateContext->OMSetBlendState( 0, blendFactor, 0xffffffff );
-	//}
-	//// ********************************************
-
 }
 
 DWORD WINAPI LoadAssets(LPVOID lpParam)
@@ -1079,7 +687,6 @@ DWORD WINAPI LoadAssets(LPVOID lpParam)
 
 void LoadAllShaders()
 {
-
 	shaderToBeUsed = FindShader(L"Shaders/LightingAndTexturingShader.fx");
 	g_pVertexShader = shaderToBeUsed->mVertexShader;
 	g_pPixelShaderLightingOnly = shaderToBeUsed->mPixelShader;
@@ -1108,39 +715,4 @@ void LoadAllShaders()
 	shaderToBeUsed = FindShader(L"Shaders/DiscardTransperancyReverse.fx");
 	g_pPixelShaderDiscardTransperacyReverse = shaderToBeUsed->mPixelShader;
 }
-
-#pragma region Object Sorting Helper functions
-
-//float distanceToCamera( Model* pObject )
-//{
-//	Vector3 pos = Helper::ConvertXMFLOAT3TOVector3(camera.Eye);
-//	float distanceToCamera = Vector3::Distance(pos,pObject->transform.position);
-//
-//	return distanceToCamera;
-//}
-//
-//// This is used in the sort function below...
-//bool PredicateFunction_CloserToCamera( Model* pA, Model* pB ) 
-//{	// std::vector<CObject*> g_vecObjects;
-//	float distanceToCamera_A = distanceToCamera( pA );
-//	float distanceToCamera_B = distanceToCamera( pB );
-//	//
-//	if ( distanceToCamera_A > distanceToCamera_B )
-//	{
-//		return true;
-//	}
-//	return false;
-//}
-//
-//void SortObjects( std::vector<Model*> &vecObjects )
-//{
-//	// Sort the objects from "back" to "front" in terms of distance to the camera
-//	// Bubble, Quicksort, Radix Sort, Shell sort.
-//	// std::vector<CObject*> g_vecObjects;
-//	std::sort( vecObjects.begin(), vecObjects.end(), PredicateFunction_CloserToCamera );
-//
-//	return;
-//}
-
-#pragma endregion Object Sorting Helper functions
  

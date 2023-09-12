@@ -34,3 +34,7 @@ InfernoEngine/.vs/
 InfernoEngine/DirectX11Pract1/Debug/
 InfernoEngine/Debug/
 InfernoEngine/packages/
+*.tlog
+*/Debug/
+*.log
+*.txt

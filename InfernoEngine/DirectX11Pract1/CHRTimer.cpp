@@ -1,29 +1,9 @@
 #include "CHRTimer.h"
 #include "windows.h"	// For high freq
 
-// Written by Michael Feeney, Fanshawe College, 2010
-// mfeeney@fanshawec.on.ca
-// It may be distributed under the terms of the General Public License:
-// http://www.fsf.org/licenses/gpl.html
-// Use this code at your own risk. It is indented only as a learning aid.
-//
 
-//__int64 start_count;
-//__int64 end_count;
-//__int64 freq;
-//
-//// Get the frequency and save it, it shouldn't change
-//QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
-//QueryPerformanceCounter((LARGE_INTEGER*)&start_count);
-//// do some stuff that takes up time
-//QueryPerformanceCounter((LARGE_INTEGER*)&end_count);
-////find the time
-//float time = (float)(end_count - start_count) / (float)freq;
-
-
-
- float mTimeSinceStart = 0;
- float mFixedTimeStep = 0.01f;
+float mTimeSinceStart = 0;
+float mFixedTimeStep = 0.01f;
 float mGlobalDeltaTime = 0;
 
 CHRTimer::CHRTimer()
@@ -36,7 +16,7 @@ CHRTimer::CHRTimer()
 	
 	QueryPerformanceFrequency( &tempTime ); 
 
-	this->m_frequency = static_cast<unsigned long long>( tempTime.QuadPart );
+	this->m_frequency = static_cast<uint64_t>( tempTime.QuadPart );
 }
 
 CHRTimer::~CHRTimer()
