@@ -76,10 +76,6 @@ Mesh* LoadPlyFileToMesh(std::string fileName, ID3D11Device* device, ID3D11Device
 		mesh->mIndices[indexOffset + 1] = ele.index_v2;
 		mesh->mIndices[indexOffset + 2] = ele.index_v3;
 
-		//mesh->mIndices[indexOffset + 0] = plyLoaderObject->GetElementAtIndex(index).index_v1;
-		//mesh->mIndices[indexOffset + 1] = plyLoaderObject->GetElementAtIndex(index).index_v2;
-		//mesh->mIndices[indexOffset + 2] = plyLoaderObject->GetElementAtIndex(index).index_v3;
-
 		mesh->mElements[index].index_v1 = ele.index_v1;
 		mesh->mElements[index].index_v2 = ele.index_v2;
 		mesh->mElements[index].index_v3 = ele.index_v3;

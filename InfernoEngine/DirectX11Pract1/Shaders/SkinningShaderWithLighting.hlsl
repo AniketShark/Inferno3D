@@ -1,6 +1,6 @@
 
 
-#include "LightingAndTexturingShader.fx"
+#include "LightingAndTexturingShader.hlsl"
 
 
 PS_INPUT VSSkinning( VS_INPUT input )

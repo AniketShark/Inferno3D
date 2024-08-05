@@ -84,7 +84,6 @@ public:
 	// Draws Object on screen
 	void Draw();
 
-
 	//Change new current Vertices's
 	Vertex* mCurrentVertices;
 
@@ -93,14 +92,13 @@ public:
 
 	BonePose*              mCurrentBones; //saves changed bone positions
 
-	DirectX::XMFLOAT4X4*            mCurrentGlobalPose; //saves changed bone matrix
+	DirectX::XMFLOAT4X4*   mCurrentGlobalPose; //saves changed bone matrix
 
 	SimpleVertex*           mBoneVerts; //bone vertices's
 	
 	WORD*                   mBoneIndices; //bone indices
 
-	DirectX::XMFLOAT4X4*            mCurrentBoneSkinningMatrix; //Skinning matrices for GPU skinning
-
+	DirectX::XMFLOAT4X4*    mCurrentBoneSkinningMatrix; //Skinning matrices for GPU skinning
 
 	DirectX::XMMATRIX      mExternalTransformationMatrix;
 

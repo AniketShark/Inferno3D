@@ -21,5 +21,11 @@ void OpenConsole()
 
 void ConsolePrint(std::string str)
 {
-	cout<<"Aniket : "<<str; 
+	cout<<"Msg : "<<str; 
+}
+
+void ConsolePrint(WCHAR* str)
+{
+	cout << "Msg : " << str;
+	std::wprintf(str);
 }

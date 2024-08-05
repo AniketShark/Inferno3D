@@ -36,5 +36,3 @@ InfernoEngine/Debug/
 InfernoEngine/packages/
 *.tlog
 */Debug/
-*.log
-*.txt

@@ -1,4 +1,4 @@
-#include "LightingAndTexturingShader.fx"
+#include "LightingAndTexturingShader.hlsl"
 
 
 

@@ -53,8 +53,6 @@ void PlayerScript::Update()
 		mGameObjectPointer->GetComponent<Renderer>()->mEnabled = false;
 	}
 
-
-
 	if(g_input.GetKey(DIK_W))
 	{
 		mThisGO->transform->position.z += 0.1f;
@@ -70,6 +68,15 @@ void PlayerScript::Update()
 	if(g_input.GetKey(DIK_D))
 	{
 		mThisGO->transform->position.x += 0.1f;
+	}
+
+	if (g_input.GetKey(DIK_Q))
+	{
+		mThisGO->transform->position.y -= 0.1f;
+	}
+	if (g_input.GetKey(DIK_E))
+	{
+		mThisGO->transform->position.y += 0.1f;
 	}
 
 	//if(g_input.GetKey(DIK_LCONTROL))

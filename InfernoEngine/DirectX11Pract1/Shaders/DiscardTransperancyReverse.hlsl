@@ -1,6 +1,6 @@
 
 
-#include "ShaderStructure.fx"
+#include "ShaderStructure.hlsl"
 
 #define MAX_LIGHTS 10
 

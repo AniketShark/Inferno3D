@@ -1,4 +1,4 @@
-#include "LightingAndTexturingShader.fx"
+#include "LightingAndTexturingShader.hlsl"
 
 
 float4 MixTextures(Texture2D texture1,Texture2D texture2,float gammaValue,PS_INPUT input)

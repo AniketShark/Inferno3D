@@ -3,15 +3,16 @@
 
 #include <d3d11.h>
 #include<string>
+
 class Texture
 {
-
 public:
 	enum TextureType
 	{
 		DIFFUSEMAP,
 		NORMALMAP
 	};
+
 	ID3D11ShaderResourceView* mTexture;
 	Texture();
 	Texture(const Texture&);

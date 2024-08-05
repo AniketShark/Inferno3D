@@ -1,5 +1,8 @@
-#include "LightingAndTexturingShader.fx"
+#include "LightingAndTexturingShader.hlsl"
 
+
+
+RWTexture2D<float4> outputTexture;
 
 float4 MixTextures(Texture2D texture1,Texture2D texture2,float gammaValue,PS_INPUT input)
 {
@@ -17,7 +20,7 @@ float4 MixTextures(Texture2D texture1,Texture2D texture2,float gammaValue,PS_INP
     blendColor = color1 * color2 * gammaValue;
     
     // Saturate the final color.
-    blendColor = saturate(blendColor);
+    blendColor = saturate(blendColor);	
 
 	return blendColor;
 }
@@ -27,15 +30,21 @@ float4 MixTextures(Texture2D texture1,Texture2D texture2,float gammaValue,PS_INP
 //--------------------------------------------------------------------------------------
 float4 PSMixTexture( PS_INPUT input) : SV_Target
 {
-	float4 lightColor = float4(0,0,0,0);
-	for(int index = 0;index != MAX_LIGHTS; index++)
-	{
-		if(lights[index].typeOfLight == 0.0f)
-		lightColor +=  ParellelLight(objectMaterial,lights[index],input.WorldPos,input.Norm,EyePosition);
-		if(lights[index].typeOfLight == 1.0f)
-		lightColor +=  PointLight(objectMaterial,lights[index],input.WorldPos,input.Norm,EyePosition);
-		
-	}
-		return MixTextures(txDiffuse1,txDiffuse2,2.0f,input);// * saturate(lightColor);
+	//float4 lightColor = float4(0,0,0,0);
+	//for(int index = 0;index != MAX_LIGHTS; index++)
+	//{
+	//	if(lights[index].typeOfLight == 0.0f)
+	//	lightColor +=  ParellelLight(objectMaterial,lights[index],input.WorldPos,input.Norm,EyePosition);
+	//	if(lights[index].typeOfLight == 1.0f)
+	//	lightColor +=  PointLight(objectMaterial,lights[index],input.WorldPos,input.Norm,EyePosition);	
+	//}
+	return MixTextures(txDiffuse1,txDiffuse2,2.0f,input);// * saturate(lightColor);
+}
+
+
+[numthreads(16,16,1)]
+void CS(int dispatchThreadID : SV_DispatchThreadID)
+{
+	outputTexture[dispatchThreadID.xy] = texDiffuse1[dispatchThreadID.xy] + texDiffuse2[dispatchThreadID.xy];
 }
 

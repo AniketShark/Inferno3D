@@ -65,7 +65,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dinput8.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dinput8.lib;dxguid.lib;winmm.lib;comctl32.lib;wininet.lib;DirectXTK.lib;DXGI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBMCT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -161,23 +161,23 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\LibraryFileNames.txt" />
-    <None Include="Shaders\BasicShader.fx" />
-    <None Include="Shaders\BasicShaderSkinning.fx" />
-    <None Include="Shaders\BillboardShader.fx" />
-    <None Include="Shaders\DiscardTransperancy.fx" />
-    <None Include="Shaders\DiscardTransperancyReverse.fx" />
-    <None Include="Shaders\LightingAndTexturingShader.fx" />
-    <None Include="Shaders\SingleTexturePlusLightingOnly.fx" />
-    <None Include="Shaders\SkinningShaderWithLighting.fx" />
-    <None Include="Shaders\TwoTexturesNormalMapOnly.fx" />
-    <None Include="Shaders\TwoTexturesOnly.fx" />
+    <None Include="Shaders\BasicShader.hlsl" />
+    <None Include="Shaders\BasicShaderSkinning.hlsl" />
+    <None Include="Shaders\BillboardShader.hlsl" />
+    <None Include="Shaders\DiscardTransperancy.hlsl" />
+    <None Include="Shaders\DiscardTransperancyReverse.hlsl" />
+    <None Include="Shaders\LightingAndTexturingShader.hlsl" />
+    <None Include="Shaders\SingleTexturePlusLightingOnly.hlsl" />
+    <None Include="Shaders\SkinningShaderWithLighting.hlsl" />
+    <None Include="Shaders\TwoTexturesNormalMapOnly.hlsl" />
+    <None Include="Shaders\TwoTexturesOnly.hlsl" />
     <None Include="Shaders\ShaderSource.dat" />
-    <None Include="Shaders\ShaderStructure.fx" />
-    <None Include="Shaders\Skybox.fx" />
-    <None Include="Shaders\Texture.fx" />
-    <None Include="Shaders\SingleTextureOnly.fx" />
-    <None Include="Shaders\TwoTexturesOnlyWithComputeShader.fx" />
-    <None Include="Shaders\TwoTexturesPlusLightingOnly.fx" />
+    <None Include="Shaders\ShaderStructure.hlsl" />
+    <None Include="Shaders\Skybox.hlsl" />
+    <None Include="Shaders\Texture.hlsl" />
+    <None Include="Shaders\SingleTextureOnly.hlsl" />
+    <None Include="Shaders\TwoTexturesOnlyWithComputeShader.hlsl" />
+    <None Include="Shaders\TwoTexturesPlusLightingOnly.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3DMath\3DMath.vcxproj">

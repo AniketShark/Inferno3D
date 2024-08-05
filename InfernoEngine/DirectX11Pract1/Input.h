@@ -6,7 +6,6 @@
 
 #define SPACE DIK_SPACE;
 
-
 class Input
 {
 public:

@@ -94,7 +94,7 @@ bool RenderToTexture::m_CreateDepthMap(ID3D11Device* device)
 	srvDesc.Texture2D.MipLevels = texDesc.MipLevels;
 	srvDesc.Texture2D.MostDetailedMip = 0;
 
-	result = device->CreateShaderResourceView(mTargetDepthMap, &srvDesc, &mDepthMapSRV);
+	result = device->CreateShaderResourceView(mTargetDepthMap, &srvDesc, &mDepthMapSRV); 
 
 	if(FAILED(result))
 	{

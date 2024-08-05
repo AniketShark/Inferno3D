@@ -33,7 +33,7 @@ bool switchAnimation = false;
 CHRTimer timer;
 
 GameObject MainCamera;
-
+ 
 UINT width; 
 UINT height;
 
@@ -238,20 +238,16 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	MainCamera.AddComponent(CameraComp);
 	MainCamera.AttachScript<CameraScript>();
 
-	GameObject* light = new GameObject;
-	light->AddComponent(LightComp);
-	light->transform.position = Vector3::Zero;
-
 	ground = new GameObject;
 	teapot = new GameObject;
 	crate = new GameObject;
 	crate1 = new GameObject;
 
 	
-	ground->AddComponent(RenderComp); 
-	ground->renderer->SetDiffuseColor(Vector4(1,1,1,1)); 
-	ground->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
-	ground->renderer->LoadPlane(20,20,200,200);
+	//ground->AddComponent(RenderComp); 
+	//ground->renderer->SetDiffuseColor(Vector4(1,1,1,1)); 
+	//ground->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
+	//ground->renderer->LoadPlane(20,20,200,200);
 
 	float scale = 10;
 	crate->AddComponent(RenderComp);
@@ -262,16 +258,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 	crate->transform.scale = Vector3::One * scale;
 	crate->transform.position = Vector3(-20,(scale*0.5f),0);
 	crate->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
-
-
-	scale = 10;
-	crate1->AddComponent(RenderComp);
-	crate1->AddComponent(ColliderComp);
-	crate->mName = "Crate1";
-	crate1->renderer->LoadMesh("Crate.ply");
-	crate1->transform.scale = Vector3::One * scale;
-	crate1->transform.position = Vector3(20,(scale*0.5f),0);
-	crate1->renderer->SetPixelShader(g_pPixelShaderSingleTextureOnly);
+	
 
 	Scene::Initialize();
 	MainCamera.transform.position = Vector3(0,20, -100);
@@ -687,32 +674,32 @@ DWORD WINAPI LoadAssets(LPVOID lpParam)
 
 void LoadAllShaders()
 {
-	shaderToBeUsed = FindShader(L"Shaders/LightingAndTexturingShader.fx");
+	shaderToBeUsed = FindShader(L"Shaders/LightingAndTexturingShader.hlsl");
 	g_pVertexShader = shaderToBeUsed->mVertexShader;
 	g_pPixelShaderLightingOnly = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/SingleTextureOnly.fx");
+	shaderToBeUsed = FindShader(L"Shaders/SingleTextureOnly.hlsl");
 	g_pPixelShaderSingleTextureOnly = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesOnly.fx");
+	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesOnly.hlsl");
 	g_pPixelShaderTwoTexturesOnly = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/SingleTexturePlusLightingOnly.fx");
+	shaderToBeUsed = FindShader(L"Shaders/SingleTexturePlusLightingOnly.hlsl");
 	g_pPixelShaderSingleTexturePlusLightingOnly = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesPlusLightingOnly.fx");
+	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesPlusLightingOnly.hlsl");
 	g_pPixelShaderTwoTexturePlusLightingOnly = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/Skybox.fx");
+	shaderToBeUsed = FindShader(L"Shaders/Skybox.hlsl");
 	g_pPixelShaderSkybox = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesNormalMapOnly.fx");
+	shaderToBeUsed = FindShader(L"Shaders/TwoTexturesNormalMapOnly.hlsl");
 	g_pPixelShaderNormalMap = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/DiscardTransperancy.fx");
+	shaderToBeUsed = FindShader(L"Shaders/DiscardTransperancy.hlsl");
 	g_pPixelShaderDiscardTransperacy = shaderToBeUsed->mPixelShader;
 
-	shaderToBeUsed = FindShader(L"Shaders/DiscardTransperancyReverse.fx");
+	shaderToBeUsed = FindShader(L"Shaders/DiscardTransperancyReverse.hlsl");
 	g_pPixelShaderDiscardTransperacyReverse = shaderToBeUsed->mPixelShader;
 }
  

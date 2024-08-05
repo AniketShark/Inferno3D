@@ -2,7 +2,7 @@ ply
 format ascii 1.0
 comment Created by Blender 2.69 (sub 0) - www.blender.org, source file: 'Crate1.blend'
 
-comment TextureFile Textures/Fence.jpg
+comment TextureFile Textures/crate_tex2.jpg
 
 element vertex 24
 property float x

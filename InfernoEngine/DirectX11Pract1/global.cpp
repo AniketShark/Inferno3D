@@ -44,14 +44,16 @@ HINSTANCE               g_hInst = NULL;
 HWND                    g_hWnd = NULL;
 D3D_DRIVER_TYPE         g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL       g_featureLevel = D3D_FEATURE_LEVEL_11_0;
+
 ID3D11Device*           g_pd3dDevice = NULL;
 ID3D11DeviceContext*    g_pImmediateContext = NULL;
 IDXGISwapChain*         g_pSwapChain = NULL;
+
 ID3D11RenderTargetView* g_pRenderTargetView = NULL;
 ID3D11DepthStencilView* g_pDepthStencilView = NULL;
 ID3D11VertexShader*     g_pVertexShader = NULL;
-ID3D11VertexShader*     g_pSkinnigVertexShader = NULL;
 
+ID3D11VertexShader*     g_pSkinnigVertexShader = NULL;
 
 ID3D11Texture2D*		g_pDepthStencilBuffer = NULL;
 ID3D11Texture2D*		g_pBlurredTexture = NULL;

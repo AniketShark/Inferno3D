@@ -82,7 +82,7 @@ void Camera::Update()
 {
 	if(mLookAtTransform != NULL)
 		View = Helper::ConvertVector3ToXMFLOAT3(mLookAtTransform->position);
-
+	
 	Eye = Helper::ConvertVector3ToXMFLOAT3(mThisGO->transform->position);
 
 	g_pGlobalConstantBuffer.mEyePosition.x = Eye.x;

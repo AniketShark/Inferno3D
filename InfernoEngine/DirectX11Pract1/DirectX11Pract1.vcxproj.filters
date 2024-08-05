@@ -265,58 +265,58 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\LightingAndTexturingShader.fx">
+    <None Include="Shaders\LightingAndTexturingShader.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\ShaderStructure.fx">
+    <None Include="Shaders\ShaderStructure.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\Texture.fx">
+    <None Include="Shaders\Texture.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Shaders\ShaderSource.dat">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\Skybox.fx">
+    <None Include="Shaders\Skybox.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\SingleTextureOnly.fx">
+    <None Include="Shaders\SingleTextureOnly.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\TwoTexturesOnly.fx">
+    <None Include="Shaders\TwoTexturesOnly.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\SingleTexturePlusLightingOnly.fx">
+    <None Include="Shaders\SingleTexturePlusLightingOnly.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\TwoTexturesPlusLightingOnly.fx">
+    <None Include="Shaders\TwoTexturesPlusLightingOnly.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\TwoTexturesNormalMapOnly.fx">
+    <None Include="Shaders\TwoTexturesNormalMapOnly.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\BasicShader.fx">
+    <None Include="Shaders\BasicShader.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Resources\LibraryFileNames.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Shaders\BasicShaderSkinning.fx">
+    <None Include="Shaders\BasicShaderSkinning.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\DiscardTransperancy.fx">
+    <None Include="Shaders\DiscardTransperancy.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\DiscardTransperancyReverse.fx">
+    <None Include="Shaders\DiscardTransperancyReverse.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\BillboardShader.fx">
+    <None Include="Shaders\BillboardShader.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\SkinningShaderWithLighting.fx">
+    <None Include="Shaders\SkinningShaderWithLighting.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Shaders\TwoTexturesOnlyWithComputeShader.fx">
+    <None Include="Shaders\TwoTexturesOnlyWithComputeShader.hlsl">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="packages.config" />
